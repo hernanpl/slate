@@ -1,121 +1,147 @@
 //= require ../lib/_jquery
 //= require ../lib/_imagesloaded.min
+
 ;(function () {
   'use strict';
 
   var htmlPattern = /<[^>]*>/g;
   var loaded = false;
-
-  var debounce = function(func, waitTime) {
-    var timeout = false;
-    return function() {
-      if (timeout === false) {
-        setTimeout(function() {
-          func();
-          timeout = false;
-        }, waitTime);
-        timeout = true;
-      }
-    };
+  var closeToc = function () {
+      $(".toc-wrapper").removeClass('open');
+      $("#nav-button").removeClass('open');
   };
 
-  var closeToc = function() {
-    $(".toc-wrapper").removeClass('open');
-    $("#nav-button").removeClass('open');
-  };
+  
 
   function loadToc($toc, tocLinkSelector, tocListSelector, scrollOffset) {
-    var headerHeights = {};
-    var pageHeight = 0;
-    var windowHeight = 0;
-    var originalTitle = document.title;
+      // offset for fixed headers (if any)
+      var headerHeights = {};
+      var pageHeight = 0;
+      var windowHeight = 0;
+      var originalTitle = document.title;
 
-    var recacheHeights = function() {
-      headerHeights = {};
-      pageHeight = $(document).height();
-      windowHeight = $(window).height();
+      var recacheHeights = function () {
+          headerHeights = {};
+          pageHeight = $(document).height();
+          windowHeight = $(window).height();
 
-      $toc.find(tocLinkSelector).each(function() {
-        var targetId = $(this).attr('href');
-        if (targetId[0] === "#") {
-          headerHeights[targetId] = $("#" + $.escapeSelector(targetId.substring(1))).offset().top;
-        }
-      });
-    };
+          $toc.find(tocLinkSelector).each(function () {
+              var targetId = $(this).attr('href');
+              if (targetId[0] === "#") {
+                  var $target = $("#" + $.escapeSelector(targetId.substring(1)));
+                  if ($target.length) {
+                      headerHeights[targetId] = $target.offset().top;
+                  } else {
+                      console.error("Element not found:", targetId);
+                  }
+              }
+          });
+      };
 
-    var refreshToc = function() {
-      var currentTop = $(document).scrollTop() + scrollOffset;
+      var refreshToc = function () {
+          var currentTop = $(document).scrollTop() + scrollOffset;
 
-      if (currentTop + windowHeight >= pageHeight) {
-        // at bottom of page, so just select last header by making currentTop very large
-        // this fixes the problem where the last header won't ever show as active if its content
-        // is shorter than the window height
-        currentTop = pageHeight + 1000;
-      }
+          if (currentTop + windowHeight >= pageHeight) {
+              currentTop = pageHeight + 1000;
+          }
 
-      var best = null;
-      for (var name in headerHeights) {
-        if ((headerHeights[name] < currentTop && headerHeights[name] > headerHeights[best]) || best === null) {
-          best = name;
-        }
-      }
+          var best = null;
+          for (var name in headerHeights) {
+              if ((headerHeights[name] < currentTop && headerHeights[name] > headerHeights[best]) || best === null) {
+                  best = name;
+              }
+          }
 
-      // Catch the initial load case
-      if (currentTop == scrollOffset && !loaded) {
-        best = window.location.hash;
-        loaded = true;
-      }
+          if (currentTop == scrollOffset && !loaded) {
+              best = window.location.hash;
+              loaded = true;
+          }
 
-      var $best = $toc.find("[href='" + best + "']").first();
-      if (!$best.hasClass("active")) {
-        // .active is applied to the ToC link we're currently on, and its parent <ul>s selected by tocListSelector
-        // .active-expanded is applied to the ToC links that are parents of this one
-        $toc.find(".active").removeClass("active");
-        $toc.find(".active-parent").removeClass("active-parent");
-        $best.addClass("active");
-        $best.parents(tocListSelector).addClass("active").siblings(tocLinkSelector).addClass('active-parent');
-        $best.siblings(tocListSelector).addClass("active");
-        $toc.find(tocListSelector).filter(":not(.active)").slideUp(150);
-        $toc.find(tocListSelector).filter(".active").slideDown(150);
-        if (window.history.replaceState) {
-          window.history.replaceState(null, "", best);
-        }
-        var thisTitle = $best.data("title");
-        if (thisTitle !== undefined && thisTitle.length > 0) {
-          document.title = thisTitle.replace(htmlPattern, "") + " – " + originalTitle;
-        } else {
-          document.title = originalTitle;
-        }
-      }
-    };
+          var $best = $toc.find("[href='" + best + "']").first();
+          console.log($best)
+          if (!$best.hasClass("active")) {
+              $toc.find(".active").removeClass("active");
+              $toc.find(".active-parent").removeClass("active-parent");
+              $best.addClass("active");
+              $best.parents(tocListSelector).addClass("active").siblings(tocLinkSelector).addClass('active-parent');
+              $best.siblings(tocListSelector).addClass("active");
+              $toc.find(tocListSelector).filter(":not(.active)").slideUp(150);
+              $toc.find(tocListSelector).filter(".active").slideDown(150);
+              
+              // Manually trigger refreshToc after a short delay
+              setTimeout(function() {
+                  refreshToc();
+              }, 100); // Adjust delay as needed
 
-    var makeToc = function() {
-      recacheHeights();
-      refreshToc();
+              if (window.history.replaceState) {
+                  window.history.replaceState(null, "", best);
+              }
+              var thisTitle = $best.data("title");
+              if (thisTitle !== undefined && thisTitle.length > 0) {
+                  // Changed "–" to "-"
+                  document.title = thisTitle.replace(htmlPattern, "") + " - " + originalTitle;
+              } else {
+                  document.title = originalTitle;
+              }
+          }
+      };
 
-      $("#nav-button").click(function() {
-        $(".toc-wrapper").toggleClass('open');
-        $("#nav-button").toggleClass('open');
-        return false;
-      });
-      $(".page-wrapper").click(closeToc);
-      $(".toc-link").click(closeToc);
-
-      // reload immediately after scrolling on toc click
-      $toc.find(tocLinkSelector).click(function() {
-        setTimeout(function() {
+      var makeToc = function () {
+          recacheHeights();
           refreshToc();
-        }, 0);
-      });
 
-      $(window).scroll(debounce(refreshToc, 200));
-      $(window).resize(debounce(recacheHeights, 200));
-    };
+          $("#nav-button").click(function () {
+              $(".toc-wrapper").toggleClass('open');
+              $("#nav-button").toggleClass('open');
+              return false;
+          });
+          $(".page-wrapper").click(closeToc);
+      
 
-    makeToc();
+          // Smooth scrolling for TOC links with URL update
+          $toc.find(tocLinkSelector).on('click', function(e) {
+              e.preventDefault();
+              var target = this.hash;
+              var $target = $(target);
 
-    window.recacheHeights = recacheHeights;
-    window.refreshToc = refreshToc;
+              // Remove 'active' class from ALL links before adding it to the clicked one
+              $toc.find(tocLinkSelector).removeClass('active'); 
+              $(this).addClass('active'); 
+
+              $('html, body').animate({
+                  'scrollTop': $target.offset().top - scrollOffset
+              }, 500, 'swing', function() {
+                  // Update URL after scrolling is complete
+                  if (history.pushState) {
+                      history.pushState(null, null, target);
+                  } else {
+                      window.location.hash = target;
+                  }
+              }); 
+          });
+
+          $toc.find(tocLinkSelector).each(function () {
+              var $this = $(this);
+              if ($this.siblings(tocListSelector).length > 0) {
+                  var $arrow = $("<span class='toc-arrow'>►&nbsp;&nbsp;</span>");
+                  $this.prepend($arrow);
+
+                  if ($this.siblings(tocListSelector).hasClass('active')) {
+                      $arrow.addClass('rotate');
+                  }
+
+                  $this.click(function (e) {
+                      $arrow.toggleClass('rotate');
+                      $this.siblings(tocListSelector).slideToggle(150);
+                  });
+              }
+          });
+      };
+
+      makeToc();
+
+      window.recacheHeights = recacheHeights;
+      window.refreshToc = refreshToc;
   }
 
   window.loadToc = loadToc;
