@@ -315,7 +315,7 @@ under the License.
         productButton.classList.remove('open');
 
         // Immediately fetch versions => redirect to the first item
-        fetch(`/platform/${encodeURIComponent(selectedProduct)}/versions.json`)
+        fetch(`platform/${encodeURIComponent(selectedProduct)}/versions.json`)
           .then((res) => res.json())
           .then((versions) => {
             if (versions.length > 0) {
@@ -366,7 +366,7 @@ under the License.
       removeSelectedProductOption(product);
       populateVersions(product, version);
     } else {
-      fetch(`/platform/${encodeURIComponent(defaultProduct)}/versions.json`)
+      fetch(`platform/${encodeURIComponent(defaultProduct)}/versions.json`)
         .then((res) => res.json())
         .then((versions) => {
           if (versions.length > 0) {
