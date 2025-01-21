@@ -37,7 +37,8 @@ html, body {
 }
 
 a {
-  color: #B6BCE2;
+  color: #DBDEF0;
+;
 }
 
 .logo-container {
@@ -59,12 +60,12 @@ a {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
-#toc > ul > li > a > span {
+/*#toc > ul > li > a > span {
   float: right;
   background-color: #2484FF;
   border-radius: 40px;
   width: 20px;
-}
+}*/
 
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
@@ -88,14 +89,10 @@ a {
     }
   }
 
-  /* This is the logo at the top of the ToC
-  .logo-container {
-    max-width: 100%;
-    padding: 10px;
-    position: sticky;
-    background-color: #161B37;
-    margin: $logo-margin;
-  } */
+  .divider {
+    border-top: 1px solid #3A4792;
+    margin: 10px 15px;
+  }
 
   &>.search {
     position: relative;
@@ -357,6 +354,107 @@ a {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+// DROPDOWN STYLES
+////////////////////////////////////////////////////////////////////////////////
+.nx-dropdown {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  margin: 5px 15px;
+  color: #B6BCE2;
+}
+
+.nx-dropdown__toggle {
+  background-color: $nav-bg;
+  border: 1px solid #929BD3;
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  appearance: none;
+
+  /* Flexbox for internal layout */
+  display: flex;
+  align-items: center;        /* Vertically center content */
+  justify-content: space-between; /* Space between text and arrow */
+
+  /* Hover and focus states */
+  &:hover,
+  &:focus {
+    border-color: #929BD3; /* Example focus color */
+    outline: none;
+    color: #B6BCE2;
+  }
+
+  /* When the dropdown is open, style the button */
+  &.open {
+    border-color: #929BD3;
+    z-index: 10;
+    color: #B6BCE2;
+  }
+
+  /* Hide default arrow (optional) */
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+.nx-dropdown__arrow {
+  /* Arrow styling */
+  display: inline-block;
+  border: 5px solid transparent;
+  border-top-color: #DBDEF0;  /* Arrow color pointing down */
+  transform: translateY(-50%) rotate(0deg);
+  transform-origin: center;
+
+  /* Position it at the right side of the button */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+}
+
+/* Rotate arrow when dropdown is open and arrow is a descendant of open toggle */
+.nx-dropdown__toggle.open .nx-dropdown__arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.nx-dropdown__menu {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 100%;     /* Align to the bottom edge of the button */
+  left: 0;
+  width: 100%;
+  background-color: #161B37;
+  border: 1px solid #929BD3;
+  border-radius: 4px;
+  z-index: 10;   /* Ensure it appears above other elements */
+
+  list-style: none; /* Remove default list styling */
+  margin: 0;
+  padding: 0;
+}
+
+/* Show the menu when toggle is open — menu is a sibling of the toggle */
+.nx-dropdown__toggle.open ~ .nx-dropdown__menu {
+  display: block;
+  color:#B6BCE2;
+}
+
+.nx-dropdown__item {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #161B37; 
+    color: #DD99FF;
+  }
+}
+
+.nx-dropdown__menu li {
+  padding: 10px 15px;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // CONTENT STYLES
 ////////////////////////////////////////////////////////////////////////////////
 // This is all the stuff with the light background in the left half of the page
@@ -535,6 +633,7 @@ a {
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    display: none;
 
     &.warning {
       background-color: $aside-warning-bg;
@@ -542,6 +641,7 @@ a {
 
     &.success {
       background-color: $aside-success-bg;
+      color: #4D4D4D;
     }
   }
 
