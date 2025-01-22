@@ -53,7 +53,6 @@ configure :build do
   activate :asset_hash, :exts => app.config[:asset_extensions] - %w[.woff .woff2]
   # If you're having trouble with Middleman hanging, commenting
   # out the following two lines has been known to help
-  set :http_prefix, "/slate/"
   activate :minify_css
   activate :minify_javascript
   # activate :gzip
