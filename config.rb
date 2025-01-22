@@ -36,8 +36,8 @@ activate :autoprefixer do |config|
 end
 
 # Github pages require relative links
-activate :relative_assets
-set :relative_links, true
+#activate :relative_assets
+#set :relative_links, true
 
 # Build Configuration
 configure :build do
@@ -52,6 +52,15 @@ configure :build do
   activate :minify_css
   activate :minify_javascript
   # activate :gzip
+end
+
+configure :build do
+  set :http_prefix, "/slate"
+
+  # keep your other build config
+  activate :asset_hash, :exts => app.config[:asset_extensions] - %w[.woff .woff2]
+  activate :minify_css
+  activate :minify_javascript
 end
 
 # Deploy Configuration

@@ -1,0 +1,6 @@
+<%
+  product = params[:splat][0]  # Get the product name from the splat parameter
+  versions = Dir.glob("source/platform/#{product}/*").select {|f| File.directory? f}.map {|dir| File.basename(dir)} 
+%>
+
+<%= versions.to_json %>

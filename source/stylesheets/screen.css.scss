@@ -60,12 +60,12 @@ a {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
-/*#toc > ul > li > a > span {
+#toc > ul > li > a > span {
   float: right;
   background-color: #2484FF;
   border-radius: 40px;
   width: 20px;
-}*/
+}
 
 .toc-wrapper {
   transition: left 0.3s ease-in-out;
@@ -237,7 +237,6 @@ a {
 .toc-link, .toc-footer li {
   padding: 0 $nav-padding 0 $nav-padding;
   display: block;
-  overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
