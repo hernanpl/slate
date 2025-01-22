@@ -53450,10 +53450,18 @@ This operation does not require authentication
 
     // Parse URL to see if the location is /platform/<product>/<version>/...
     function getPartsFromURL() {
+      // Split the current pathname by slashes, ignoring empty segments
       const parts = window.location.pathname.split('/').filter(Boolean);
+
+      // If the first segment is "slate", remove it so subsequent indices match
+      if (parts[0] === 'slate') {
+        parts.shift();
+      }
+
+      // Now, parts[0] should be "platform", parts[1] the product, parts[2] the version, etc.
       return {
         product: decodeURIComponent(parts[1] || ''),
-        version: decodeURIComponent(parts[2] || ''),
+        version: decodeURIComponent(parts[2] || '')
       };
     }
 
