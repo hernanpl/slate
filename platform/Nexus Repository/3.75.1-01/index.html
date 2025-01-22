@@ -1,4 +1,9 @@
 
+  <!-- Production: we need '/slate' -->
+  <script>
+    const basePath = "/slate";
+  </script>
+
 <!doctype html>
 <html>
 <head>
@@ -296,10 +301,10 @@
 </div>
 
 <a href="#" id="nav-button">
-      <span>
-        NAV
-        <img src="../../../images/navbar-cad8cdcb.png" alt="" />
-      </span>
+  <span>
+    NAV
+    <img src="../../../images/navbar-cad8cdcb.png" alt="" />
+  </span>
 </a>
 
 <div class="toc-wrapper">
@@ -312,15 +317,19 @@
       <input type="text" class="search" id="input-search" placeholder="Search">
     </div>
     <ul class="search-results"></ul>
-  
-  
+
   <div class="nx-dropdown">
     <button id="product-select" class="nx-dropdown__toggle">
       <span class="nx-dropdown__arrow"></span>
     </button>
     <ul class="nx-dropdown__menu" id="product-options">
-        <li class="nx-dropdown__item" data-value="Lifecycle">Lifecycle</li>
-        <li class="nx-dropdown__item" data-value="Nexus Repository">Nexus Repository</li>
+      <!-- If your products are in source/platform/ -->
+        <li class="nx-dropdown__item" data-value="Lifecycle">
+          Lifecycle
+        </li>
+        <li class="nx-dropdown__item" data-value="Nexus Repository">
+          Nexus Repository
+        </li>
     </ul>
   </div>
 
@@ -331,8 +340,7 @@
     <ul class="nx-dropdown__menu" id="version-options"></ul>
   </div>
 
-  <div class="divider">
-  </div>
+  <div class="divider"></div>
 
   <ul id="toc" class="toc-list-h1">
       <li>
@@ -54829,59 +54837,55 @@ This operation does not require authentication
       </div>
   </div>
 </div>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // ----- 1) Grab Middleman prefix -----
-    // In dev, config[:http_prefix] is typically ""
-    // In production, e.g. "/slate"
+    // ----- 1) Middleman prefix -----
+    // e.g., "" in dev, "/slate" in production
     const prefix = "/";
 
+    // If you set "basePath" above, use that as well:
+    // In dev => basePath = ""
+    // In prod => basePath = "/slate"
+    const basePath = window.basePath || "";
+
     /**
-     * Joins the prefix (like "/slate") and a path (like "/platform/Lifecycle...")
-     * into a clean URL without double slashes, e.g. "/slate/platform/Lifecycle..."
-     *
-     * Examples:
-     *   prefix = "/slate", path = "/platform/Lifecycle" => "/slate/platform/Lifecycle"
-     *   prefix = "", path = "/platform/Lifecycle"       => "/platform/Lifecycle"
+     * Ensures we never get double slashes like "/slate//platform..."
      */
     function joinPrefixAndPath(prefix, path) {
-      // Remove trailing slashes from prefix
       const trimmedPrefix = prefix.replace(/\/+$/, "");
-      // Remove leading slashes from path
       const trimmedPath = path.replace(/^\/+/, "");
-      // Combine with exactly one slash in between
       return `${trimmedPrefix}/${trimmedPath}`;
     }
 
     // ----- DOM Elements -----
-    const productButton = document.getElementById('product-select');
+    const productButton  = document.getElementById('product-select');
     const productOptions = document.getElementById('product-options');
-    const versionButton = document.getElementById('version-select');
+    const versionButton  = document.getElementById('version-select');
     const versionOptions = document.getElementById('version-options');
 
-    // Your default product if none is in the URL
+    // Default product if no product is found in URL
     const defaultProduct = 'Lifecycle';
 
-    // Hide both dropdowns on initial load
+    // Hide dropdowns initially
     productOptions.style.display = 'none';
     versionOptions.style.display = 'none';
 
-    // ========== Helper Functions ==========
+    // ---------- Helper Functions ----------
 
-    // Toggle show/hide for a dropdown
     function toggleDropdown(button, options) {
       const isOpen = options.style.display === 'block';
       options.style.display = isOpen ? 'none' : 'block';
       button.classList.toggle('open', !isOpen);
     }
 
-    // Strip out the arrow <span> from the HTML, leaving just the text
+    // Strip the arrow <span> from a button's HTML
     function stripArrowText(html) {
       return html.replace(/<span.*<\/span>/, '').trim();
     }
 
     function removeSelectedProductOption(selectedProduct) {
-      productOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
+      productOptions.querySelectorAll('.nx-dropdown__item').forEach(li => {
         if (li.dataset.value === selectedProduct) {
           li.remove();
         } else {
@@ -54891,7 +54895,7 @@ This operation does not require authentication
     }
 
     function removeSelectedVersionOption(selectedVersion) {
-      versionOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
+      versionOptions.querySelectorAll('.nx-dropdown__item').forEach(li => {
         if (li.dataset.value === selectedVersion) {
           li.remove();
         } else {
@@ -54900,56 +54904,57 @@ This operation does not require authentication
       });
     }
 
-    // ========== URL Parsing ==========
+    // ---------- URL Parsing ----------
 
-    // We expect a URL like /slate/platform/<PRODUCT>/<VERSION>/index.html
-    // so let's remove /slate (the prefix) and then remove 'platform'
-    // to get product & version.
+    // We expect a final path like:
+    //   /slate/platform/<PRODUCT>/<VERSION>/index.html  (prod)
+    //   /platform/<PRODUCT>/<VERSION>/index.html        (dev)
     function getPartsFromURL() {
       let path = window.location.pathname;
 
-      // If there's a prefix (like "/slate"), remove it
+      // Remove the "/slate" prefix if present
       if (prefix && path.startsWith(prefix)) {
         path = path.slice(prefix.length);
       }
 
-      // Split the remainder on '/'
       const parts = path.split('/').filter(Boolean);
 
-      // If the first segment is literally "platform", remove it
+      // If first is "platform", remove it
       if (parts[0] === 'platform') {
-        parts.shift();  // now parts[0] -> product, parts[1] -> version
+        parts.shift();
       }
 
+      // Now parts[0] => product, parts[1] => version
       const product = decodeURIComponent(parts[0] || '');
       const version = decodeURIComponent(parts[1] || '');
+
       return { product, version };
     }
 
     // Build/populate the version dropdown
-    // We know versions.json lives at /platform/<PRODUCT>/versions.json
+    // We'll load /platform/<PRODUCT>/versions.json (ignoring <VERSION> in that path)
     function populateVersions(product, activeVersion = null) {
       if (!product) return;
 
       const versionsJsonPath = joinPrefixAndPath(
-        prefix,
+        basePath,
         `/platform/${encodeURIComponent(product)}/versions.json`
       );
 
       fetch(versionsJsonPath)
-        .then((response) => response.json())
-        .then((versions) => {
+        .then(response => response.json())
+        .then(versions => {
           versionOptions.innerHTML = ''; // Clear old items
 
-          versions.forEach((ver) => {
+          versions.forEach(ver => {
             const li = document.createElement('li');
             li.className = 'nx-dropdown__item';
             li.dataset.value = ver;
             li.textContent = ver;
             versionOptions.appendChild(li);
 
-            // Clicking a version => update the UI & redirect
-            li.addEventListener('click', (event) => {
+            // Clicking a version => update button & redirect
+            li.addEventListener('click', event => {
               event.stopPropagation();
               versionButton.innerHTML = `
                 ${ver}
@@ -54959,14 +54964,15 @@ This operation does not require authentication
               versionButton.classList.remove('open');
 
               // e.g. /slate/platform/<PRODUCT>/<VERSION>/index.html
-              window.location.href = joinPrefixAndPath(
-                prefix,
+              const redirectPath = joinPrefixAndPath(
+                basePath,
                 `/platform/${encodeURIComponent(product)}/${encodeURIComponent(ver)}/index.html`
               );
+              window.location.href = redirectPath;
             });
           });
 
-          // Show the active version in the button, or default to the first
+          // Decide which version to label in the button
           if (activeVersion && versions.includes(activeVersion)) {
             versionButton.innerHTML = `
               ${activeVersion}
@@ -54979,27 +54985,27 @@ This operation does not require authentication
             `;
           }
 
-          // Remove the "current" version from the list
+          // Remove the "current" version from the dropdown
           const currentVersion = stripArrowText(versionButton.innerHTML);
           if (currentVersion) {
             removeSelectedVersionOption(currentVersion);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(`Error populating versions for product "${product}":`, error);
         });
     }
 
-    // ========== Event Handlers for Dropdowns ==========
+    // ---------- Event Handlers for Dropdowns ----------
 
     // Toggle product dropdown
-    productButton.addEventListener('click', (event) => {
+    productButton.addEventListener('click', event => {
       event.stopPropagation();
       toggleDropdown(productButton, productOptions);
     });
 
     // Toggle version dropdown
-    versionButton.addEventListener('click', (event) => {
+    versionButton.addEventListener('click', event => {
       event.stopPropagation();
       toggleDropdown(versionButton, versionOptions);
     });
@@ -55012,9 +55018,9 @@ This operation does not require authentication
       versionButton.classList.remove('open');
     });
 
-    // When user selects a product from the dropdown:
-    productOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
-      li.addEventListener('click', (event) => {
+    // When user picks a product:
+    productOptions.querySelectorAll('.nx-dropdown__item').forEach(li => {
+      li.addEventListener('click', event => {
         event.stopPropagation();
         const selectedProduct = li.dataset.value;
 
@@ -55025,38 +55031,40 @@ This operation does not require authentication
         productOptions.style.display = 'none';
         productButton.classList.remove('open');
 
-        // Immediately fetch versions => redirect to the first version
+        // Immediately fetch versions => redirect to the first one
         const productVersionsPath = joinPrefixAndPath(
-          prefix,
+          basePath,
           `/platform/${encodeURIComponent(selectedProduct)}/versions.json`
         );
 
         fetch(productVersionsPath)
-          .then((res) => res.json())
-          .then((versions) => {
+          .then(res => res.json())
+          .then(versions => {
             if (versions.length > 0) {
               const latestVer = versions[0];
               versionButton.innerHTML = `
                 ${latestVer}
                 <span class="nx-dropdown__arrow"></span>
               `;
-              window.location.href = joinPrefixAndPath(
-                prefix,
+
+              const redirectPath = joinPrefixAndPath(
+                basePath,
                 `/platform/${encodeURIComponent(selectedProduct)}/${encodeURIComponent(latestVer)}/index.html`
               );
+              window.location.href = redirectPath;
             } else {
               console.warn(`No versions found for product "${selectedProduct}".`);
             }
           })
-          .catch((error) => {
+          .catch(error => {
             console.error('Error fetching versions:', error);
           });
       });
     });
 
-    // When user selects a version from the dropdown:
-    versionOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
-      li.addEventListener('click', (event) => {
+    // When user picks a version:
+    versionOptions.querySelectorAll('.nx-dropdown__item').forEach(li => {
+      li.addEventListener('click', event => {
         event.stopPropagation();
         const selectedVersion = li.dataset.value;
         versionButton.innerHTML = `
@@ -55068,20 +55076,20 @@ This operation does not require authentication
 
         const currentProduct = stripArrowText(productButton.innerHTML);
         if (currentProduct && selectedVersion) {
-          window.location.href = joinPrefixAndPath(
-            prefix,
+          const redirectPath = joinPrefixAndPath(
+            basePath,
             `/platform/${encodeURIComponent(currentProduct)}/${encodeURIComponent(selectedVersion)}/index.html`
           );
+          window.location.href = redirectPath;
         }
       });
     });
 
-    // ========== On Page Load ==========
-
-    // Check if the URL includes /platform/<PRODUCT>/<VERSION>
+    // ---------- On Page Load ----------
     const { product, version } = getPartsFromURL();
 
     if (product) {
+      // e.g. /platform/Nexus%20Repository/3.75.1-01
       productButton.innerHTML = `
         ${product}
         <span class="nx-dropdown__arrow"></span>
@@ -55089,26 +55097,27 @@ This operation does not require authentication
       removeSelectedProductOption(product);
       populateVersions(product, version);
     } else {
-      // If no product in URL, default to "Lifecycle" => auto-redirect
+      // If no product, default to "Lifecycle"
       const defaultVersionsPath = joinPrefixAndPath(
-        prefix,
+        basePath,
         `/platform/${encodeURIComponent(defaultProduct)}/versions.json`
       );
 
       fetch(defaultVersionsPath)
-        .then((res) => res.json())
-        .then((versions) => {
+        .then(res => res.json())
+        .then(versions => {
           if (versions.length > 0) {
             const latestVer = versions[0];
-            window.location.href = joinPrefixAndPath(
-              prefix,
+            const redirectPath = joinPrefixAndPath(
+              basePath,
               `/platform/${encodeURIComponent(defaultProduct)}/${encodeURIComponent(latestVer)}/index.html`
             );
+            window.location.href = redirectPath;
           } else {
             console.warn(`No versions found for default product: ${defaultProduct}`);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.error(`Error fetching versions for default product (${defaultProduct}):`, error);
         });
     }
