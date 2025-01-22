@@ -53397,10 +53397,27 @@ This operation does not require authentication
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // ----- 1) Grab the Middleman prefix -----
+    // ----- 1) Grab Middleman prefix -----
     // In dev, config[:http_prefix] is typically ""
-    // In production build, e.g. "/slate"
+    // In production, e.g. "/slate"
     const prefix = "/slate/";
+
+    /**
+     * Joins the prefix (like "/slate") and a path (like "/platform/Lifecycle...")
+     * into a clean URL without double slashes, e.g. "/slate/platform/Lifecycle..."
+     *
+     * Examples:
+     *   prefix = "/slate", path = "/platform/Lifecycle" => "/slate/platform/Lifecycle"
+     *   prefix = "", path = "/platform/Lifecycle"       => "/platform/Lifecycle"
+     */
+    function joinPrefixAndPath(prefix, path) {
+      // Remove trailing slashes from prefix
+      const trimmedPrefix = prefix.replace(/\/+$/, "");
+      // Remove leading slashes from path
+      const trimmedPath = path.replace(/^\/+/, "");
+      // Combine with exactly one slash in between
+      return `${trimmedPrefix}/${trimmedPath}`;
+    }
 
     // ----- DOM Elements -----
     const productButton = document.getElementById('product-select');
@@ -53415,7 +53432,7 @@ This operation does not require authentication
     productOptions.style.display = 'none';
     versionOptions.style.display = 'none';
 
-    // ---------- Helper Functions ----------
+    // ========== Helper Functions ==========
 
     // Toggle show/hide for a dropdown
     function toggleDropdown(button, options) {
@@ -53424,12 +53441,11 @@ This operation does not require authentication
       button.classList.toggle('open', !isOpen);
     }
 
-    // Remove arrow <span> to get plain text (product or version)
+    // Strip out the arrow <span> from the HTML, leaving just the text
     function stripArrowText(html) {
       return html.replace(/<span.*<\/span>/, '').trim();
     }
 
-    // Remove (or hide) the currently selected product from the product dropdown
     function removeSelectedProductOption(selectedProduct) {
       productOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
         if (li.dataset.value === selectedProduct) {
@@ -53450,38 +53466,41 @@ This operation does not require authentication
       });
     }
 
-    // 2) Parse the URL path: /platform/<PRODUCT>/<VERSION>/...
-    //    "platform" is a literal folder, so skip it to get product & version
+    // ========== URL Parsing ==========
+
+    // We expect a URL like /slate/platform/<PRODUCT>/<VERSION>/index.html
+    // so let's remove /slate (the prefix) and then remove 'platform'
+    // to get product & version.
     function getPartsFromURL() {
       let path = window.location.pathname;
 
-      // Remove the prefix (if any) from the front of the path
+      // If there's a prefix (like "/slate"), remove it
       if (prefix && path.startsWith(prefix)) {
-        // e.g. strip off "/slate"
         path = path.slice(prefix.length);
       }
 
-      // Split on slashes, ignoring empty segments
+      // Split the remainder on '/'
       const parts = path.split('/').filter(Boolean);
 
-      // If the first part is literally "platform", remove it
+      // If the first segment is literally "platform", remove it
       if (parts[0] === 'platform') {
-        parts.shift(); // now parts[0] => product, parts[1] => version
+        parts.shift();  // now parts[0] -> product, parts[1] -> version
       }
 
       const product = decodeURIComponent(parts[0] || '');
       const version = decodeURIComponent(parts[1] || '');
-
       return { product, version };
     }
 
-    // 3) Build/populate the version dropdown list
-    //    We fetch from /platform/<PRODUCT>/versions.json
-    //    ignoring <VERSION> because that's stored inside versions.json
+    // Build/populate the version dropdown
+    // We know versions.json lives at /platform/<PRODUCT>/versions.json
     function populateVersions(product, activeVersion = null) {
       if (!product) return;
 
-      const versionsJsonPath = `${prefix}/platform/${encodeURIComponent(product)}/versions.json`;
+      const versionsJsonPath = joinPrefixAndPath(
+        prefix,
+        `/platform/${encodeURIComponent(product)}/versions.json`
+      );
 
       fetch(versionsJsonPath)
         .then((response) => response.json())
@@ -53495,7 +53514,7 @@ This operation does not require authentication
             li.textContent = ver;
             versionOptions.appendChild(li);
 
-            // Clicking a version => update button & redirect
+            // Clicking a version => update the UI & redirect
             li.addEventListener('click', (event) => {
               event.stopPropagation();
               versionButton.innerHTML = `
@@ -53505,12 +53524,15 @@ This operation does not require authentication
               versionOptions.style.display = 'none';
               versionButton.classList.remove('open');
 
-              // e.g. /platform/<PRODUCT>/<VERSION>/index.html
-              window.location.href = `${prefix}/platform/${encodeURIComponent(product)}/${encodeURIComponent(ver)}/index.html`;
+              // e.g. /slate/platform/<PRODUCT>/<VERSION>/index.html
+              window.location.href = joinPrefixAndPath(
+                prefix,
+                `/platform/${encodeURIComponent(product)}/${encodeURIComponent(ver)}/index.html`
+              );
             });
           });
 
-          // Decide which version label to show in the button
+          // Show the active version in the button, or default to the first
           if (activeVersion && versions.includes(activeVersion)) {
             versionButton.innerHTML = `
               ${activeVersion}
@@ -53523,7 +53545,7 @@ This operation does not require authentication
             `;
           }
 
-          // Remove the "current" version from the dropdown
+          // Remove the "current" version from the list
           const currentVersion = stripArrowText(versionButton.innerHTML);
           if (currentVersion) {
             removeSelectedVersionOption(currentVersion);
@@ -53534,7 +53556,7 @@ This operation does not require authentication
         });
     }
 
-    // ---------- Event Handlers for Dropdowns ----------
+    // ========== Event Handlers for Dropdowns ==========
 
     // Toggle product dropdown
     productButton.addEventListener('click', (event) => {
@@ -53556,7 +53578,7 @@ This operation does not require authentication
       versionButton.classList.remove('open');
     });
 
-    // When user picks a product from the dropdown:
+    // When user selects a product from the dropdown:
     productOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
       li.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -53570,7 +53592,12 @@ This operation does not require authentication
         productButton.classList.remove('open');
 
         // Immediately fetch versions => redirect to the first version
-        fetch(`${prefix}/platform/${encodeURIComponent(selectedProduct)}/versions.json`)
+        const productVersionsPath = joinPrefixAndPath(
+          prefix,
+          `/platform/${encodeURIComponent(selectedProduct)}/versions.json`
+        );
+
+        fetch(productVersionsPath)
           .then((res) => res.json())
           .then((versions) => {
             if (versions.length > 0) {
@@ -53579,7 +53606,10 @@ This operation does not require authentication
                 ${latestVer}
                 <span class="nx-dropdown__arrow"></span>
               `;
-              window.location.href = `${prefix}/platform/${encodeURIComponent(selectedProduct)}/${encodeURIComponent(latestVer)}/index.html`;
+              window.location.href = joinPrefixAndPath(
+                prefix,
+                `/platform/${encodeURIComponent(selectedProduct)}/${encodeURIComponent(latestVer)}/index.html`
+              );
             } else {
               console.warn(`No versions found for product "${selectedProduct}".`);
             }
@@ -53590,7 +53620,7 @@ This operation does not require authentication
       });
     });
 
-    // When user picks a version from the dropdown:
+    // When user selects a version from the dropdown:
     versionOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
       li.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -53604,16 +53634,20 @@ This operation does not require authentication
 
         const currentProduct = stripArrowText(productButton.innerHTML);
         if (currentProduct && selectedVersion) {
-          window.location.href = `${prefix}/platform/${encodeURIComponent(currentProduct)}/${encodeURIComponent(selectedVersion)}/index.html`;
+          window.location.href = joinPrefixAndPath(
+            prefix,
+            `/platform/${encodeURIComponent(currentProduct)}/${encodeURIComponent(selectedVersion)}/index.html`
+          );
         }
       });
     });
 
-    // ---------- On Page Load ----------
+    // ========== On Page Load ==========
+
+    // Check if the URL includes /platform/<PRODUCT>/<VERSION>
     const { product, version } = getPartsFromURL();
 
     if (product) {
-      // If the URL includes /platform/<PRODUCT>/<VERSION> => set up the dropdown
       productButton.innerHTML = `
         ${product}
         <span class="nx-dropdown__arrow"></span>
@@ -53622,12 +53656,20 @@ This operation does not require authentication
       populateVersions(product, version);
     } else {
       // If no product in URL, default to "Lifecycle" => auto-redirect
-      fetch(`${prefix}/platform/${encodeURIComponent(defaultProduct)}/versions.json`)
+      const defaultVersionsPath = joinPrefixAndPath(
+        prefix,
+        `/platform/${encodeURIComponent(defaultProduct)}/versions.json`
+      );
+
+      fetch(defaultVersionsPath)
         .then((res) => res.json())
         .then((versions) => {
           if (versions.length > 0) {
             const latestVer = versions[0];
-            window.location.href = `${prefix}/platform/${encodeURIComponent(defaultProduct)}/${encodeURIComponent(latestVer)}/index.html`;
+            window.location.href = joinPrefixAndPath(
+              prefix,
+              `/platform/${encodeURIComponent(defaultProduct)}/${encodeURIComponent(latestVer)}/index.html`
+            );
           } else {
             console.warn(`No versions found for default product: ${defaultProduct}`);
           }
