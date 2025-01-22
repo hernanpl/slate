@@ -165,20 +165,25 @@ under the License.
 </div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // ----- 1) Grab the Middleman prefix -----
+    // In dev, config[:http_prefix] is typically ""
+    // In production build, e.g. "/slate"
+    const prefix = "<%= config[:http_prefix] %>";
+
     // ----- DOM Elements -----
     const productButton = document.getElementById('product-select');
     const productOptions = document.getElementById('product-options');
     const versionButton = document.getElementById('version-select');
     const versionOptions = document.getElementById('version-options');
-    
-    // Your default product if no product in the URL
+
+    // Your default product if none is in the URL
     const defaultProduct = 'Lifecycle';
 
-    // ----- Hide both dropdowns initially -----
+    // Hide both dropdowns on initial load
     productOptions.style.display = 'none';
     versionOptions.style.display = 'none';
 
-    // ========== Helper Functions ==========
+    // ---------- Helper Functions ----------
 
     // Toggle show/hide for a dropdown
     function toggleDropdown(button, options) {
@@ -187,7 +192,7 @@ under the License.
       button.classList.toggle('open', !isOpen);
     }
 
-    // Remove the arrow <span> to get plain text (product or version)
+    // Remove arrow <span> to get plain text (product or version)
     function stripArrowText(html) {
       return html.replace(/<span.*<\/span>/, '').trim();
     }
@@ -197,8 +202,6 @@ under the License.
       productOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
         if (li.dataset.value === selectedProduct) {
           li.remove();
-          // If you'd rather just hide it:
-          // li.style.display = 'none';
         } else {
           li.style.display = '';
         }
@@ -209,38 +212,44 @@ under the License.
       versionOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
         if (li.dataset.value === selectedVersion) {
           li.remove();
-          // or li.style.display = 'none';
         } else {
           li.style.display = '';
         }
       });
     }
 
-    // Parse URL to see if the location is /platform/<product>/<version>/...
+    // 2) Parse the URL path: /platform/<PRODUCT>/<VERSION>/...
+    //    "platform" is a literal folder, so skip it to get product & version
     function getPartsFromURL() {
-    const parts = window.location.pathname.split('/').filter(Boolean);
+      let path = window.location.pathname;
 
-    // If GH Pages subfolder is "slate", shift it off
-    if (parts[0] === 'slate') {
-      parts.shift(); // -> ["platform","Lifecycle","1.177.0-01"]
+      // Remove the prefix (if any) from the front of the path
+      if (prefix && path.startsWith(prefix)) {
+        // e.g. strip off "/slate"
+        path = path.slice(prefix.length);
+      }
+
+      // Split on slashes, ignoring empty segments
+      const parts = path.split('/').filter(Boolean);
+
+      // If the first part is literally "platform", remove it
+      if (parts[0] === 'platform') {
+        parts.shift(); // now parts[0] => product, parts[1] => version
+      }
+
+      const product = decodeURIComponent(parts[0] || '');
+      const version = decodeURIComponent(parts[1] || '');
+
+      return { product, version };
     }
 
-    // If you also have "platform" in the URL, shift that off too
-    if (parts[0] === 'platform') {
-      parts.shift(); // -> ["Lifecycle","1.177.0-01"]
-    }
-
-    // Now parts[0] should be the product, and parts[1] the version
-    return {
-      product: decodeURIComponent(parts[0] || ''),
-      version: decodeURIComponent(parts[1] || '')
-    };
-  }
-
-    // Build/populate the version dropdown list, and set the “activeVersion” text in the button.
+    // 3) Build/populate the version dropdown list
+    //    We fetch from /platform/<PRODUCT>/versions.json
+    //    ignoring <VERSION> because that's stored inside versions.json
     function populateVersions(product, activeVersion = null) {
       if (!product) return;
-      const versionsJsonPath = `/platform/${encodeURIComponent(product)}/versions.json`;
+
+      const versionsJsonPath = `${prefix}/platform/${encodeURIComponent(product)}/versions.json`;
 
       fetch(versionsJsonPath)
         .then((response) => response.json())
@@ -254,7 +263,7 @@ under the License.
             li.textContent = ver;
             versionOptions.appendChild(li);
 
-            // Clicking this version => update button & redirect
+            // Clicking a version => update button & redirect
             li.addEventListener('click', (event) => {
               event.stopPropagation();
               versionButton.innerHTML = `
@@ -263,11 +272,13 @@ under the License.
               `;
               versionOptions.style.display = 'none';
               versionButton.classList.remove('open');
-              window.location.href = `/platform/${encodeURIComponent(product)}/${encodeURIComponent(ver)}/index.html`;
+
+              // e.g. /platform/<PRODUCT>/<VERSION>/index.html
+              window.location.href = `${prefix}/platform/${encodeURIComponent(product)}/${encodeURIComponent(ver)}/index.html`;
             });
           });
 
-          // Decide which version label to show
+          // Decide which version label to show in the button
           if (activeVersion && versions.includes(activeVersion)) {
             versionButton.innerHTML = `
               ${activeVersion}
@@ -280,7 +291,7 @@ under the License.
             `;
           }
 
-          // After we set the button text, remove that version from the list
+          // Remove the "current" version from the dropdown
           const currentVersion = stripArrowText(versionButton.innerHTML);
           if (currentVersion) {
             removeSelectedVersionOption(currentVersion);
@@ -291,7 +302,7 @@ under the License.
         });
     }
 
-    // ========== EVENT HANDLERS FOR DROPDOWNS ==========
+    // ---------- Event Handlers for Dropdowns ----------
 
     // Toggle product dropdown
     productButton.addEventListener('click', (event) => {
@@ -313,7 +324,7 @@ under the License.
       versionButton.classList.remove('open');
     });
 
-    // PRODUCT selection -> fetch versions, redirect to latest
+    // When user picks a product from the dropdown:
     productOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
       li.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -326,8 +337,8 @@ under the License.
         productOptions.style.display = 'none';
         productButton.classList.remove('open');
 
-        // Immediately fetch versions => redirect to the first item
-        fetch(`/platform/${encodeURIComponent(selectedProduct)}/versions.json`)
+        // Immediately fetch versions => redirect to the first version
+        fetch(`${prefix}/platform/${encodeURIComponent(selectedProduct)}/versions.json`)
           .then((res) => res.json())
           .then((versions) => {
             if (versions.length > 0) {
@@ -336,7 +347,7 @@ under the License.
                 ${latestVer}
                 <span class="nx-dropdown__arrow"></span>
               `;
-              window.location.href = `/platform/${encodeURIComponent(selectedProduct)}/${encodeURIComponent(latestVer)}/index.html`;
+              window.location.href = `${prefix}/platform/${encodeURIComponent(selectedProduct)}/${encodeURIComponent(latestVer)}/index.html`;
             } else {
               console.warn(`No versions found for product "${selectedProduct}".`);
             }
@@ -347,7 +358,7 @@ under the License.
       });
     });
 
-    // VERSION selection -> update version & redirect
+    // When user picks a version from the dropdown:
     versionOptions.querySelectorAll('.nx-dropdown__item').forEach((li) => {
       li.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -361,16 +372,16 @@ under the License.
 
         const currentProduct = stripArrowText(productButton.innerHTML);
         if (currentProduct && selectedVersion) {
-          window.location.href = `/platform/${encodeURIComponent(currentProduct)}/${encodeURIComponent(selectedVersion)}/index.html`;
+          window.location.href = `${prefix}/platform/${encodeURIComponent(currentProduct)}/${encodeURIComponent(selectedVersion)}/index.html`;
         }
       });
     });
 
-    // ========== ON PAGE LOAD LOGIC ==========
-
+    // ---------- On Page Load ----------
     const { product, version } = getPartsFromURL();
 
     if (product) {
+      // If the URL includes /platform/<PRODUCT>/<VERSION> => set up the dropdown
       productButton.innerHTML = `
         ${product}
         <span class="nx-dropdown__arrow"></span>
@@ -378,12 +389,13 @@ under the License.
       removeSelectedProductOption(product);
       populateVersions(product, version);
     } else {
-      fetch(`/platform/${encodeURIComponent(defaultProduct)}/versions.json`)
+      // If no product in URL, default to "Lifecycle" => auto-redirect
+      fetch(`${prefix}/platform/${encodeURIComponent(defaultProduct)}/versions.json`)
         .then((res) => res.json())
         .then((versions) => {
           if (versions.length > 0) {
             const latestVer = versions[0];
-            window.location.href = `/platform/${encodeURIComponent(defaultProduct)}/${encodeURIComponent(latestVer)}/index.html`;
+            window.location.href = `${prefix}/platform/${encodeURIComponent(defaultProduct)}/${encodeURIComponent(latestVer)}/index.html`;
           } else {
             console.warn(`No versions found for default product: ${defaultProduct}`);
           }

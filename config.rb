@@ -36,8 +36,12 @@ activate :autoprefixer do |config|
 end
 
 # Github pages require relative links
-#activate :relative_assets
-#set :relative_links, true
+activate :relative_assets
+set :relative_links, true
+
+configure :development do
+  set :http_prefix, ""  
+end
 
 # Build Configuration
 configure :build do
@@ -49,7 +53,7 @@ configure :build do
   activate :asset_hash, :exts => app.config[:asset_extensions] - %w[.woff .woff2]
   # If you're having trouble with Middleman hanging, commenting
   # out the following two lines has been known to help
-  set :http_prefix, "/slate"
+  set :http_prefix, "/slate/"
   activate :minify_css
   activate :minify_javascript
   # activate :gzip
