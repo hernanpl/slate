@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link href="stylesheets/screen-ed9815ba.css" rel="stylesheet" media="screen" />
+  <link href="/slate/stylesheets/screen-be6593a2.css" rel="stylesheet" media="screen" />
   <title>Sonatype Lifecycle Public REST API v1.177.0-01</title>
 
   <style media="screen">
@@ -283,22 +283,22 @@
   color: #859900;
 }
   </style>
-  <link href="stylesheets/screen-ed9815ba.css" rel="stylesheet" media="screen" />
-  <link href="stylesheets/print-83822fab.css" rel="stylesheet" media="print" />
-    <script src="javascripts/all-fdfc5361.js"></script>
+  <link href="/slate/stylesheets/screen-be6593a2.css" rel="stylesheet" media="screen" />
+  <link href="/slate/stylesheets/print-9de27e36.css" rel="stylesheet" media="print" />
+    <script src="/slate/javascripts/all-fdfc5361.js"></script>
 
 </head>
 
 <body class="index" data-languages="[&quot;java&quot;,&quot;python&quot;,&quot;javascript&quot;]">
 
 <div class="logo-container">
-  <div class="logo"><img src="images/logo-90f55c21.png" alt="" /> </div>
+  <div class="logo"><img src="/slate/images/logo-90f55c21.png" alt="" /> </div>
 </div>
 
 <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar-cad8cdcb.png" alt="" />
+        <img src="/slate/images/navbar-cad8cdcb.png" alt="" />
       </span>
 </a>
 
@@ -50971,7 +50971,7 @@ This operation does not require authentication
         productButton.classList.remove('open');
 
         // Immediately fetch versions => redirect to the first item
-        fetch(`platform/${encodeURIComponent(selectedProduct)}/versions.json`)
+        fetch(`/platform/${encodeURIComponent(selectedProduct)}/versions.json`)
           .then((res) => res.json())
           .then((versions) => {
             if (versions.length > 0) {
@@ -51022,7 +51022,7 @@ This operation does not require authentication
       removeSelectedProductOption(product);
       populateVersions(product, version);
     } else {
-      fetch(`platform/${encodeURIComponent(defaultProduct)}/versions.json`)
+      fetch(`/platform/${encodeURIComponent(defaultProduct)}/versions.json`)
         .then((res) => res.json())
         .then((versions) => {
           if (versions.length > 0) {
