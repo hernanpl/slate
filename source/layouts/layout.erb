@@ -218,20 +218,24 @@ under the License.
 
     // Parse URL to see if the location is /platform/<product>/<version>/...
     function getPartsFromURL() {
-      // Split the current pathname by slashes, ignoring empty segments
-      const parts = window.location.pathname.split('/').filter(Boolean);
+    const parts = window.location.pathname.split('/').filter(Boolean);
 
-      // If the first segment is "slate", remove it so subsequent indices match
-      if (parts[0] === 'slate') {
-        parts.shift();
-      }
-
-      // Now, parts[0] should be "platform", parts[1] the product, parts[2] the version, etc.
-      return {
-        product: decodeURIComponent(parts[1] || ''),
-        version: decodeURIComponent(parts[2] || '')
-      };
+    // If GH Pages subfolder is "slate", shift it off
+    if (parts[0] === 'slate') {
+      parts.shift(); // -> ["platform","Lifecycle","1.177.0-01"]
     }
+
+    // If you also have "platform" in the URL, shift that off too
+    if (parts[0] === 'platform') {
+      parts.shift(); // -> ["Lifecycle","1.177.0-01"]
+    }
+
+    // Now parts[0] should be the product, and parts[1] the version
+    return {
+      product: decodeURIComponent(parts[0] || ''),
+      version: decodeURIComponent(parts[1] || '')
+    };
+  }
 
     // Build/populate the version dropdown list, and set the “activeVersion” text in the button.
     function populateVersions(product, activeVersion = null) {
