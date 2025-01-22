@@ -50894,91 +50894,92 @@ This operation does not require authentication
      *   /platform/<PRODUCT>/<VERSION>/index.html        (dev)
      */
     function getPartsFromURL() {
-      let path = window.location.pathname;
+    let path = window.location.pathname;
 
-      // If we see /slate in production, remove it
-      if (basePath && path.startsWith(basePath)) {
-        path = path.slice(basePath.length);
-      }
-
-      const parts = path.split('/').filter(Boolean);
-
-      // If the first part is 'platform', remove it
-      if (parts[0] === 'platform') {
-        parts.shift();
-      }
-
-      // Now parts[0] => product, parts[1] => version
-      const product = decodeURIComponent(parts[0] || '');
-      const version = decodeURIComponent(parts[1] || '');
-      return { product, version };
+    // If basePath is present, remove it
+    if (basePath && path.startsWith(basePath)) {
+      path = path.slice(basePath.length);
     }
+
+    const parts = path.split('/').filter(Boolean);
+
+    // If the first part is 'platform', remove it
+    if (parts[0] === 'platform') {
+      parts.shift();
+    }
+
+    // Now parts[0] => product, parts[1] => version
+    const product = decodeURIComponent(parts[0] || '');
+    const version = decodeURIComponent(parts[1] || '');
+
+    return { product, version };
+  }
+
 
     /**
      * Build/populate the version dropdown, fetching /platform/<PRODUCT>/versions.json
      */
     function populateVersions(product, activeVersion = null) {
-      if (!product) return;
+    if (!product) return;
 
-      const versionsJsonPath = joinPath(
-        basePath,
-        `/platform/${encodeURIComponent(product)}/versions.json`
-      );
+    // Join basePath and the product-specific path
+    const versionsJsonPath = joinPath(
+      basePath,
+      `/platform/${encodeURIComponent(product)}/versions.json`
+    );
 
-      fetch(versionsJsonPath)
-        .then(r => r.json())
-        .then(versions => {
-          versionOptions.innerHTML = '';
+    console.log("Fetching versions.json from:", versionsJsonPath);
 
-          versions.forEach(ver => {
-            const li = document.createElement('li');
-            li.className = 'nx-dropdown__item';
-            li.dataset.value = ver;
-            li.textContent = ver;
-            versionOptions.appendChild(li);
+    fetch(versionsJsonPath)
+      .then((response) => response.json())
+      .then((versions) => {
+        versionOptions.innerHTML = ''; // Clear old items
 
-            // Click => redirect
-            li.addEventListener('click', event => {
-              event.stopPropagation();
-              versionButton.innerHTML = `
-                ${ver}
-                <span class="nx-dropdown__arrow"></span>
-              `;
-              versionOptions.style.display = 'none';
-              versionButton.classList.remove('open');
+        versions.forEach((ver) => {
+          const li = document.createElement('li');
+          li.className = 'nx-dropdown__item';
+          li.dataset.value = ver;
+          li.textContent = ver;
+          versionOptions.appendChild(li);
 
-              // e.g. /slate/platform/<PRODUCT>/<VERSION>/index.html
-              const nextURL = joinPath(
-                basePath,
-                `/platform/${encodeURIComponent(product)}/${encodeURIComponent(ver)}/index.html`
-              );
-              window.location.href = nextURL;
-            });
+          li.addEventListener('click', (event) => {
+            event.stopPropagation();
+
+            versionButton.innerHTML = `
+              ${ver}
+              <span class="nx-dropdown__arrow"></span>
+            `;
+            versionOptions.style.display = 'none';
+            versionButton.classList.remove('open');
+
+            // Build redirect path
+            const redirectPath = joinPath(
+              basePath,
+              `/platform/${encodeURIComponent(product)}/${encodeURIComponent(ver)}/index.html`
+            );
+
+            console.log("Redirecting to:", redirectPath);
+
+            window.location.href = redirectPath;
           });
-
-          // Decide which version to show in the button
-          if (activeVersion && versions.includes(activeVersion)) {
-            versionButton.innerHTML = `
-              ${activeVersion}
-              <span class="nx-dropdown__arrow"></span>
-            `;
-          } else if (versions.length > 0) {
-            versionButton.innerHTML = `
-              ${versions[0]}
-              <span class="nx-dropdown__arrow"></span>
-            `;
-          }
-
-          // Remove the "current" version from the dropdown
-          const currentVersion = stripArrowText(versionButton.innerHTML);
-          if (currentVersion) {
-            removeSelectedVersionOption(currentVersion);
-          }
-        })
-        .catch(error => {
-          console.error(`Error populating versions for product "${product}":`, error);
         });
-    }
+
+        if (activeVersion && versions.includes(activeVersion)) {
+          versionButton.innerHTML = `
+            ${activeVersion}
+            <span class="nx-dropdown__arrow"></span>
+          `;
+        } else if (versions.length > 0) {
+          versionButton.innerHTML = `
+            ${versions[0]}
+            <span class="nx-dropdown__arrow"></span>
+          `;
+        }
+      })
+      .catch((error) => {
+        console.error(`Error fetching versions for product "${product}":`, error);
+      });
+  }
 
     // Toggle product dropdown
     productButton.addEventListener('click', event => {
