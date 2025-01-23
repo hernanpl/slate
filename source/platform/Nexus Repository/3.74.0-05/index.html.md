@@ -1,10 +1,12 @@
 ---
 title: Nexus Repository Manager REST API v3.74.0-05
 language_tabs:
+  - shell: cURL
   - java: Java
   - python: Python
   - javascript: JavaScript
 language_clients:
+  - shell: ""
   - java: ""
   - python: ""
   - javascript: ""
@@ -28,11 +30,18 @@ Base URLs:
 
 <h1 id="nexus-repository-manager-rest-api-security-management-anonymous-access">Security Management: Anonymous Access</h1>
 
-## Get Anonymous Access settings
+## read
 
 <a id="opIdread"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/anonymous \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/anonymous");
@@ -85,6 +94,8 @@ fetch('/service/rest/v1/security/anonymous',
 
 `GET /v1/security/anonymous`
 
+*Get Anonymous Access settings*
+
 > Example responses
 
 > 200 Response
@@ -97,7 +108,7 @@ fetch('/service/rest/v1/security/anonymous',
 }
 ```
 
-<h3 id="get-anonymous-access-settings-responses">Responses</h3>
+<h3 id="read-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -108,11 +119,19 @@ fetch('/service/rest/v1/security/anonymous',
 This operation does not require authentication
 </aside>
 
-## Update Anonymous Access settings
+## update
 
 <a id="opIdupdate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/anonymous \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/anonymous");
@@ -171,6 +190,8 @@ fetch('/service/rest/v1/security/anonymous',
 
 `PUT /v1/security/anonymous`
 
+*Update Anonymous Access settings*
+
 > Body parameter
 
 ```json
@@ -181,7 +202,7 @@ fetch('/service/rest/v1/security/anonymous',
 }
 ```
 
-<h3 id="update-anonymous-access-settings-parameters">Parameters</h3>
+<h3 id="update-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -199,7 +220,7 @@ fetch('/service/rest/v1/security/anonymous',
 }
 ```
 
-<h3 id="update-anonymous-access-settings-responses">Responses</h3>
+<h3 id="update-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -212,11 +233,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management">Security management</h1>
 
-## Retrieve a list of the available user sources.
+## getUserSources
 
 <a id="opIdgetUserSources"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/user-sources \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/user-sources");
@@ -269,6 +297,8 @@ fetch('/service/rest/v1/security/user-sources',
 
 `GET /v1/security/user-sources`
 
+*Retrieve a list of the available user sources.*
+
 > Example responses
 
 > 200 Response
@@ -282,14 +312,14 @@ fetch('/service/rest/v1/security/user-sources',
 ]
 ```
 
-<h3 id="retrieve-a-list-of-the-available-user-sources.-responses">Responses</h3>
+<h3 id="getusersources-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The user does not have permission to perform the operation.|None|
 
-<h3 id="retrieve-a-list-of-the-available-user-sources.-responseschema">Response Schema</h3>
+<h3 id="getusersources-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -305,11 +335,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-users">Security management: users</h1>
 
-## Update an existing user.
+## updateUser
 
 <a id="opIdupdateUser"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/users/{userId} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/users/{userId}");
@@ -376,6 +413,8 @@ fetch('/service/rest/v1/security/users/{userId}',
 
 `PUT /v1/security/users/{userId}`
 
+*Update an existing user.*
+
 > Body parameter
 
 ```json
@@ -396,14 +435,14 @@ fetch('/service/rest/v1/security/users/{userId}',
 }
 ```
 
-<h3 id="update-an-existing-user.-parameters">Parameters</h3>
+<h3 id="updateuser-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |userId|path|string|true|The userid the request should apply to.|
 |body|body|[ApiUser](#schemaapiuser)|false|A representation of the user to update.|
 
-<h3 id="update-an-existing-user.-responses">Responses</h3>
+<h3 id="updateuser-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -415,11 +454,17 @@ fetch('/service/rest/v1/security/users/{userId}',
 This operation does not require authentication
 </aside>
 
-## Delete a user.
+## deleteUser
 
 <a id="opIddeleteUser"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/users/{userId}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/users/{userId}");
@@ -464,14 +509,16 @@ fetch('/service/rest/v1/security/users/{userId}',
 
 `DELETE /v1/security/users/{userId}`
 
-<h3 id="delete-a-user.-parameters">Parameters</h3>
+*Delete a user.*
+
+<h3 id="deleteuser-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |userId|path|string|true|The userid the request should apply to.|
 |realm|query|string|false|The realm the request should apply to.|
 
-<h3 id="delete-a-user.-responses">Responses</h3>
+<h3 id="deleteuser-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -483,11 +530,18 @@ fetch('/service/rest/v1/security/users/{userId}',
 This operation does not require authentication
 </aside>
 
-## Change a user's password.
+## changePassword
 
 <a id="opIdchangePassword"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/users/{userId}/change-password \
+  -H 'Content-Type: text/plain'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/users/{userId}/change-password");
@@ -540,6 +594,8 @@ fetch('/service/rest/v1/security/users/{userId}/change-password',
 
 `PUT /v1/security/users/{userId}/change-password`
 
+*Change a user's password.*
+
 > Body parameter
 
 ```
@@ -547,14 +603,14 @@ string
 
 ```
 
-<h3 id="change-a-user's-password.-parameters">Parameters</h3>
+<h3 id="changepassword-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |userId|path|string|true|The userid the request should apply to.|
 |body|body|string|false|The new password to use.|
 
-<h3 id="change-a-user's-password.-responses">Responses</h3>
+<h3 id="changepassword-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -566,11 +622,18 @@ string
 This operation does not require authentication
 </aside>
 
-## Retrieve a list of users.
+## getUsers
 
 <a id="opIdgetUsers"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/users \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/users");
@@ -623,7 +686,9 @@ fetch('/service/rest/v1/security/users',
 
 `GET /v1/security/users`
 
-<h3 id="retrieve-a-list-of-users.-parameters">Parameters</h3>
+*Retrieve a list of users.*
+
+<h3 id="getusers-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -654,7 +719,7 @@ fetch('/service/rest/v1/security/users',
 ]
 ```
 
-<h3 id="retrieve-a-list-of-users.-responses">Responses</h3>
+<h3 id="getusers-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -662,7 +727,7 @@ fetch('/service/rest/v1/security/users',
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Password was not supplied in the body of the request|None|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The user does not have permission to perform the operation.|None|
 
-<h3 id="retrieve-a-list-of-users.-responseschema">Response Schema</h3>
+<h3 id="getusers-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -692,11 +757,19 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a new user in the default source.
+## createUser
 
 <a id="opIdcreateUser"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/users \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/users");
@@ -761,6 +834,8 @@ fetch('/service/rest/v1/security/users',
 
 `POST /v1/security/users`
 
+*Create a new user in the default source.*
+
 > Body parameter
 
 ```json
@@ -777,7 +852,7 @@ fetch('/service/rest/v1/security/users',
 }
 ```
 
-<h3 id="create-a-new-user-in-the-default-source.-parameters">Parameters</h3>
+<h3 id="createuser-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -805,7 +880,7 @@ fetch('/service/rest/v1/security/users',
 }
 ```
 
-<h3 id="create-a-new-user-in-the-default-source.-responses">Responses</h3>
+<h3 id="createuser-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -817,11 +892,17 @@ fetch('/service/rest/v1/security/users',
 This operation does not require authentication
 </aside>
 
-## Reset the user token for the given user.
+## reset
 
 <a id="opIdreset"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/users/{userId}/{realm}/user-token-reset
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/users/{userId}/{realm}/user-token-reset");
@@ -866,16 +947,18 @@ fetch('/service/rest/v1/security/users/{userId}/{realm}/user-token-reset',
 
 `DELETE /v1/security/users/{userId}/{realm}/user-token-reset`
 
+*Reset the user token for the given user.*
+
 Resetting the user token will invalidate the current token and force a new token to be created the next time it is accessed.
 
-<h3 id="reset-the-user-token-for-the-given-user.-parameters">Parameters</h3>
+<h3 id="reset-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |userId|path|string|true|The userId of the user to reset the token for|
 |realm|path|string|true|The realm of the user to reset the token for|
 
-<h3 id="reset-the-user-token-for-the-given-user.-responses">Responses</h3>
+<h3 id="reset-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -891,11 +974,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-jwt">Security management: JWT</h1>
 
-## Reset JWT secret (note that session will be expired for the all logged-in users)
+## resetSecret
 
 <a id="opIdresetSecret"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/jwt
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/jwt");
@@ -940,7 +1029,9 @@ fetch('/service/rest/v1/security/jwt',
 
 `PUT /v1/security/jwt`
 
-<h3 id="reset-jwt-secret-(note-that-session-will-be-expired-for-the-all-logged-in-users)-responses">Responses</h3>
+*Reset JWT secret (note that session will be expired for the all logged-in users)*
+
+<h3 id="resetsecret-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -953,11 +1044,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-privileges">Security management: privileges</h1>
 
-## Retrieve a list of privileges.
+## getPrivileges
 
 <a id="opIdgetPrivileges"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/privileges \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges");
@@ -1010,6 +1108,8 @@ fetch('/service/rest/v1/security/privileges',
 
 `GET /v1/security/privileges`
 
+*Retrieve a list of privileges.*
+
 > Example responses
 
 > 200 Response
@@ -1025,14 +1125,14 @@ fetch('/service/rest/v1/security/privileges',
 ]
 ```
 
-<h3 id="retrieve-a-list-of-privileges.-responses">Responses</h3>
+<h3 id="getprivileges-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The user does not have permission to perform the operation.|None|
 
-<h3 id="retrieve-a-list-of-privileges.-responseschema">Response Schema</h3>
+<h3 id="getprivileges-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -1048,11 +1148,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Retrieve a privilege by name.
+## getPrivilege
 
 <a id="opIdgetPrivilege"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/privileges/{privilegeName} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/{privilegeName}");
@@ -1105,7 +1212,9 @@ fetch('/service/rest/v1/security/privileges/{privilegeName}',
 
 `GET /v1/security/privileges/{privilegeName}`
 
-<h3 id="retrieve-a-privilege-by-name.-parameters">Parameters</h3>
+*Retrieve a privilege by name.*
+
+<h3 id="getprivilege-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1124,7 +1233,7 @@ fetch('/service/rest/v1/security/privileges/{privilegeName}',
 }
 ```
 
-<h3 id="retrieve-a-privilege-by-name.-responses">Responses</h3>
+<h3 id="getprivilege-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1136,11 +1245,17 @@ fetch('/service/rest/v1/security/privileges/{privilegeName}',
 This operation does not require authentication
 </aside>
 
-## Delete a privilege by name.
+## deletePrivilege
 
 <a id="opIddeletePrivilege"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/privileges/{privilegeName}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/{privilegeName}");
@@ -1185,13 +1300,15 @@ fetch('/service/rest/v1/security/privileges/{privilegeName}',
 
 `DELETE /v1/security/privileges/{privilegeName}`
 
-<h3 id="delete-a-privilege-by-name.-parameters">Parameters</h3>
+*Delete a privilege by name.*
+
+<h3 id="deleteprivilege-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |privilegeName|path|string|true|The name of the privilege to delete.|
 
-<h3 id="delete-a-privilege-by-name.-responses">Responses</h3>
+<h3 id="deleteprivilege-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1203,11 +1320,18 @@ fetch('/service/rest/v1/security/privileges/{privilegeName}',
 This operation does not require authentication
 </aside>
 
-## Create a wildcard type privilege.
+## createPrivilege
 
 <a id="opIdcreatePrivilege"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/privileges/wildcard \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/wildcard");
@@ -1264,6 +1388,8 @@ fetch('/service/rest/v1/security/privileges/wildcard',
 
 `POST /v1/security/privileges/wildcard`
 
+*Create a wildcard type privilege.*
+
 > Body parameter
 
 ```json
@@ -1274,13 +1400,13 @@ fetch('/service/rest/v1/security/privileges/wildcard',
 }
 ```
 
-<h3 id="create-a-wildcard-type-privilege.-parameters">Parameters</h3>
+<h3 id="createprivilege-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ApiPrivilegeWildcardRequest](#schemaapiprivilegewildcardrequest)|false|The privilege to create.|
 
-<h3 id="create-a-wildcard-type-privilege.-responses">Responses</h3>
+<h3 id="createprivilege-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1291,11 +1417,18 @@ fetch('/service/rest/v1/security/privileges/wildcard',
 This operation does not require authentication
 </aside>
 
-## Create an application type privilege.
+## createPrivilege_1
 
 <a id="opIdcreatePrivilege_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/privileges/application \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/application");
@@ -1355,6 +1488,8 @@ fetch('/service/rest/v1/security/privileges/application',
 
 `POST /v1/security/privileges/application`
 
+*Create an application type privilege.*
+
 > Body parameter
 
 ```json
@@ -1368,13 +1503,13 @@ fetch('/service/rest/v1/security/privileges/application',
 }
 ```
 
-<h3 id="create-an-application-type-privilege.-parameters">Parameters</h3>
+<h3 id="createprivilege_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ApiPrivilegeApplicationRequest](#schemaapiprivilegeapplicationrequest)|false|The privilege to create.|
 
-<h3 id="create-an-application-type-privilege.-responses">Responses</h3>
+<h3 id="createprivilege_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1385,11 +1520,18 @@ fetch('/service/rest/v1/security/privileges/application',
 This operation does not require authentication
 </aside>
 
-## Update a wildcard type privilege.
+## updatePrivilege
 
 <a id="opIdupdatePrivilege"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/privileges/wildcard/{privilegeName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/wildcard/{privilegeName}");
@@ -1446,6 +1588,8 @@ fetch('/service/rest/v1/security/privileges/wildcard/{privilegeName}',
 
 `PUT /v1/security/privileges/wildcard/{privilegeName}`
 
+*Update a wildcard type privilege.*
+
 > Body parameter
 
 ```json
@@ -1456,14 +1600,14 @@ fetch('/service/rest/v1/security/privileges/wildcard/{privilegeName}',
 }
 ```
 
-<h3 id="update-a-wildcard-type-privilege.-parameters">Parameters</h3>
+<h3 id="updateprivilege-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |privilegeName|path|string|true|The name of the privilege to update.|
 |body|body|[ApiPrivilegeWildcardRequest](#schemaapiprivilegewildcardrequest)|false|The privilege to update.|
 
-<h3 id="update-a-wildcard-type-privilege.-responses">Responses</h3>
+<h3 id="updateprivilege-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1475,11 +1619,18 @@ fetch('/service/rest/v1/security/privileges/wildcard/{privilegeName}',
 This operation does not require authentication
 </aside>
 
-## Update an application type privilege.
+## updatePrivilege_1
 
 <a id="opIdupdatePrivilege_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/privileges/application/{privilegeName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/application/{privilegeName}");
@@ -1539,6 +1690,8 @@ fetch('/service/rest/v1/security/privileges/application/{privilegeName}',
 
 `PUT /v1/security/privileges/application/{privilegeName}`
 
+*Update an application type privilege.*
+
 > Body parameter
 
 ```json
@@ -1552,14 +1705,14 @@ fetch('/service/rest/v1/security/privileges/application/{privilegeName}',
 }
 ```
 
-<h3 id="update-an-application-type-privilege.-parameters">Parameters</h3>
+<h3 id="updateprivilege_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |privilegeName|path|string|true|The name of the privilege to update.|
 |body|body|[ApiPrivilegeApplicationRequest](#schemaapiprivilegeapplicationrequest)|false|The privilege to update.|
 
-<h3 id="update-an-application-type-privilege.-responses">Responses</h3>
+<h3 id="updateprivilege_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1571,11 +1724,18 @@ fetch('/service/rest/v1/security/privileges/application/{privilegeName}',
 This operation does not require authentication
 </aside>
 
-## Create a repository content selector type privilege.
+## createPrivilege_2
 
 <a id="opIdcreatePrivilege_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/privileges/repository-content-selector \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/repository-content-selector");
@@ -1637,6 +1797,8 @@ fetch('/service/rest/v1/security/privileges/repository-content-selector',
 
 `POST /v1/security/privileges/repository-content-selector`
 
+*Create a repository content selector type privilege.*
+
 > Body parameter
 
 ```json
@@ -1652,13 +1814,13 @@ fetch('/service/rest/v1/security/privileges/repository-content-selector',
 }
 ```
 
-<h3 id="create-a-repository-content-selector-type-privilege.-parameters">Parameters</h3>
+<h3 id="createprivilege_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ApiPrivilegeRepositoryContentSelectorRequest](#schemaapiprivilegerepositorycontentselectorrequest)|false|The privilege to create.|
 
-<h3 id="create-a-repository-content-selector-type-privilege.-responses">Responses</h3>
+<h3 id="createprivilege_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1669,11 +1831,18 @@ fetch('/service/rest/v1/security/privileges/repository-content-selector',
 This operation does not require authentication
 </aside>
 
-## Create a repository admin type privilege.
+## createPrivilege_3
 
 <a id="opIdcreatePrivilege_3"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/privileges/repository-admin \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/repository-admin");
@@ -1734,6 +1903,8 @@ fetch('/service/rest/v1/security/privileges/repository-admin',
 
 `POST /v1/security/privileges/repository-admin`
 
+*Create a repository admin type privilege.*
+
 > Body parameter
 
 ```json
@@ -1748,13 +1919,13 @@ fetch('/service/rest/v1/security/privileges/repository-admin',
 }
 ```
 
-<h3 id="create-a-repository-admin-type-privilege.-parameters">Parameters</h3>
+<h3 id="createprivilege_3-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ApiPrivilegeRepositoryAdminRequest](#schemaapiprivilegerepositoryadminrequest)|false|The privilege to create.|
 
-<h3 id="create-a-repository-admin-type-privilege.-responses">Responses</h3>
+<h3 id="createprivilege_3-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1765,11 +1936,18 @@ fetch('/service/rest/v1/security/privileges/repository-admin',
 This operation does not require authentication
 </aside>
 
-## Create a repository view type privilege.
+## createPrivilege_4
 
 <a id="opIdcreatePrivilege_4"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/privileges/repository-view \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/repository-view");
@@ -1830,6 +2008,8 @@ fetch('/service/rest/v1/security/privileges/repository-view',
 
 `POST /v1/security/privileges/repository-view`
 
+*Create a repository view type privilege.*
+
 > Body parameter
 
 ```json
@@ -1844,13 +2024,13 @@ fetch('/service/rest/v1/security/privileges/repository-view',
 }
 ```
 
-<h3 id="create-a-repository-view-type-privilege.-parameters">Parameters</h3>
+<h3 id="createprivilege_4-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ApiPrivilegeRepositoryViewRequest](#schemaapiprivilegerepositoryviewrequest)|false|The privilege to create.|
 
-<h3 id="create-a-repository-view-type-privilege.-responses">Responses</h3>
+<h3 id="createprivilege_4-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1861,11 +2041,18 @@ fetch('/service/rest/v1/security/privileges/repository-view',
 This operation does not require authentication
 </aside>
 
-## Update a repository view type privilege.
+## updatePrivilege_2
 
 <a id="opIdupdatePrivilege_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/privileges/repository-view/{privilegeName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/repository-view/{privilegeName}");
@@ -1926,6 +2113,8 @@ fetch('/service/rest/v1/security/privileges/repository-view/{privilegeName}',
 
 `PUT /v1/security/privileges/repository-view/{privilegeName}`
 
+*Update a repository view type privilege.*
+
 > Body parameter
 
 ```json
@@ -1940,14 +2129,14 @@ fetch('/service/rest/v1/security/privileges/repository-view/{privilegeName}',
 }
 ```
 
-<h3 id="update-a-repository-view-type-privilege.-parameters">Parameters</h3>
+<h3 id="updateprivilege_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |privilegeName|path|string|true|The name of the privilege to update.|
 |body|body|[ApiPrivilegeRepositoryViewRequest](#schemaapiprivilegerepositoryviewrequest)|false|The privilege to update.|
 
-<h3 id="update-a-repository-view-type-privilege.-responses">Responses</h3>
+<h3 id="updateprivilege_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1959,11 +2148,18 @@ fetch('/service/rest/v1/security/privileges/repository-view/{privilegeName}',
 This operation does not require authentication
 </aside>
 
-## Update a repository content selector type privilege.
+## updatePrivilege_3
 
 <a id="opIdupdatePrivilege_3"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/privileges/repository-content-selector/{privilegeName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/repository-content-selector/{privilegeName}");
@@ -2025,6 +2221,8 @@ fetch('/service/rest/v1/security/privileges/repository-content-selector/{privile
 
 `PUT /v1/security/privileges/repository-content-selector/{privilegeName}`
 
+*Update a repository content selector type privilege.*
+
 > Body parameter
 
 ```json
@@ -2040,14 +2238,14 @@ fetch('/service/rest/v1/security/privileges/repository-content-selector/{privile
 }
 ```
 
-<h3 id="update-a-repository-content-selector-type-privilege.-parameters">Parameters</h3>
+<h3 id="updateprivilege_3-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |privilegeName|path|string|true|The name of the privilege to update.|
 |body|body|[ApiPrivilegeRepositoryContentSelectorRequest](#schemaapiprivilegerepositorycontentselectorrequest)|false|The privilege to update.|
 
-<h3 id="update-a-repository-content-selector-type-privilege.-responses">Responses</h3>
+<h3 id="updateprivilege_3-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2059,11 +2257,18 @@ fetch('/service/rest/v1/security/privileges/repository-content-selector/{privile
 This operation does not require authentication
 </aside>
 
-## Update a repository admin type privilege.
+## updatePrivilege_4
 
 <a id="opIdupdatePrivilege_4"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/privileges/repository-admin/{privilegeName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/repository-admin/{privilegeName}");
@@ -2124,6 +2329,8 @@ fetch('/service/rest/v1/security/privileges/repository-admin/{privilegeName}',
 
 `PUT /v1/security/privileges/repository-admin/{privilegeName}`
 
+*Update a repository admin type privilege.*
+
 > Body parameter
 
 ```json
@@ -2138,14 +2345,14 @@ fetch('/service/rest/v1/security/privileges/repository-admin/{privilegeName}',
 }
 ```
 
-<h3 id="update-a-repository-admin-type-privilege.-parameters">Parameters</h3>
+<h3 id="updateprivilege_4-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |privilegeName|path|string|true|The name of the privilege to update.|
 |body|body|[ApiPrivilegeRepositoryAdminRequest](#schemaapiprivilegerepositoryadminrequest)|false|The privilege to update.|
 
-<h3 id="update-a-repository-admin-type-privilege.-responses">Responses</h3>
+<h3 id="updateprivilege_4-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2157,11 +2364,18 @@ fetch('/service/rest/v1/security/privileges/repository-admin/{privilegeName}',
 This operation does not require authentication
 </aside>
 
-## Create a script type privilege.
+## createPrivilege_5
 
 <a id="opIdcreatePrivilege_5"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/privileges/script \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/script");
@@ -2221,6 +2435,8 @@ fetch('/service/rest/v1/security/privileges/script',
 
 `POST /v1/security/privileges/script`
 
+*Create a script type privilege.*
+
 > Body parameter
 
 ```json
@@ -2234,13 +2450,13 @@ fetch('/service/rest/v1/security/privileges/script',
 }
 ```
 
-<h3 id="create-a-script-type-privilege.-parameters">Parameters</h3>
+<h3 id="createprivilege_5-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ApiPrivilegeScriptRequest](#schemaapiprivilegescriptrequest)|false|The privilege to create.|
 
-<h3 id="create-a-script-type-privilege.-responses">Responses</h3>
+<h3 id="createprivilege_5-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2251,11 +2467,18 @@ fetch('/service/rest/v1/security/privileges/script',
 This operation does not require authentication
 </aside>
 
-## Update a script type privilege.
+## updatePrivilege_5
 
 <a id="opIdupdatePrivilege_5"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/privileges/script/{privilegeName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/privileges/script/{privilegeName}");
@@ -2315,6 +2538,8 @@ fetch('/service/rest/v1/security/privileges/script/{privilegeName}',
 
 `PUT /v1/security/privileges/script/{privilegeName}`
 
+*Update a script type privilege.*
+
 > Body parameter
 
 ```json
@@ -2328,14 +2553,14 @@ fetch('/service/rest/v1/security/privileges/script/{privilegeName}',
 }
 ```
 
-<h3 id="update-a-script-type-privilege.-parameters">Parameters</h3>
+<h3 id="updateprivilege_5-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |privilegeName|path|string|true|The name of the privilege to update.|
 |body|body|[ApiPrivilegeScriptRequest](#schemaapiprivilegescriptrequest)|false|The privilege to update.|
 
-<h3 id="update-a-script-type-privilege.-responses">Responses</h3>
+<h3 id="updateprivilege_5-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2349,11 +2574,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-realms">Security management: realms</h1>
 
-## List the available realms
+## getRealms
 
 <a id="opIdgetRealms"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/realms/available \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/realms/available");
@@ -2406,6 +2638,8 @@ fetch('/service/rest/v1/security/realms/available',
 
 `GET /v1/security/realms/available`
 
+*List the available realms*
+
 > Example responses
 
 > 200 Response
@@ -2419,13 +2653,13 @@ fetch('/service/rest/v1/security/realms/available',
 ]
 ```
 
-<h3 id="list-the-available-realms-responses">Responses</h3>
+<h3 id="getrealms-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 
-<h3 id="list-the-available-realms-responseschema">Response Schema</h3>
+<h3 id="getrealms-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -2439,11 +2673,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## List the active realm IDs in order
+## getActiveRealms
 
 <a id="opIdgetActiveRealms"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/realms/active \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/realms/active");
@@ -2496,6 +2737,8 @@ fetch('/service/rest/v1/security/realms/active',
 
 `GET /v1/security/realms/active`
 
+*List the active realm IDs in order*
+
 > Example responses
 
 > 200 Response
@@ -2506,23 +2749,30 @@ fetch('/service/rest/v1/security/realms/active',
 ]
 ```
 
-<h3 id="list-the-active-realm-ids-in-order-responses">Responses</h3>
+<h3 id="getactiverealms-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 
-<h3 id="list-the-active-realm-ids-in-order-responseschema">Response Schema</h3>
+<h3 id="getactiverealms-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Set the active security realms in the order they should be used
+## setActiveRealms
 
 <a id="opIdsetActiveRealms"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/realms/active \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/realms/active");
@@ -2577,6 +2827,8 @@ fetch('/service/rest/v1/security/realms/active',
 
 `PUT /v1/security/realms/active`
 
+*Set the active security realms in the order they should be used*
+
 > Body parameter
 
 ```json
@@ -2585,13 +2837,13 @@ fetch('/service/rest/v1/security/realms/active',
 ]
 ```
 
-<h3 id="set-the-active-security-realms-in-the-order-they-should-be-used-parameters">Parameters</h3>
+<h3 id="setactiverealms-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|array[string]|false|The realm IDs|
 
-<h3 id="set-the-active-security-realms-in-the-order-they-should-be-used-responses">Responses</h3>
+<h3 id="setactiverealms-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2603,11 +2855,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-roles">Security management: roles</h1>
 
-## List roles
+## getRoles
 
 <a id="opIdgetRoles"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/roles \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/roles");
@@ -2660,7 +2919,9 @@ fetch('/service/rest/v1/security/roles',
 
 `GET /v1/security/roles`
 
-<h3 id="list-roles-parameters">Parameters</h3>
+*List roles*
+
+<h3 id="getroles-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2688,7 +2949,7 @@ fetch('/service/rest/v1/security/roles',
 ]
 ```
 
-<h3 id="list-roles-responses">Responses</h3>
+<h3 id="getroles-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2696,7 +2957,7 @@ fetch('/service/rest/v1/security/roles',
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|The specified source does not exist|None|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Insufficient permissions to read roles|None|
 
-<h3 id="list-roles-responseschema">Response Schema</h3>
+<h3 id="getroles-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -2715,11 +2976,19 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create role
+## create
 
 <a id="opIdcreate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/roles \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/roles");
@@ -2784,6 +3053,8 @@ fetch('/service/rest/v1/security/roles',
 
 `POST /v1/security/roles`
 
+*Create role*
+
 > Body parameter
 
 ```json
@@ -2800,7 +3071,7 @@ fetch('/service/rest/v1/security/roles',
 }
 ```
 
-<h3 id="create-role-parameters">Parameters</h3>
+<h3 id="create-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2826,7 +3097,7 @@ fetch('/service/rest/v1/security/roles',
 }
 ```
 
-<h3 id="create-role-responses">Responses</h3>
+<h3 id="create-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2837,11 +3108,18 @@ fetch('/service/rest/v1/security/roles',
 This operation does not require authentication
 </aside>
 
-## Get role
+## getRole
 
 <a id="opIdgetRole"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/roles/{id} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/roles/{id}");
@@ -2894,7 +3172,9 @@ fetch('/service/rest/v1/security/roles/{id}',
 
 `GET /v1/security/roles/{id}`
 
-<h3 id="get-role-parameters">Parameters</h3>
+*Get role*
+
+<h3 id="getrole-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2921,7 +3201,7 @@ fetch('/service/rest/v1/security/roles/{id}',
 }
 ```
 
-<h3 id="get-role-responses">Responses</h3>
+<h3 id="getrole-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2934,11 +3214,18 @@ fetch('/service/rest/v1/security/roles/{id}',
 This operation does not require authentication
 </aside>
 
-## Update role
+## update_1
 
 <a id="opIdupdate_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/roles/{id} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/roles/{id}");
@@ -3001,6 +3288,8 @@ fetch('/service/rest/v1/security/roles/{id}',
 
 `PUT /v1/security/roles/{id}`
 
+*Update role*
+
 > Body parameter
 
 ```json
@@ -3017,14 +3306,14 @@ fetch('/service/rest/v1/security/roles/{id}',
 }
 ```
 
-<h3 id="update-role-parameters">Parameters</h3>
+<h3 id="update_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|The id of the role to update|
 |body|body|[RoleXORequest](#schemarolexorequest)|true|A role configuration|
 
-<h3 id="update-role-responses">Responses</h3>
+<h3 id="update_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3035,11 +3324,17 @@ fetch('/service/rest/v1/security/roles/{id}',
 This operation does not require authentication
 </aside>
 
-## Delete role
+## delete
 
 <a id="opIddelete"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/roles/{id}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/roles/{id}");
@@ -3084,13 +3379,15 @@ fetch('/service/rest/v1/security/roles/{id}',
 
 `DELETE /v1/security/roles/{id}`
 
-<h3 id="delete-role-parameters">Parameters</h3>
+*Delete role*
+
+<h3 id="delete-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|The id of the role to delete|
 
-<h3 id="delete-role-responses">Responses</h3>
+<h3 id="delete-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3103,11 +3400,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-tasks">Tasks</h1>
 
-## List tasks
+## getTasks
 
 <a id="opIdgetTasks"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/tasks \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks");
@@ -3160,7 +3464,9 @@ fetch('/service/rest/v1/tasks',
 
 `GET /v1/tasks`
 
-<h3 id="list-tasks-parameters">Parameters</h3>
+*List tasks*
+
+<h3 id="gettasks-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -3188,7 +3494,7 @@ fetch('/service/rest/v1/tasks',
 }
 ```
 
-<h3 id="list-tasks-responses">Responses</h3>
+<h3 id="gettasks-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3198,11 +3504,18 @@ fetch('/service/rest/v1/tasks',
 This operation does not require authentication
 </aside>
 
-## Create task
+## createTask
 
 <a id="opIdcreateTask"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/tasks \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks");
@@ -3274,6 +3587,8 @@ fetch('/service/rest/v1/tasks',
 
 `POST /v1/tasks`
 
+*Create task*
+
 > Body parameter
 
 ```json
@@ -3299,13 +3614,13 @@ fetch('/service/rest/v1/tasks',
 }
 ```
 
-<h3 id="create-task-parameters">Parameters</h3>
+<h3 id="createtask-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[TaskTemplateXO](#schematasktemplatexo)|false|none|
 
-<h3 id="create-task-responses">Responses</h3>
+<h3 id="createtask-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3315,11 +3630,18 @@ fetch('/service/rest/v1/tasks',
 This operation does not require authentication
 </aside>
 
-## Get a single task by id
+## getTaskById
 
 <a id="opIdgetTaskById"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/tasks/{id} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks/{id}");
@@ -3372,7 +3694,9 @@ fetch('/service/rest/v1/tasks/{id}',
 
 `GET /v1/tasks/{id}`
 
-<h3 id="get-a-single-task-by-id-parameters">Parameters</h3>
+*Get a single task by id*
+
+<h3 id="gettaskbyid-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -3395,7 +3719,7 @@ fetch('/service/rest/v1/tasks/{id}',
 }
 ```
 
-<h3 id="get-a-single-task-by-id-responses">Responses</h3>
+<h3 id="gettaskbyid-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3406,11 +3730,17 @@ fetch('/service/rest/v1/tasks/{id}',
 This operation does not require authentication
 </aside>
 
-## Delete task by id
+## deleteTaskById
 
 <a id="opIddeleteTaskById"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/tasks/{id}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks/{id}");
@@ -3455,13 +3785,15 @@ fetch('/service/rest/v1/tasks/{id}',
 
 `DELETE /v1/tasks/{id}`
 
-<h3 id="delete-task-by-id-parameters">Parameters</h3>
+*Delete task by id*
+
+<h3 id="deletetaskbyid-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|none|
 
-<h3 id="delete-task-by-id-responses">Responses</h3>
+<h3 id="deletetaskbyid-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3471,11 +3803,17 @@ fetch('/service/rest/v1/tasks/{id}',
 This operation does not require authentication
 </aside>
 
-## Run task
+## run
 
 <a id="opIdrun"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/tasks/{id}/run
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks/{id}/run");
@@ -3520,13 +3858,15 @@ fetch('/service/rest/v1/tasks/{id}/run',
 
 `POST /v1/tasks/{id}/run`
 
-<h3 id="run-task-parameters">Parameters</h3>
+*Run task*
+
+<h3 id="run-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|Id of the task to run|
 
-<h3 id="run-task-responses">Responses</h3>
+<h3 id="run-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3538,11 +3878,17 @@ fetch('/service/rest/v1/tasks/{id}/run',
 This operation does not require authentication
 </aside>
 
-## Stop task
+## stop
 
 <a id="opIdstop"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/tasks/{id}/stop
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks/{id}/stop");
@@ -3587,13 +3933,15 @@ fetch('/service/rest/v1/tasks/{id}/stop',
 
 `POST /v1/tasks/{id}/stop`
 
-<h3 id="stop-task-parameters">Parameters</h3>
+*Stop task*
+
+<h3 id="stop-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|Id of the task to stop|
 
-<h3 id="stop-task-responses">Responses</h3>
+<h3 id="stop-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3605,11 +3953,18 @@ fetch('/service/rest/v1/tasks/{id}/stop',
 This operation does not require authentication
 </aside>
 
-## List tasks of template tasks. This is the base to create new tasks
+## getTaskTemplates
 
 <a id="opIdgetTaskTemplates"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/tasks/templates \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks/templates");
@@ -3662,6 +4017,8 @@ fetch('/service/rest/v1/tasks/templates',
 
 `GET /v1/tasks/templates`
 
+*List tasks of template tasks. This is the base to create new tasks*
+
 > Example responses
 
 > 200 Response
@@ -3691,13 +4048,13 @@ fetch('/service/rest/v1/tasks/templates',
 ]
 ```
 
-<h3 id="list-tasks-of-template-tasks.-this-is-the-base-to-create-new-tasks-responses">Responses</h3>
+<h3 id="gettasktemplates-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 
-<h3 id="list-tasks-of-template-tasks.-this-is-the-base-to-create-new-tasks-responseschema">Response Schema</h3>
+<h3 id="gettasktemplates-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -3729,11 +4086,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Get task template by type. This is the base to create new tasks
+## getTaskTemplate
 
 <a id="opIdgetTaskTemplate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/tasks/templates/{typeId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks/templates/{typeId}");
@@ -3786,7 +4150,9 @@ fetch('/service/rest/v1/tasks/templates/{typeId}',
 
 `GET /v1/tasks/templates/{typeId}`
 
-<h3 id="get-task-template-by-type.-this-is-the-base-to-create-new-tasks-parameters">Parameters</h3>
+*Get task template by type. This is the base to create new tasks*
+
+<h3 id="gettasktemplate-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -3819,7 +4185,7 @@ fetch('/service/rest/v1/tasks/templates/{typeId}',
 }
 ```
 
-<h3 id="get-task-template-by-type.-this-is-the-base-to-create-new-tasks-responses">Responses</h3>
+<h3 id="gettasktemplate-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3829,11 +4195,18 @@ fetch('/service/rest/v1/tasks/templates/{typeId}',
 This operation does not require authentication
 </aside>
 
-## Update an existing task
+## updateTask
 
 <a id="opIdupdateTask"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/tasks/{taskId} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tasks/{taskId}");
@@ -3905,6 +4278,8 @@ fetch('/service/rest/v1/tasks/{taskId}',
 
 `PUT /v1/tasks/{taskId}`
 
+*Update an existing task*
+
 > Body parameter
 
 ```json
@@ -3930,14 +4305,14 @@ fetch('/service/rest/v1/tasks/{taskId}',
 }
 ```
 
-<h3 id="update-an-existing-task-parameters">Parameters</h3>
+<h3 id="updatetask-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |taskId|path|string|true|none|
 |body|body|[TaskTemplateXO](#schematasktemplatexo)|false|none|
 
-<h3 id="update-an-existing-task-responses">Responses</h3>
+<h3 id="updatetask-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3949,11 +4324,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-blob-store">Blob store</h1>
 
-## Delete a blob store by name
+## deleteBlobStore
 
 <a id="opIddeleteBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/blobstores/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/{name}");
@@ -3998,13 +4379,15 @@ fetch('/service/rest/v1/blobstores/{name}',
 
 `DELETE /v1/blobstores/{name}`
 
-<h3 id="delete-a-blob-store-by-name-parameters">Parameters</h3>
+*Delete a blob store by name*
+
+<h3 id="deleteblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|The name of the blob store to delete|
 
-<h3 id="delete-a-blob-store-by-name-responses">Responses</h3>
+<h3 id="deleteblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4014,11 +4397,18 @@ fetch('/service/rest/v1/blobstores/{name}',
 This operation does not require authentication
 </aside>
 
-## Get quota status for a given blob store
+## quotaStatus
 
 <a id="opIdquotaStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores/{name}/quota-status \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/{name}/quota-status");
@@ -4071,7 +4461,9 @@ fetch('/service/rest/v1/blobstores/{name}/quota-status',
 
 `GET /v1/blobstores/{name}/quota-status`
 
-<h3 id="get-quota-status-for-a-given-blob-store-parameters">Parameters</h3>
+*Get quota status for a given blob store*
+
+<h3 id="quotastatus-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -4089,7 +4481,7 @@ fetch('/service/rest/v1/blobstores/{name}/quota-status',
 }
 ```
 
-<h3 id="get-quota-status-for-a-given-blob-store-responses">Responses</h3>
+<h3 id="quotastatus-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4099,11 +4491,18 @@ fetch('/service/rest/v1/blobstores/{name}/quota-status',
 This operation does not require authentication
 </aside>
 
-## List the blob stores
+## listBlobStores
 
 <a id="opIdlistBlobStores"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores");
@@ -4156,6 +4555,8 @@ fetch('/service/rest/v1/blobstores',
 
 `GET /v1/blobstores`
 
+*List the blob stores*
+
 > Example responses
 
 > 200 Response
@@ -4177,13 +4578,13 @@ fetch('/service/rest/v1/blobstores',
 ]
 ```
 
-<h3 id="list-the-blob-stores-responses">Responses</h3>
+<h3 id="listblobstores-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 
-<h3 id="list-the-blob-stores-responseschema">Response Schema</h3>
+<h3 id="listblobstores-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -4211,11 +4612,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a file blob store
+## createFileBlobStore
 
 <a id="opIdcreateFileBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/blobstores/file \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/file");
@@ -4275,6 +4683,8 @@ fetch('/service/rest/v1/blobstores/file',
 
 `POST /v1/blobstores/file`
 
+*Create a file blob store*
+
 > Body parameter
 
 ```json
@@ -4288,13 +4698,13 @@ fetch('/service/rest/v1/blobstores/file',
 }
 ```
 
-<h3 id="create-a-file-blob-store-parameters">Parameters</h3>
+<h3 id="createfileblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[FileBlobStoreApiCreateRequest](#schemafileblobstoreapicreaterequest)|false|none|
 
-<h3 id="create-a-file-blob-store-responses">Responses</h3>
+<h3 id="createfileblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4305,11 +4715,18 @@ fetch('/service/rest/v1/blobstores/file',
 This operation does not require authentication
 </aside>
 
-## Get a file blob store configuration by name
+## getFileBlobStoreConfiguration
 
 <a id="opIdgetFileBlobStoreConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores/file/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/file/{name}");
@@ -4362,7 +4779,9 @@ fetch('/service/rest/v1/blobstores/file/{name}',
 
 `GET /v1/blobstores/file/{name}`
 
-<h3 id="get-a-file-blob-store-configuration-by-name-parameters">Parameters</h3>
+*Get a file blob store configuration by name*
+
+<h3 id="getfileblobstoreconfiguration-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -4382,7 +4801,7 @@ fetch('/service/rest/v1/blobstores/file/{name}',
 }
 ```
 
-<h3 id="get-a-file-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="getfileblobstoreconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4394,11 +4813,18 @@ fetch('/service/rest/v1/blobstores/file/{name}',
 This operation does not require authentication
 </aside>
 
-## Update a file blob store configuration by name
+## updateFileBlobStore
 
 <a id="opIdupdateFileBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/blobstores/file/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/file/{name}");
@@ -4457,6 +4883,8 @@ fetch('/service/rest/v1/blobstores/file/{name}',
 
 `PUT /v1/blobstores/file/{name}`
 
+*Update a file blob store configuration by name*
+
 > Body parameter
 
 ```json
@@ -4469,14 +4897,14 @@ fetch('/service/rest/v1/blobstores/file/{name}',
 }
 ```
 
-<h3 id="update-a-file-blob-store-configuration-by-name-parameters">Parameters</h3>
+<h3 id="updatefileblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|The name of the file blob store to update|
 |body|body|[FileBlobStoreApiUpdateRequest](#schemafileblobstoreapiupdaterequest)|false|none|
 
-<h3 id="update-a-file-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="updatefileblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4488,11 +4916,18 @@ fetch('/service/rest/v1/blobstores/file/{name}',
 This operation does not require authentication
 </aside>
 
-## Get a S3 blob store configuration by name
+## getBlobStore
 
 <a id="opIdgetBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores/s3/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/s3/{name}");
@@ -4545,7 +4980,9 @@ fetch('/service/rest/v1/blobstores/s3/{name}',
 
 `GET /v1/blobstores/s3/{name}`
 
-<h3 id="get-a-s3-blob-store-configuration-by-name-parameters">Parameters</h3>
+*Get a S3 blob store configuration by name*
+
+<h3 id="getblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -4597,7 +5034,7 @@ fetch('/service/rest/v1/blobstores/s3/{name}',
 }
 ```
 
-<h3 id="get-a-s3-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="getblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4610,11 +5047,18 @@ fetch('/service/rest/v1/blobstores/s3/{name}',
 This operation does not require authentication
 </aside>
 
-## Update an S3 blob store configuration by name
+## updateBlobStore
 
 <a id="opIdupdateBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/blobstores/s3/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/s3/{name}");
@@ -4683,6 +5127,8 @@ fetch('/service/rest/v1/blobstores/s3/{name}',
 
 `PUT /v1/blobstores/s3/{name}`
 
+*Update an S3 blob store configuration by name*
+
 > Body parameter
 
 ```json
@@ -4705,14 +5151,14 @@ fetch('/service/rest/v1/blobstores/s3/{name}',
 }
 ```
 
-<h3 id="update-an-s3-blob-store-configuration-by-name-parameters">Parameters</h3>
+<h3 id="updateblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|Name of the blob store to update|
 |body|body|[S3BlobStoreApiModel](#schemas3blobstoreapimodel)|false|none|
 
-<h3 id="update-an-s3-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="updateblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4725,11 +5171,18 @@ fetch('/service/rest/v1/blobstores/s3/{name}',
 This operation does not require authentication
 </aside>
 
-## Create an S3 blob store
+## createBlobStore
 
 <a id="opIdcreateBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/blobstores/s3 \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/s3");
@@ -4798,6 +5251,8 @@ fetch('/service/rest/v1/blobstores/s3',
 
 `POST /v1/blobstores/s3`
 
+*Create an S3 blob store*
+
 > Body parameter
 
 ```json
@@ -4820,13 +5275,13 @@ fetch('/service/rest/v1/blobstores/s3',
 }
 ```
 
-<h3 id="create-an-s3-blob-store-parameters">Parameters</h3>
+<h3 id="createblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[S3BlobStoreApiModel](#schemas3blobstoreapimodel)|false|none|
 
-<h3 id="create-an-s3-blob-store-responses">Responses</h3>
+<h3 id="createblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4838,11 +5293,18 @@ fetch('/service/rest/v1/blobstores/s3',
 This operation does not require authentication
 </aside>
 
-## Get an Azure blob store configuration by name
+## getBlobStore_1
 
 <a id="opIdgetBlobStore_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores/azure/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/azure/{name}");
@@ -4895,7 +5357,9 @@ fetch('/service/rest/v1/blobstores/azure/{name}',
 
 `GET /v1/blobstores/azure/{name}`
 
-<h3 id="get-an-azure-blob-store-configuration-by-name-parameters">Parameters</h3>
+*Get an Azure blob store configuration by name*
+
+<h3 id="getblobstore_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -4923,7 +5387,7 @@ fetch('/service/rest/v1/blobstores/azure/{name}',
 }
 ```
 
-<h3 id="get-an-azure-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="getblobstore_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -4936,11 +5400,18 @@ fetch('/service/rest/v1/blobstores/azure/{name}',
 This operation does not require authentication
 </aside>
 
-## Update an Azure blob store configuration by name
+## updateBlobStore_1
 
 <a id="opIdupdateBlobStore_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/blobstores/azure/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/azure/{name}");
@@ -5007,6 +5478,8 @@ fetch('/service/rest/v1/blobstores/azure/{name}',
 
 `PUT /v1/blobstores/azure/{name}`
 
+*Update an Azure blob store configuration by name*
+
 > Body parameter
 
 ```json
@@ -5027,14 +5500,14 @@ fetch('/service/rest/v1/blobstores/azure/{name}',
 }
 ```
 
-<h3 id="update-an-azure-blob-store-configuration-by-name-parameters">Parameters</h3>
+<h3 id="updateblobstore_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|Name of the blob store to update|
 |body|body|[AzureBlobStoreApiModel](#schemaazureblobstoreapimodel)|false|none|
 
-<h3 id="update-an-azure-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="updateblobstore_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5047,11 +5520,18 @@ fetch('/service/rest/v1/blobstores/azure/{name}',
 This operation does not require authentication
 </aside>
 
-## Create an Azure blob store
+## createBlobStore_1
 
 <a id="opIdcreateBlobStore_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/blobstores/azure \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/azure");
@@ -5118,6 +5598,8 @@ fetch('/service/rest/v1/blobstores/azure',
 
 `POST /v1/blobstores/azure`
 
+*Create an Azure blob store*
+
 > Body parameter
 
 ```json
@@ -5138,13 +5620,13 @@ fetch('/service/rest/v1/blobstores/azure',
 }
 ```
 
-<h3 id="create-an-azure-blob-store-parameters">Parameters</h3>
+<h3 id="createblobstore_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[AzureBlobStoreApiModel](#schemaazureblobstoreapimodel)|false|none|
 
-<h3 id="create-an-azure-blob-store-responses">Responses</h3>
+<h3 id="createblobstore_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5156,11 +5638,18 @@ fetch('/service/rest/v1/blobstores/azure',
 This operation does not require authentication
 </aside>
 
-## Create a group blob store
+## createGroupBlobStore
 
 <a id="opIdcreateGroupBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/blobstores/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/group");
@@ -5223,6 +5712,8 @@ fetch('/service/rest/v1/blobstores/group',
 
 `POST /v1/blobstores/group`
 
+*Create a group blob store*
+
 > Body parameter
 
 ```json
@@ -5239,13 +5730,13 @@ fetch('/service/rest/v1/blobstores/group',
 }
 ```
 
-<h3 id="create-a-group-blob-store-parameters">Parameters</h3>
+<h3 id="creategroupblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[GroupBlobStoreApiCreateRequest](#schemagroupblobstoreapicreaterequest)|false|none|
 
-<h3 id="create-a-group-blob-store-responses">Responses</h3>
+<h3 id="creategroupblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5256,11 +5747,18 @@ fetch('/service/rest/v1/blobstores/group',
 This operation does not require authentication
 </aside>
 
-## Get a group blob store configuration by name
+## getGroupBlobStoreConfiguration
 
 <a id="opIdgetGroupBlobStoreConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores/group/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/group/{name}");
@@ -5313,7 +5811,9 @@ fetch('/service/rest/v1/blobstores/group/{name}',
 
 `GET /v1/blobstores/group/{name}`
 
-<h3 id="get-a-group-blob-store-configuration-by-name-parameters">Parameters</h3>
+*Get a group blob store configuration by name*
+
+<h3 id="getgroupblobstoreconfiguration-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -5336,7 +5836,7 @@ fetch('/service/rest/v1/blobstores/group/{name}',
 }
 ```
 
-<h3 id="get-a-group-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="getgroupblobstoreconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5348,11 +5848,18 @@ fetch('/service/rest/v1/blobstores/group/{name}',
 This operation does not require authentication
 </aside>
 
-## Update a group blob store configuration by name
+## updateGroupBlobStore
 
 <a id="opIdupdateGroupBlobStore"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/blobstores/group/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/group/{name}");
@@ -5414,6 +5921,8 @@ fetch('/service/rest/v1/blobstores/group/{name}',
 
 `PUT /v1/blobstores/group/{name}`
 
+*Update a group blob store configuration by name*
+
 > Body parameter
 
 ```json
@@ -5429,14 +5938,14 @@ fetch('/service/rest/v1/blobstores/group/{name}',
 }
 ```
 
-<h3 id="update-a-group-blob-store-configuration-by-name-parameters">Parameters</h3>
+<h3 id="updategroupblobstore-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|The name of the blob store to update|
 |body|body|[GroupBlobStoreApiUpdateRequest](#schemagroupblobstoreapiupdaterequest)|false|none|
 
-<h3 id="update-a-group-blob-store-configuration-by-name-responses">Responses</h3>
+<h3 id="updategroupblobstore-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5448,11 +5957,18 @@ fetch('/service/rest/v1/blobstores/group/{name}',
 This operation does not require authentication
 </aside>
 
-## Convert a blob store to a group blob store
+## convertBlobStoreToGroup
 
 <a id="opIdconvertBlobStoreToGroup"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/blobstores/group/convert/{name}/{newNameForOriginal} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/group/convert/{name}/{newNameForOriginal}");
@@ -5505,7 +6021,9 @@ fetch('/service/rest/v1/blobstores/group/convert/{name}/{newNameForOriginal}',
 
 `POST /v1/blobstores/group/convert/{name}/{newNameForOriginal}`
 
-<h3 id="convert-a-blob-store-to-a-group-blob-store-parameters">Parameters</h3>
+*Convert a blob store to a group blob store*
+
+<h3 id="convertblobstoretogroup-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -5529,7 +6047,7 @@ fetch('/service/rest/v1/blobstores/group/convert/{name}/{newNameForOriginal}',
 }
 ```
 
-<h3 id="convert-a-blob-store-to-a-group-blob-store-responses">Responses</h3>
+<h3 id="convertblobstoretogroup-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5541,11 +6059,18 @@ fetch('/service/rest/v1/blobstores/group/convert/{name}/{newNameForOriginal}',
 This operation does not require authentication
 </aside>
 
-## Get the configuration for a Google Cloud blob store
+## getBlobStore_2
 
 <a id="opIdgetBlobStore_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores/google/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/google/{name}");
@@ -5598,7 +6123,9 @@ fetch('/service/rest/v1/blobstores/google/{name}',
 
 `GET /v1/blobstores/google/{name}`
 
-<h3 id="get-the-configuration-for-a-google-cloud-blob-store-parameters">Parameters</h3>
+*Get the configuration for a Google Cloud blob store*
+
+<h3 id="getblobstore_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -5631,7 +6158,7 @@ fetch('/service/rest/v1/blobstores/google/{name}',
 }
 ```
 
-<h3 id="get-the-configuration-for-a-google-cloud-blob-store-responses">Responses</h3>
+<h3 id="getblobstore_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5644,11 +6171,18 @@ fetch('/service/rest/v1/blobstores/google/{name}',
 This operation does not require authentication
 </aside>
 
-## Update a Google Cloud blob store
+## updateBlobStore_2
 
 <a id="opIdupdateBlobStore_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/blobstores/google/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/google/{name}");
@@ -5717,6 +6251,8 @@ fetch('/service/rest/v1/blobstores/google/{name}',
 
 `PUT /v1/blobstores/google/{name}`
 
+*Update a Google Cloud blob store*
+
 > Body parameter
 
 ```json
@@ -5739,14 +6275,14 @@ fetch('/service/rest/v1/blobstores/google/{name}',
 }
 ```
 
-<h3 id="update-a-google-cloud-blob-store-parameters">Parameters</h3>
+<h3 id="updateblobstore_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|the name of the blobstore|
 |body|body|[GoogleCloudBlobstoreApiModel](#schemagooglecloudblobstoreapimodel)|false|none|
 
-<h3 id="update-a-google-cloud-blob-store-responses">Responses</h3>
+<h3 id="updateblobstore_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5759,11 +6295,18 @@ fetch('/service/rest/v1/blobstores/google/{name}',
 This operation does not require authentication
 </aside>
 
-## Create a Google Cloud blob store
+## createBlobStore_2
 
 <a id="opIdcreateBlobStore_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/blobstores/google \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/google");
@@ -5832,6 +6375,8 @@ fetch('/service/rest/v1/blobstores/google',
 
 `POST /v1/blobstores/google`
 
+*Create a Google Cloud blob store*
+
 > Body parameter
 
 ```json
@@ -5854,13 +6399,13 @@ fetch('/service/rest/v1/blobstores/google',
 }
 ```
 
-<h3 id="create-a-google-cloud-blob-store-parameters">Parameters</h3>
+<h3 id="createblobstore_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[GoogleCloudBlobstoreApiModel](#schemagooglecloudblobstoreapimodel)|false|none|
 
-<h3 id="create-a-google-cloud-blob-store-responses">Responses</h3>
+<h3 id="createblobstore_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5872,11 +6417,18 @@ fetch('/service/rest/v1/blobstores/google',
 This operation does not require authentication
 </aside>
 
-## Get the project regions by project's id
+## getRegionsByProjectId
 
 <a id="opIdgetRegionsByProjectId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/blobstores/google/regions/{projectId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/blobstores/google/regions/{projectId}");
@@ -5929,7 +6481,9 @@ fetch('/service/rest/v1/blobstores/google/regions/{projectId}',
 
 `GET /v1/blobstores/google/regions/{projectId}`
 
-<h3 id="get-the-project-regions-by-project's-id-parameters">Parameters</h3>
+*Get the project regions by project's id*
+
+<h3 id="getregionsbyprojectid-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -5945,7 +6499,7 @@ fetch('/service/rest/v1/blobstores/google/regions/{projectId}',
 ]
 ```
 
-<h3 id="get-the-project-regions-by-project's-id-responses">Responses</h3>
+<h3 id="getregionsbyprojectid-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -5954,7 +6508,7 @@ fetch('/service/rest/v1/blobstores/google/regions/{projectId}',
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Insufficient permissions|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Project not found|None|
 
-<h3 id="get-the-project-regions-by-project's-id-responseschema">Response Schema</h3>
+<h3 id="getregionsbyprojectid-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
@@ -5962,11 +6516,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-lifecycle">Lifecycle</h1>
 
-## Get current lifecycle phase
+## getPhase
 
 <a id="opIdgetPhase"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/lifecycle/phase \
+  -H 'Accept: text/plain'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/lifecycle/phase");
@@ -6019,6 +6580,8 @@ fetch('/service/rest/v1/lifecycle/phase',
 
 `GET /v1/lifecycle/phase`
 
+*Get current lifecycle phase*
+
 > Example responses
 
 > 200 Response
@@ -6027,7 +6590,7 @@ fetch('/service/rest/v1/lifecycle/phase',
 "string"
 ```
 
-<h3 id="get-current-lifecycle-phase-responses">Responses</h3>
+<h3 id="getphase-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6037,11 +6600,18 @@ fetch('/service/rest/v1/lifecycle/phase',
 This operation does not require authentication
 </aside>
 
-## Move to new lifecycle phase
+## setPhase
 
 <a id="opIdsetPhase"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/lifecycle/phase \
+  -H 'Content-Type: text/plain'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/lifecycle/phase");
@@ -6094,6 +6664,8 @@ fetch('/service/rest/v1/lifecycle/phase',
 
 `PUT /v1/lifecycle/phase`
 
+*Move to new lifecycle phase*
+
 > Body parameter
 
 ```
@@ -6101,13 +6673,13 @@ string
 
 ```
 
-<h3 id="move-to-new-lifecycle-phase-parameters">Parameters</h3>
+<h3 id="setphase-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|string|false|The phase to move to|
 
-<h3 id="move-to-new-lifecycle-phase-responses">Responses</h3>
+<h3 id="setphase-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6117,11 +6689,18 @@ string
 This operation does not require authentication
 </aside>
 
-## Bounce lifecycle phase
+## bounce
 
 <a id="opIdbounce"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/lifecycle/bounce \
+  -H 'Content-Type: text/plain'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/lifecycle/bounce");
@@ -6174,6 +6753,8 @@ fetch('/service/rest/v1/lifecycle/bounce',
 
 `PUT /v1/lifecycle/bounce`
 
+*Bounce lifecycle phase*
+
 Re-runs all phases from the given phase to the current phase
 
 > Body parameter
@@ -6183,13 +6764,13 @@ string
 
 ```
 
-<h3 id="bounce-lifecycle-phase-parameters">Parameters</h3>
+<h3 id="bounce-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|string|false|The phase to bounce|
 
-<h3 id="bounce-lifecycle-phase-responses">Responses</h3>
+<h3 id="bounce-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6201,11 +6782,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-system-nodes">System: Nodes</h1>
 
-## Get information about this node
+## getNodeId
 
 <a id="opIdgetNodeId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/system/node \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/system/node");
@@ -6258,6 +6846,8 @@ fetch('/service/rest/v1/system/node',
 
 `GET /v1/system/node`
 
+*Get information about this node*
+
 > Example responses
 
 > 200 Response
@@ -6268,7 +6858,7 @@ fetch('/service/rest/v1/system/node',
 }
 ```
 
-<h3 id="get-information-about-this-node-responses">Responses</h3>
+<h3 id="getnodeid-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6279,11 +6869,17 @@ fetch('/service/rest/v1/system/node',
 This operation does not require authentication
 </aside>
 
-## Reset the ID for this node. Takes effect after restart and should only be used when cloning an instance
+## clear
 
 <a id="opIdclear"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/system/node
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/system/node");
@@ -6328,7 +6924,9 @@ fetch('/service/rest/v1/system/node',
 
 `DELETE /v1/system/node`
 
-<h3 id="reset-the-id-for-this-node.-takes-effect-after-restart-and-should-only-be-used-when-cloning-an-instance-responses">Responses</h3>
+*Reset the ID for this node. Takes effect after restart and should only be used when cloning an instance*
+
+<h3 id="clear-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6338,11 +6936,17 @@ fetch('/service/rest/v1/system/node',
 This operation does not require authentication
 </aside>
 
-## Get information about all nodes
+## getSystemInformation
 
 <a id="opIdgetSystemInformation"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/beta/system/information
+
+```
 
 ```java
 URL obj = new URL("/service/rest/beta/system/information");
@@ -6387,7 +6991,9 @@ fetch('/service/rest/beta/system/information',
 
 `GET /beta/system/information`
 
-<h3 id="get-information-about-all-nodes-responses">Responses</h3>
+*Get information about all nodes*
+
+<h3 id="getsysteminformation-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6400,11 +7006,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-read-only">Read-only</h1>
 
-## Forcibly release read-only and allow changes to embedded OrientDB
+## forceRelease
 
 <a id="opIdforceRelease"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/read-only/force-release
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/read-only/force-release");
@@ -6449,9 +7061,11 @@ fetch('/service/rest/v1/read-only/force-release',
 
 `POST /v1/read-only/force-release`
 
+*Forcibly release read-only and allow changes to embedded OrientDB*
+
 Forcibly release read-only status, including if caused by system tasks. Warning: may result in data loss.
 
-<h3 id="forcibly-release-read-only-and-allow-changes-to-embedded-orientdb-responses">Responses</h3>
+<h3 id="forcerelease-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6463,11 +7077,18 @@ Forcibly release read-only status, including if caused by system tasks. Warning:
 This operation does not require authentication
 </aside>
 
-## Get read-only state
+## get
 
 <a id="opIdget"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/read-only \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/read-only");
@@ -6520,6 +7141,8 @@ fetch('/service/rest/v1/read-only',
 
 `GET /v1/read-only`
 
+*Get read-only state*
+
 > Example responses
 
 > 200 Response
@@ -6532,7 +7155,7 @@ fetch('/service/rest/v1/read-only',
 }
 ```
 
-<h3 id="get-read-only-state-responses">Responses</h3>
+<h3 id="get-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6542,11 +7165,17 @@ fetch('/service/rest/v1/read-only',
 This operation does not require authentication
 </aside>
 
-## Release read-only and allow changes to embedded OrientDB
+## release
 
 <a id="opIdrelease"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/read-only/release
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/read-only/release");
@@ -6591,9 +7220,11 @@ fetch('/service/rest/v1/read-only/release',
 
 `POST /v1/read-only/release`
 
+*Release read-only and allow changes to embedded OrientDB*
+
 Releases administrator-initiated read-only status. Will not release read-only status caused by system tasks.
 
-<h3 id="release-read-only-and-allow-changes-to-embedded-orientdb-responses">Responses</h3>
+<h3 id="release-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6605,11 +7236,17 @@ Releases administrator-initiated read-only status. Will not release read-only st
 This operation does not require authentication
 </aside>
 
-## Prevent changes to embedded OrientDB
+## freeze
 
 <a id="opIdfreeze"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/read-only/freeze
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/read-only/freeze");
@@ -6654,9 +7291,11 @@ fetch('/service/rest/v1/read-only/freeze',
 
 `POST /v1/read-only/freeze`
 
+*Prevent changes to embedded OrientDB*
+
 For low-level system maintenance purposes only; do not use if you want users to still be able to download components.
 
-<h3 id="prevent-changes-to-embedded-orientdb-responses">Responses</h3>
+<h3 id="freeze-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6670,11 +7309,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-secrets-encryption">Security management: secrets encryption</h1>
 
-## Re-encrypt secrets using the specified key
+## reEncrypt
 
 <a id="opIdreEncrypt"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/secrets/encryption/re-encrypt \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/secrets/encryption/re-encrypt");
@@ -6730,6 +7376,8 @@ fetch('/service/rest/v1/secrets/encryption/re-encrypt',
 
 `PUT /v1/secrets/encryption/re-encrypt`
 
+*Re-encrypt secrets using the specified key*
+
 Ensure all nodes have access to the key, and they use the same key
 
 > Body parameter
@@ -6741,13 +7389,13 @@ Ensure all nodes have access to the key, and they use the same key
 }
 ```
 
-<h3 id="re-encrypt-secrets-using-the-specified-key-parameters">Parameters</h3>
+<h3 id="reencrypt-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ReEncryptionRequestApiXO](#schemareencryptionrequestapixo)|false|none|
 
-<h3 id="re-encrypt-secrets-using-the-specified-key-responses">Responses</h3>
+<h3 id="reencrypt-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6762,11 +7410,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-database-upgrade">Database Upgrade</h1>
 
-## Check the progress of a database schema upgrade
+## getProgress
 
 <a id="opIdgetProgress"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/clustered/upgrade-database-schema \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/clustered/upgrade-database-schema");
@@ -6819,6 +7474,8 @@ fetch('/service/rest/v1/clustered/upgrade-database-schema',
 
 `GET /v1/clustered/upgrade-database-schema`
 
+*Check the progress of a database schema upgrade*
+
 > Example responses
 
 > 200 Response
@@ -6830,7 +7487,7 @@ fetch('/service/rest/v1/clustered/upgrade-database-schema',
 }
 ```
 
-<h3 id="check-the-progress-of-a-database-schema-upgrade-responses">Responses</h3>
+<h3 id="getprogress-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6840,11 +7497,17 @@ fetch('/service/rest/v1/clustered/upgrade-database-schema',
 This operation does not require authentication
 </aside>
 
-## Begins a database schema upgrade
+## migrate
 
 <a id="opIdmigrate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/clustered/upgrade-database-schema
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/clustered/upgrade-database-schema");
@@ -6889,7 +7552,9 @@ fetch('/service/rest/v1/clustered/upgrade-database-schema',
 
 `POST /v1/clustered/upgrade-database-schema`
 
-<h3 id="begins-a-database-schema-upgrade-responses">Responses</h3>
+*Begins a database schema upgrade*
+
+<h3 id="migrate-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6901,11 +7566,17 @@ fetch('/service/rest/v1/clustered/upgrade-database-schema',
 This operation does not require authentication
 </aside>
 
-## Clears a stored database schema upgrade success or a recoverable error
+## clearResult
 
 <a id="opIdclearResult"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/clustered/upgrade-database-schema
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/clustered/upgrade-database-schema");
@@ -6950,7 +7621,9 @@ fetch('/service/rest/v1/clustered/upgrade-database-schema',
 
 `DELETE /v1/clustered/upgrade-database-schema`
 
-<h3 id="clears-a-stored-database-schema-upgrade-success-or-a-recoverable-error-responses">Responses</h3>
+*Clears a stored database schema upgrade success or a recoverable error*
+
+<h3 id="clearresult-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -6963,11 +7636,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-certificates">Security: certificates</h1>
 
-## Helper method to retrieve certificate details from a remote system.
+## retrieveCertificate
 
 <a id="opIdretrieveCertificate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/ssl?host=string \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ssl?host=string");
@@ -7022,7 +7702,9 @@ fetch('/service/rest/v1/security/ssl?host=string',
 
 `GET /v1/security/ssl`
 
-<h3 id="helper-method-to-retrieve-certificate-details-from-a-remote-system.-parameters">Parameters</h3>
+*Helper method to retrieve certificate details from a remote system.*
+
+<h3 id="retrievecertificate-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -7051,7 +7733,7 @@ fetch('/service/rest/v1/security/ssl?host=string',
 }
 ```
 
-<h3 id="helper-method-to-retrieve-certificate-details-from-a-remote-system.-responses">Responses</h3>
+<h3 id="retrievecertificate-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -7063,11 +7745,18 @@ fetch('/service/rest/v1/security/ssl?host=string',
 This operation does not require authentication
 </aside>
 
-## Retrieve a list of certificates added to the trust store.
+## getTrustStoreCertificates
 
 <a id="opIdgetTrustStoreCertificates"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/ssl/truststore \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ssl/truststore");
@@ -7120,6 +7809,8 @@ fetch('/service/rest/v1/security/ssl/truststore',
 
 `GET /v1/security/ssl/truststore`
 
+*Retrieve a list of certificates added to the trust store.*
+
 > Example responses
 
 > 200 Response
@@ -7143,14 +7834,14 @@ fetch('/service/rest/v1/security/ssl/truststore',
 ]
 ```
 
-<h3 id="retrieve-a-list-of-certificates-added-to-the-trust-store.-responses">Responses</h3>
+<h3 id="gettruststorecertificates-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Insufficient permissions to list certificates in the trust store.|None|
 
-<h3 id="retrieve-a-list-of-certificates-added-to-the-trust-store.-responseschema">Response Schema</h3>
+<h3 id="gettruststorecertificates-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -7174,11 +7865,19 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Add a certificate to the trust store.
+## addCertificate
 
 <a id="opIdaddCertificate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/ssl/truststore \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ssl/truststore");
@@ -7233,13 +7932,15 @@ fetch('/service/rest/v1/security/ssl/truststore',
 
 `POST /v1/security/ssl/truststore`
 
+*Add a certificate to the trust store.*
+
 > Body parameter
 
 ```json
 "string"
 ```
 
-<h3 id="add-a-certificate-to-the-trust-store.-parameters">Parameters</h3>
+<h3 id="addcertificate-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -7266,7 +7967,7 @@ fetch('/service/rest/v1/security/ssl/truststore',
 }
 ```
 
-<h3 id="add-a-certificate-to-the-trust-store.-responses">Responses</h3>
+<h3 id="addcertificate-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -7278,11 +7979,17 @@ fetch('/service/rest/v1/security/ssl/truststore',
 This operation does not require authentication
 </aside>
 
-## Remove a certificate in the trust store.
+## removeCertificate
 
 <a id="opIdremoveCertificate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/ssl/truststore/{id}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ssl/truststore/{id}");
@@ -7327,13 +8034,15 @@ fetch('/service/rest/v1/security/ssl/truststore/{id}',
 
 `DELETE /v1/security/ssl/truststore/{id}`
 
-<h3 id="remove-a-certificate-in-the-trust-store.-parameters">Parameters</h3>
+*Remove a certificate in the trust store.*
+
+<h3 id="removecertificate-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|The id of the certificate that should be removed.|
 
-<h3 id="remove-a-certificate-in-the-trust-store.-responses">Responses</h3>
+<h3 id="removecertificate-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -7345,11 +8054,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-email">Email</h1>
 
-## Retrieve the current email configuration
+## getEmailConfiguration
 
 <a id="opIdgetEmailConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/email \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/email");
@@ -7402,6 +8118,8 @@ fetch('/service/rest/v1/email',
 
 `GET /v1/email`
 
+*Retrieve the current email configuration*
+
 > Example responses
 
 > 200 Response
@@ -7423,7 +8141,7 @@ fetch('/service/rest/v1/email',
 }
 ```
 
-<h3 id="retrieve-the-current-email-configuration-responses">Responses</h3>
+<h3 id="getemailconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -7434,11 +8152,18 @@ fetch('/service/rest/v1/email',
 This operation does not require authentication
 </aside>
 
-## Set the current email configuration
+## setEmailConfiguration
 
 <a id="opIdsetEmailConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/email \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/email");
@@ -7504,6 +8229,8 @@ fetch('/service/rest/v1/email',
 
 `PUT /v1/email`
 
+*Set the current email configuration*
+
 > Body parameter
 
 ```json
@@ -7523,13 +8250,13 @@ fetch('/service/rest/v1/email',
 }
 ```
 
-<h3 id="set-the-current-email-configuration-parameters">Parameters</h3>
+<h3 id="setemailconfiguration-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ApiEmailConfiguration](#schemaapiemailconfiguration)|true|none|
 
-<h3 id="set-the-current-email-configuration-responses">Responses</h3>
+<h3 id="setemailconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -7541,11 +8268,17 @@ fetch('/service/rest/v1/email',
 This operation does not require authentication
 </aside>
 
-## Disable and clear the email configuration
+## deleteEmailConfiguration
 
 <a id="opIddeleteEmailConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/email
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/email");
@@ -7590,7 +8323,9 @@ fetch('/service/rest/v1/email',
 
 `DELETE /v1/email`
 
-<h3 id="disable-and-clear-the-email-configuration-responses">Responses</h3>
+*Disable and clear the email configuration*
+
+<h3 id="deleteemailconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -7600,11 +8335,19 @@ fetch('/service/rest/v1/email',
 This operation does not require authentication
 </aside>
 
-## Send a test email to the email address provided in the request body
+## testEmailConfiguration
 
 <a id="opIdtestEmailConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/email/verify \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/email/verify");
@@ -7659,13 +8402,15 @@ fetch('/service/rest/v1/email/verify',
 
 `POST /v1/email/verify`
 
+*Send a test email to the email address provided in the request body*
+
 > Body parameter
 
 ```json
 "string"
 ```
 
-<h3 id="send-a-test-email-to-the-email-address-provided-in-the-request-body-parameters">Parameters</h3>
+<h3 id="testemailconfiguration-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -7682,7 +8427,7 @@ fetch('/service/rest/v1/email/verify',
 }
 ```
 
-<h3 id="send-a-test-email-to-the-email-address-provided-in-the-request-body-responses">Responses</h3>
+<h3 id="testemailconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -7695,11 +8440,404 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-status">Status</h1>
 
-## Health check endpoint that returns the results of the system status checks
+## getSystemStatusChecks
+
+<a id="opIdgetSystemStatusChecks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/status/check \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/status/check");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/status/check', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/status/check',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/status/check`
+
+*Health check endpoint that returns the results of the system status checks*
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "property1": {
+    "healthy": true,
+    "message": "string",
+    "error": {
+      "cause": {},
+      "stackTrace": [
+        {
+          "classLoaderName": "string",
+          "moduleName": "string",
+          "moduleVersion": "string",
+          "methodName": "string",
+          "fileName": "string",
+          "lineNumber": 0,
+          "nativeMethod": true,
+          "className": "string"
+        }
+      ],
+      "message": "string",
+      "suppressed": [
+        {}
+      ],
+      "localizedMessage": "string"
+    },
+    "details": {
+      "property1": {},
+      "property2": {}
+    },
+    "time": 0,
+    "duration": 0,
+    "timestamp": "string"
+  },
+  "property2": {
+    "healthy": true,
+    "message": "string",
+    "error": {
+      "cause": {},
+      "stackTrace": [
+        {
+          "classLoaderName": "string",
+          "moduleName": "string",
+          "moduleVersion": "string",
+          "methodName": "string",
+          "fileName": "string",
+          "lineNumber": 0,
+          "nativeMethod": true,
+          "className": "string"
+        }
+      ],
+      "message": "string",
+      "suppressed": [
+        {}
+      ],
+      "localizedMessage": "string"
+    },
+    "details": {
+      "property1": {},
+      "property2": {}
+    },
+    "time": 0,
+    "duration": 0,
+    "timestamp": "string"
+  }
+}
+```
+
+<h3 id="getsystemstatuschecks-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The system status check results|Inline|
+
+<h3 id="getsystemstatuschecks-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» **additionalProperties**|[Result](#schemaresult)|false|none|none|
+|»» healthy|boolean|false|none|none|
+|»» message|string|false|none|none|
+|»» error|[Throwable](#schemathrowable)|false|none|none|
+|»»» cause|[Throwable](#schemathrowable)|false|none|none|
+|»»» stackTrace|[[StackTraceElement](#schemastacktraceelement)]|false|none|none|
+|»»»» classLoaderName|string|false|none|none|
+|»»»» moduleName|string|false|none|none|
+|»»»» moduleVersion|string|false|none|none|
+|»»»» methodName|string|false|none|none|
+|»»»» fileName|string|false|none|none|
+|»»»» lineNumber|integer(int32)|false|none|none|
+|»»»» nativeMethod|boolean|false|none|none|
+|»»»» className|string|false|none|none|
+|»»» message|string|false|none|none|
+|»»» suppressed|[[Throwable](#schemathrowable)]|false|none|none|
+|»»» localizedMessage|string|false|none|none|
+|»» details|object|false|none|none|
+|»»» **additionalProperties**|object|false|none|none|
+|»» time|integer(int64)|false|none|none|
+|»» duration|integer(int64)|false|none|none|
+|»» timestamp|string|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## isWritable
+
+<a id="opIdisWritable"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/status/writable
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/status/writable");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+
+r = requests.get('/service/rest/v1/status/writable')
+
+print(r.json())
+
+```
+
+```javascript
+
+fetch('/service/rest/v1/status/writable',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/status/writable`
+
+*Health check endpoint that validates server can respond to read and write requests*
+
+<h3 id="iswritable-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Available to service requests|None|
+|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Unavailable to service requests|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## isAvailable
+
+<a id="opIdisAvailable"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/status
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/status");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+
+r = requests.get('/service/rest/v1/status')
+
+print(r.json())
+
+```
+
+```javascript
+
+fetch('/service/rest/v1/status',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/status`
+
+*Health check endpoint that validates server can respond to read requests*
+
+<h3 id="isavailable-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Available to service requests|None|
+|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Unavailable to service requests|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## getNodeSystemStatusChecks
+
+<a id="opIdgetNodeSystemStatusChecks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/beta/status/check/{nodeId}
+
+```
+
+```java
+URL obj = new URL("/service/rest/beta/status/check/{nodeId}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+
+r = requests.get('/service/rest/beta/status/check/{nodeId}')
+
+print(r.json())
+
+```
+
+```javascript
+
+fetch('/service/rest/beta/status/check/{nodeId}',
+{
+  method: 'GET'
+
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /beta/status/check/{nodeId}`
+
+*Health check endpoint that returns the results of the system status checks of specified Node*
+
+<h3 id="getnodesystemstatuschecks-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|nodeId|path|string|true|Node Id|
+
+<h3 id="getnodesystemstatuschecks-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The system status check results|None|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|System status information not found|None|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## getClusterSystemStatusChecks
 
 <a id="opIdgetClusterSystemStatusChecks"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/beta/status/check/cluster \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/beta/status/check/cluster");
@@ -7752,6 +8890,8 @@ fetch('/service/rest/beta/status/check/cluster',
 
 `GET /beta/status/check/cluster`
 
+*Health check endpoint that returns the results of the system status checks*
+
 > Example responses
 
 > 200 Response
@@ -7766,14 +8906,14 @@ fetch('/service/rest/beta/status/check/cluster',
 ]
 ```
 
-<h3 id="health-check-endpoint-that-returns-the-results-of-the-system-status-checks-responses">Responses</h3>
+<h3 id="getclustersystemstatuschecks-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Insufficient permissions to retrieve system status checks|None|
 
-<h3 id="health-check-endpoint-that-returns-the-results-of-the-system-status-checks-responseschema">Response Schema</h3>
+<h3 id="getclustersystemstatuschecks-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -7791,199 +8931,21 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Health check endpoint that validates server can respond to read and write requests
-
-<a id="opIdisWritable"></a>
-
-> Code samples
-
-```java
-URL obj = new URL("/service/rest/v1/status/writable");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```python
-import requests
-
-r = requests.get('/service/rest/v1/status/writable')
-
-print(r.json())
-
-```
-
-```javascript
-
-fetch('/service/rest/v1/status/writable',
-{
-  method: 'GET'
-
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-`GET /v1/status/writable`
-
-<h3 id="health-check-endpoint-that-validates-server-can-respond-to-read-and-write-requests-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Available to service requests|None|
-|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Unavailable to service requests|None|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## Health check endpoint that validates server can respond to read requests
-
-<a id="opIdisAvailable"></a>
-
-> Code samples
-
-```java
-URL obj = new URL("/service/rest/v1/status");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```python
-import requests
-
-r = requests.get('/service/rest/v1/status')
-
-print(r.json())
-
-```
-
-```javascript
-
-fetch('/service/rest/v1/status',
-{
-  method: 'GET'
-
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-`GET /v1/status`
-
-<h3 id="health-check-endpoint-that-validates-server-can-respond-to-read-requests-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Available to service requests|None|
-|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Unavailable to service requests|None|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-## Health check endpoint that returns the results of the system status checks of specified Node
-
-<a id="opIdgetNodeSystemStatusChecks"></a>
-
-> Code samples
-
-```java
-URL obj = new URL("/service/rest/beta/status/check/{nodeId}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```python
-import requests
-
-r = requests.get('/service/rest/beta/status/check/{nodeId}')
-
-print(r.json())
-
-```
-
-```javascript
-
-fetch('/service/rest/beta/status/check/{nodeId}',
-{
-  method: 'GET'
-
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-`GET /beta/status/check/{nodeId}`
-
-<h3 id="health-check-endpoint-that-returns-the-results-of-the-system-status-checks-of-specified-node-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|nodeId|path|string|true|Node Id|
-
-<h3 id="health-check-endpoint-that-returns-the-results-of-the-system-status-checks-of-specified-node-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The system status check results|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|System status information not found|None|
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
 <h1 id="nexus-repository-manager-rest-api-support">Support</h1>
 
-## Creates a support zip and returns the path
+## supportzippath
 
 <a id="opIdsupportzippath"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/support/supportzippath \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/support/supportzippath");
@@ -8052,6 +9014,8 @@ fetch('/service/rest/v1/support/supportzippath',
 
 `POST /v1/support/supportzippath`
 
+*Creates a support zip and returns the path*
+
 > Body parameter
 
 ```json
@@ -8072,7 +9036,7 @@ fetch('/service/rest/v1/support/supportzippath',
 }
 ```
 
-<h3 id="creates-a-support-zip-and-returns-the-path-parameters">Parameters</h3>
+<h3 id="supportzippath-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -8091,7 +9055,7 @@ fetch('/service/rest/v1/support/supportzippath',
 }
 ```
 
-<h3 id="creates-a-support-zip-and-returns-the-path-responses">Responses</h3>
+<h3 id="supportzippath-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8101,11 +9065,18 @@ fetch('/service/rest/v1/support/supportzippath',
 This operation does not require authentication
 </aside>
 
-## Creates and downloads a support zip
+## supportzip
 
 <a id="opIdsupportzip"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/support/supportzip \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/support/supportzip");
@@ -8172,6 +9143,8 @@ fetch('/service/rest/v1/support/supportzip',
 
 `POST /v1/support/supportzip`
 
+*Creates and downloads a support zip*
+
 > Body parameter
 
 ```json
@@ -8192,13 +9165,13 @@ fetch('/service/rest/v1/support/supportzip',
 }
 ```
 
-<h3 id="creates-and-downloads-a-support-zip-parameters">Parameters</h3>
+<h3 id="supportzip-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[SupportZipGeneratorRequest](#schemasupportzipgeneratorrequest)|false|none|
 
-<h3 id="creates-and-downloads-a-support-zip-responses">Responses</h3>
+<h3 id="supportzip-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8210,11 +9183,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-assets">assets</h1>
 
-## Get a single asset
+## getAssetById
 
 <a id="opIdgetAssetById"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/assets/{id} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/assets/{id}");
@@ -8267,7 +9247,9 @@ fetch('/service/rest/v1/assets/{id}',
 
 `GET /v1/assets/{id}`
 
-<h3 id="get-a-single-asset-parameters">Parameters</h3>
+*Get a single asset*
+
+<h3 id="getassetbyid-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -8299,7 +9281,7 @@ fetch('/service/rest/v1/assets/{id}',
 }
 ```
 
-<h3 id="get-a-single-asset-responses">Responses</h3>
+<h3 id="getassetbyid-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8312,11 +9294,17 @@ fetch('/service/rest/v1/assets/{id}',
 This operation does not require authentication
 </aside>
 
-## Delete a single asset
+## deleteAsset
 
 <a id="opIddeleteAsset"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/assets/{id}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/assets/{id}");
@@ -8361,13 +9349,15 @@ fetch('/service/rest/v1/assets/{id}',
 
 `DELETE /v1/assets/{id}`
 
-<h3 id="delete-a-single-asset-parameters">Parameters</h3>
+*Delete a single asset*
+
+<h3 id="deleteasset-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|Id of the asset to delete|
 
-<h3 id="delete-a-single-asset-responses">Responses</h3>
+<h3 id="deleteasset-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8380,11 +9370,18 @@ fetch('/service/rest/v1/assets/{id}',
 This operation does not require authentication
 </aside>
 
-## List assets
+## getAssets
 
 <a id="opIdgetAssets"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/assets?repository=string \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/assets?repository=string");
@@ -8439,7 +9436,9 @@ fetch('/service/rest/v1/assets?repository=string',
 
 `GET /v1/assets`
 
-<h3 id="list-assets-parameters">Parameters</h3>
+*List assets*
+
+<h3 id="getassets-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -8477,7 +9476,7 @@ fetch('/service/rest/v1/assets?repository=string',
 }
 ```
 
-<h3 id="list-assets-responses">Responses</h3>
+<h3 id="getassets-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8491,11 +9490,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-components">components</h1>
 
-## Get a single component
+## getComponentById
 
 <a id="opIdgetComponentById"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/components/{id} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/components/{id}");
@@ -8548,7 +9554,9 @@ fetch('/service/rest/v1/components/{id}',
 
 `GET /v1/components/{id}`
 
-<h3 id="get-a-single-component-parameters">Parameters</h3>
+*Get a single component*
+
+<h3 id="getcomponentbyid-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -8590,7 +9598,7 @@ fetch('/service/rest/v1/components/{id}',
 }
 ```
 
-<h3 id="get-a-single-component-responses">Responses</h3>
+<h3 id="getcomponentbyid-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8603,11 +9611,17 @@ fetch('/service/rest/v1/components/{id}',
 This operation does not require authentication
 </aside>
 
-## Delete a single component
+## deleteComponent
 
 <a id="opIddeleteComponent"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/components/{id}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/components/{id}");
@@ -8652,13 +9666,15 @@ fetch('/service/rest/v1/components/{id}',
 
 `DELETE /v1/components/{id}`
 
-<h3 id="delete-a-single-component-parameters">Parameters</h3>
+*Delete a single component*
+
+<h3 id="deletecomponent-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |id|path|string|true|ID of the component to delete|
 
-<h3 id="delete-a-single-component-responses">Responses</h3>
+<h3 id="deletecomponent-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8671,11 +9687,18 @@ fetch('/service/rest/v1/components/{id}',
 This operation does not require authentication
 </aside>
 
-## List components
+## getComponents
 
 <a id="opIdgetComponents"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/components?repository=string \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/components?repository=string");
@@ -8730,7 +9753,9 @@ fetch('/service/rest/v1/components?repository=string',
 
 `GET /v1/components`
 
-<h3 id="list-components-parameters">Parameters</h3>
+*List components*
+
+<h3 id="getcomponents-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -8778,7 +9803,7 @@ fetch('/service/rest/v1/components?repository=string',
 }
 ```
 
-<h3 id="list-components-responses">Responses</h3>
+<h3 id="getcomponents-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -8790,11 +9815,18 @@ fetch('/service/rest/v1/components?repository=string',
 This operation does not require authentication
 </aside>
 
-## Upload a single component
+## uploadComponent
 
 <a id="opIduploadComponent"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/components?repository=string \
+  -H 'Content-Type: multipart/form-data'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/components?repository=string");
@@ -8894,6 +9926,8 @@ fetch('/service/rest/v1/components?repository=string',
 
 `POST /v1/components`
 
+*Upload a single component*
+
 > Body parameter
 
 ```yaml
@@ -8944,7 +9978,7 @@ maven2.asset3.extension: string
 
 ```
 
-<h3 id="upload-a-single-component-parameters">Parameters</h3>
+<h3 id="uploadcomponent-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -8995,7 +10029,7 @@ maven2.asset3.extension: string
 |» maven2.asset3.classifier|body|string|false|maven2 Asset 3 Classifier|
 |» maven2.asset3.extension|body|string|false|maven2 Asset 3 Extension|
 
-<h3 id="upload-a-single-component-responses">Responses</h3>
+<h3 id="uploadcomponent-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9008,11 +10042,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-repository-management">Repository Management</h1>
 
-## Invalidate repository cache. Proxy or group repositories only.
+## invalidateCache
 
 <a id="opIdinvalidateCache"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/{repositoryName}/invalidate-cache
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/{repositoryName}/invalidate-cache");
@@ -9057,13 +10097,15 @@ fetch('/service/rest/v1/repositories/{repositoryName}/invalidate-cache',
 
 `POST /v1/repositories/{repositoryName}/invalidate-cache`
 
-<h3 id="invalidate-repository-cache.-proxy-or-group-repositories-only.-parameters">Parameters</h3>
+*Invalidate repository cache. Proxy or group repositories only.*
+
+<h3 id="invalidatecache-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to invalidate cache|
 
-<h3 id="invalidate-repository-cache.-proxy-or-group-repositories-only.-responses">Responses</h3>
+<h3 id="invalidatecache-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9077,11 +10119,18 @@ fetch('/service/rest/v1/repositories/{repositoryName}/invalidate-cache',
 This operation does not require authentication
 </aside>
 
-## Get repository details
+## getRepository
 
 <a id="opIdgetRepository"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/{repositoryName}");
@@ -9134,7 +10183,9 @@ fetch('/service/rest/v1/repositories/{repositoryName}',
 
 `GET /v1/repositories/{repositoryName}`
 
-<h3 id="get-repository-details-parameters">Parameters</h3>
+*Get repository details*
+
+<h3 id="getrepository-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -9157,7 +10208,7 @@ fetch('/service/rest/v1/repositories/{repositoryName}',
 }
 ```
 
-<h3 id="get-repository-details-responses">Responses</h3>
+<h3 id="getrepository-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9170,11 +10221,17 @@ fetch('/service/rest/v1/repositories/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Delete repository of any format
+## deleteRepository
 
 <a id="opIddeleteRepository"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/repositories/{repositoryName}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/{repositoryName}");
@@ -9219,13 +10276,15 @@ fetch('/service/rest/v1/repositories/{repositoryName}',
 
 `DELETE /v1/repositories/{repositoryName}`
 
-<h3 id="delete-repository-of-any-format-parameters">Parameters</h3>
+*Delete repository of any format*
+
+<h3 id="deleterepository-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to delete|
 
-<h3 id="delete-repository-of-any-format-responses">Responses</h3>
+<h3 id="deleterepository-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9238,11 +10297,17 @@ fetch('/service/rest/v1/repositories/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Schedule a 'Repair - Rebuild repository search' Task. Hosted or proxy repositories only.
+## rebuildIndex
 
 <a id="opIdrebuildIndex"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/{repositoryName}/rebuild-index
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/{repositoryName}/rebuild-index");
@@ -9287,13 +10352,15 @@ fetch('/service/rest/v1/repositories/{repositoryName}/rebuild-index',
 
 `POST /v1/repositories/{repositoryName}/rebuild-index`
 
-<h3 id="schedule-a-'repair---rebuild-repository-search'-task.-hosted-or-proxy-repositories-only.-parameters">Parameters</h3>
+*Schedule a 'Repair - Rebuild repository search' Task. Hosted or proxy repositories only.*
+
+<h3 id="rebuildindex-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to rebuild index|
 
-<h3 id="schedule-a-'repair---rebuild-repository-search'-task.-hosted-or-proxy-repositories-only.-responses">Responses</h3>
+<h3 id="rebuildindex-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9307,11 +10374,133 @@ fetch('/service/rest/v1/repositories/{repositoryName}/rebuild-index',
 This operation does not require authentication
 </aside>
 
-## List repositories
+## getRepositories
+
+<a id="opIdgetRepositories"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositorySettings \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositorySettings");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositorySettings', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositorySettings',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositorySettings`
+
+*List repositories*
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "name": "internal",
+    "format": "npm",
+    "type": "hosted",
+    "url": "string",
+    "online": true
+  }
+]
+```
+
+<h3 id="getrepositories-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Repositories list returned|Inline|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|Authentication required|None|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Insufficient permissions|None|
+
+<h3 id="getrepositories-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[AbstractApiRepository](#schemaabstractapirepository)]|false|none|none|
+|» name|string|false|none|A unique identifier for this repository|
+|» format|string|false|none|Component format held in this repository|
+|» type|string|false|none|Controls if deployments of and updates to artifacts are allowed|
+|» url|string|false|none|URL to the repository|
+|» online|boolean|true|none|Whether this repository accepts incoming requests|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|hosted|
+|type|proxy|
+|type|group|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## getRepositories_1
 
 <a id="opIdgetRepositories_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories");
@@ -9364,6 +10553,8 @@ fetch('/service/rest/v1/repositories',
 
 `GET /v1/repositories`
 
+*List repositories*
+
 > Example responses
 
 > 200 Response
@@ -9383,13 +10574,13 @@ fetch('/service/rest/v1/repositories',
 ]
 ```
 
-<h3 id="list-repositories-responses">Responses</h3>
+<h3 id="getrepositories_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 
-<h3 id="list-repositories-responseschema">Response Schema</h3>
+<h3 id="getrepositories_1-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -9407,11 +10598,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create Maven group repository
+## createRepository
 
 <a id="opIdcreateRepository"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/maven/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/maven/group");
@@ -9476,6 +10674,8 @@ fetch('/service/rest/v1/repositories/maven/group',
 
 `POST /v1/repositories/maven/group`
 
+*Create Maven group repository*
+
 > Body parameter
 
 ```json
@@ -9494,13 +10694,13 @@ fetch('/service/rest/v1/repositories/maven/group',
 }
 ```
 
-<h3 id="create-maven-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[MavenGroupRepositoryApiRequest](#schemamavengrouprepositoryapirequest)|false|none|
 
-<h3 id="create-maven-group-repository-responses">Responses</h3>
+<h3 id="createrepository-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9512,14 +10712,21 @@ fetch('/service/rest/v1/repositories/maven/group',
 This operation does not require authentication
 </aside>
 
-## Get repository
+## getRepository_1
 
-<a id="opIdgetRepository_42"></a>
+<a id="opIdgetRepository_1"></a>
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/maven/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
-URL obj = new URL("/service/rest/v1/repositories/cargo/proxy/{repositoryName}");
+URL obj = new URL("/service/rest/v1/repositories/maven/group/{repositoryName}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 con.setRequestMethod("GET");
 int responseCode = con.getResponseCode();
@@ -9541,7 +10748,7 @@ headers = {
   'Accept': 'application/json'
 }
 
-r = requests.get('/service/rest/v1/repositories/cargo/proxy/{repositoryName}', headers = headers)
+r = requests.get('/service/rest/v1/repositories/maven/group/{repositoryName}', headers = headers)
 
 print(r.json())
 
@@ -9553,7 +10760,7 @@ const headers = {
   'Accept':'application/json'
 };
 
-fetch('/service/rest/v1/repositories/cargo/proxy/{repositoryName}',
+fetch('/service/rest/v1/repositories/maven/group/{repositoryName}',
 {
   method: 'GET',
 
@@ -9567,9 +10774,11 @@ fetch('/service/rest/v1/repositories/cargo/proxy/{repositoryName}',
 
 ```
 
-`GET /v1/repositories/cargo/proxy/{repositoryName}`
+`GET /v1/repositories/maven/group/{repositoryName}`
 
-<h3 id="get-repository-parameters">Parameters</h3>
+*Get repository*
+
+<h3 id="getrepository_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -9587,62 +10796,36 @@ fetch('/service/rest/v1/repositories/cargo/proxy/{repositoryName}',
     "blobStoreName": "default",
     "strictContentTypeValidation": true
   },
-  "cleanup": {
-    "policyNames": [
+  "group": {
+    "memberNames": [
       "string"
     ]
-  },
-  "proxy": {
-    "remoteUrl": "https://remote.repository.com",
-    "contentMaxAge": 1440,
-    "metadataMaxAge": 1440
-  },
-  "negativeCache": {
-    "enabled": true,
-    "timeToLive": 1440
-  },
-  "httpClient": {
-    "blocked": false,
-    "autoBlock": true,
-    "connection": {
-      "retries": 0,
-      "userAgentSuffix": "string",
-      "timeout": 60,
-      "enableCircularRedirects": false,
-      "enableCookies": false,
-      "useTrustStore": false
-    },
-    "authentication": {
-      "type": "username",
-      "username": "string",
-      "password": "string",
-      "ntlmHost": "string",
-      "ntlmDomain": "string"
-    }
-  },
-  "routingRuleName": "string",
-  "replication": {
-    "preemptivePullEnabled": false,
-    "assetPathRegex": "string"
   }
 }
 ```
 
-<h3 id="get-repository-responses">Responses</h3>
+<h3 id="getrepository_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Update Maven group repository
+## updateRepository
 
 <a id="opIdupdateRepository"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/maven/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/maven/group/{repositoryName}");
@@ -9707,6 +10890,8 @@ fetch('/service/rest/v1/repositories/maven/group/{repositoryName}',
 
 `PUT /v1/repositories/maven/group/{repositoryName}`
 
+*Update Maven group repository*
+
 > Body parameter
 
 ```json
@@ -9725,14 +10910,14 @@ fetch('/service/rest/v1/repositories/maven/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-maven-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[MavenGroupRepositoryApiRequest](#schemamavengrouprepositoryapirequest)|false|none|
 
-<h3 id="update-maven-group-repository-responses">Responses</h3>
+<h3 id="updaterepository-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9745,11 +10930,129 @@ fetch('/service/rest/v1/repositories/maven/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Update Maven hosted repository
+## getRepository_2
+
+<a id="opIdgetRepository_2"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/maven/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/maven/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/maven/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/maven/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/maven/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_2-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  },
+  "maven": {
+    "versionPolicy": "MIXED",
+    "layoutPolicy": "STRICT",
+    "contentDisposition": "ATTACHMENT"
+  }
+}
+```
+
+<h3 id="getrepository_2-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[MavenHostedApiRepository](#schemamavenhostedapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_1
 
 <a id="opIdupdateRepository_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/maven/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/maven/hosted/{repositoryName}");
@@ -9823,6 +11126,8 @@ fetch('/service/rest/v1/repositories/maven/hosted/{repositoryName}',
 
 `PUT /v1/repositories/maven/hosted/{repositoryName}`
 
+*Update Maven hosted repository*
+
 > Body parameter
 
 ```json
@@ -9850,14 +11155,14 @@ fetch('/service/rest/v1/repositories/maven/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-maven-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[MavenHostedRepositoryApiRequest](#schemamavenhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-maven-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9870,11 +11175,18 @@ fetch('/service/rest/v1/repositories/maven/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Maven hosted repository
+## createRepository_1
 
 <a id="opIdcreateRepository_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/maven/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/maven/hosted");
@@ -9948,6 +11260,8 @@ fetch('/service/rest/v1/repositories/maven/hosted',
 
 `POST /v1/repositories/maven/hosted`
 
+*Create Maven hosted repository*
+
 > Body parameter
 
 ```json
@@ -9975,13 +11289,13 @@ fetch('/service/rest/v1/repositories/maven/hosted',
 }
 ```
 
-<h3 id="create-maven-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[MavenHostedRepositoryApiRequest](#schemamavenhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-maven-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -9993,11 +11307,158 @@ fetch('/service/rest/v1/repositories/maven/hosted',
 This operation does not require authentication
 </aside>
 
-## Update Maven proxy repository
+## getRepository_3
+
+<a id="opIdgetRepository_3"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/maven/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/maven/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/maven/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/maven/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/maven/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_3-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  },
+  "maven": {
+    "versionPolicy": "MIXED",
+    "layoutPolicy": "STRICT",
+    "contentDisposition": "ATTACHMENT"
+  }
+}
+```
+
+<h3 id="getrepository_3-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[MavenProxyApiRepository](#schemamavenproxyapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_2
 
 <a id="opIdupdateRepository_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/maven/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/maven/proxy/{repositoryName}");
@@ -10101,6 +11562,8 @@ fetch('/service/rest/v1/repositories/maven/proxy/{repositoryName}',
 
 `PUT /v1/repositories/maven/proxy/{repositoryName}`
 
+*Update Maven proxy repository*
+
 > Body parameter
 
 ```json
@@ -10158,14 +11621,14 @@ fetch('/service/rest/v1/repositories/maven/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-maven-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[MavenProxyRepositoryApiRequest](#schemamavenproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-maven-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10178,11 +11641,18 @@ fetch('/service/rest/v1/repositories/maven/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Maven proxy repository
+## createRepository_2
 
 <a id="opIdcreateRepository_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/maven/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/maven/proxy");
@@ -10286,6 +11756,8 @@ fetch('/service/rest/v1/repositories/maven/proxy',
 
 `POST /v1/repositories/maven/proxy`
 
+*Create Maven proxy repository*
+
 > Body parameter
 
 ```json
@@ -10343,13 +11815,13 @@ fetch('/service/rest/v1/repositories/maven/proxy',
 }
 ```
 
-<h3 id="create-maven-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[MavenProxyRepositoryApiRequest](#schemamavenproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-maven-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10361,11 +11833,131 @@ fetch('/service/rest/v1/repositories/maven/proxy',
 This operation does not require authentication
 </aside>
 
-## Update APT hosted repository
+## getRepository_4
+
+<a id="opIdgetRepository_4"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/apt/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/apt/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/apt/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/apt/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/apt/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_4-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  },
+  "apt": {
+    "distribution": "bionic"
+  },
+  "aptSigning": {
+    "keypair": "string",
+    "passphrase": "string"
+  }
+}
+```
+
+<h3 id="getrepository_4-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[AptHostedApiRepository](#schemaapthostedapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_3
 
 <a id="opIdupdateRepository_3"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/apt/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/apt/hosted/{repositoryName}");
@@ -10441,6 +12033,8 @@ fetch('/service/rest/v1/repositories/apt/hosted/{repositoryName}',
 
 `PUT /v1/repositories/apt/hosted/{repositoryName}`
 
+*Update APT hosted repository*
+
 > Body parameter
 
 ```json
@@ -10470,14 +12064,14 @@ fetch('/service/rest/v1/repositories/apt/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-apt-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_3-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[AptHostedRepositoryApiRequest](#schemaapthostedrepositoryapirequest)|false|none|
 
-<h3 id="update-apt-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_3-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10491,11 +12085,18 @@ fetch('/service/rest/v1/repositories/apt/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create APT hosted repository
+## createRepository_3
 
 <a id="opIdcreateRepository_3"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/apt/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/apt/hosted");
@@ -10571,6 +12172,8 @@ fetch('/service/rest/v1/repositories/apt/hosted',
 
 `POST /v1/repositories/apt/hosted`
 
+*Create APT hosted repository*
+
 > Body parameter
 
 ```json
@@ -10600,13 +12203,13 @@ fetch('/service/rest/v1/repositories/apt/hosted',
 }
 ```
 
-<h3 id="create-apt-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_3-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[AptHostedRepositoryApiRequest](#schemaapthostedrepositoryapirequest)|false|none|
 
-<h3 id="create-apt-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_3-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10619,11 +12222,157 @@ fetch('/service/rest/v1/repositories/apt/hosted',
 This operation does not require authentication
 </aside>
 
-## Update APT proxy repository
+## getRepository_5
+
+<a id="opIdgetRepository_5"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/apt/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/apt/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/apt/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/apt/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/apt/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_5-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  },
+  "apt": {
+    "distribution": "bionic",
+    "flat": false
+  }
+}
+```
+
+<h3 id="getrepository_5-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[AptProxyApiRepository](#schemaaptproxyapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_4
 
 <a id="opIdupdateRepository_4"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/apt/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/apt/proxy/{repositoryName}");
@@ -10725,6 +12474,8 @@ fetch('/service/rest/v1/repositories/apt/proxy/{repositoryName}',
 
 `PUT /v1/repositories/apt/proxy/{repositoryName}`
 
+*Update APT proxy repository*
+
 > Body parameter
 
 ```json
@@ -10780,14 +12531,14 @@ fetch('/service/rest/v1/repositories/apt/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-apt-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_4-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[AptProxyRepositoryApiRequest](#schemaaptproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-apt-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_4-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10801,11 +12552,18 @@ fetch('/service/rest/v1/repositories/apt/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create APT proxy repository
+## createRepository_4
 
 <a id="opIdcreateRepository_4"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/apt/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/apt/proxy");
@@ -10907,6 +12665,8 @@ fetch('/service/rest/v1/repositories/apt/proxy',
 
 `POST /v1/repositories/apt/proxy`
 
+*Create APT proxy repository*
+
 > Body parameter
 
 ```json
@@ -10962,13 +12722,13 @@ fetch('/service/rest/v1/repositories/apt/proxy',
 }
 ```
 
-<h3 id="create-apt-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_4-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[AptProxyRepositoryApiRequest](#schemaaptproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-apt-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_4-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -10981,11 +12741,18 @@ fetch('/service/rest/v1/repositories/apt/proxy',
 This operation does not require authentication
 </aside>
 
-## Create raw group repository
+## createRepository_5
 
 <a id="opIdcreateRepository_5"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/raw/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/raw/group");
@@ -11053,6 +12820,8 @@ fetch('/service/rest/v1/repositories/raw/group',
 
 `POST /v1/repositories/raw/group`
 
+*Create raw group repository*
+
 > Body parameter
 
 ```json
@@ -11074,13 +12843,13 @@ fetch('/service/rest/v1/repositories/raw/group',
 }
 ```
 
-<h3 id="create-raw-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_5-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RawGroupRepositoryApiRequest](#schemarawgrouprepositoryapirequest)|false|none|
 
-<h3 id="create-raw-group-repository-responses">Responses</h3>
+<h3 id="createrepository_5-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11092,11 +12861,120 @@ fetch('/service/rest/v1/repositories/raw/group',
 This operation does not require authentication
 </aside>
 
-## Update raw group repository
+## getRepository_6
+
+<a id="opIdgetRepository_6"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/raw/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/raw/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/raw/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/raw/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/raw/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_6-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_6-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_5
 
 <a id="opIdupdateRepository_5"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/raw/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/raw/group/{repositoryName}");
@@ -11164,6 +13042,8 @@ fetch('/service/rest/v1/repositories/raw/group/{repositoryName}',
 
 `PUT /v1/repositories/raw/group/{repositoryName}`
 
+*Update raw group repository*
+
 > Body parameter
 
 ```json
@@ -11185,14 +13065,14 @@ fetch('/service/rest/v1/repositories/raw/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-raw-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_5-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RawGroupRepositoryApiRequest](#schemarawgrouprepositoryapirequest)|false|none|
 
-<h3 id="update-raw-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_5-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11205,11 +13085,18 @@ fetch('/service/rest/v1/repositories/raw/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create raw hosted repository
+## createRepository_6
 
 <a id="opIdcreateRepository_6"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/raw/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/raw/hosted");
@@ -11281,6 +13168,8 @@ fetch('/service/rest/v1/repositories/raw/hosted',
 
 `POST /v1/repositories/raw/hosted`
 
+*Create raw hosted repository*
+
 > Body parameter
 
 ```json
@@ -11306,13 +13195,13 @@ fetch('/service/rest/v1/repositories/raw/hosted',
 }
 ```
 
-<h3 id="create-raw-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_6-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RawHostedRepositoryApiRequest](#schemarawhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-raw-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_6-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11324,11 +13213,124 @@ fetch('/service/rest/v1/repositories/raw/hosted',
 This operation does not require authentication
 </aside>
 
-## Update raw hosted repository
+## getRepository_7
+
+<a id="opIdgetRepository_7"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/raw/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/raw/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/raw/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/raw/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/raw/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_7-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_7-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_6
 
 <a id="opIdupdateRepository_6"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/raw/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/raw/hosted/{repositoryName}");
@@ -11400,6 +13402,8 @@ fetch('/service/rest/v1/repositories/raw/hosted/{repositoryName}',
 
 `PUT /v1/repositories/raw/hosted/{repositoryName}`
 
+*Update raw hosted repository*
+
 > Body parameter
 
 ```json
@@ -11425,14 +13429,14 @@ fetch('/service/rest/v1/repositories/raw/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-raw-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_6-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RawHostedRepositoryApiRequest](#schemarawhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-raw-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_6-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11445,11 +13449,18 @@ fetch('/service/rest/v1/repositories/raw/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create raw proxy repository
+## createRepository_7
 
 <a id="opIdcreateRepository_7"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/raw/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/raw/proxy");
@@ -11550,6 +13561,8 @@ fetch('/service/rest/v1/repositories/raw/proxy',
 
 `POST /v1/repositories/raw/proxy`
 
+*Create raw proxy repository*
+
 > Body parameter
 
 ```json
@@ -11604,13 +13617,13 @@ fetch('/service/rest/v1/repositories/raw/proxy',
 }
 ```
 
-<h3 id="create-raw-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_7-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RawProxyRepositoryApiRequest](#schemarawproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-raw-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_7-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11622,11 +13635,153 @@ fetch('/service/rest/v1/repositories/raw/proxy',
 This operation does not require authentication
 </aside>
 
-## Update raw proxy repository
+## getRepository_8
+
+<a id="opIdgetRepository_8"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/raw/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/raw/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/raw/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/raw/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/raw/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_8-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_8-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_7
 
 <a id="opIdupdateRepository_7"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/raw/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/raw/proxy/{repositoryName}");
@@ -11727,6 +13882,8 @@ fetch('/service/rest/v1/repositories/raw/proxy/{repositoryName}',
 
 `PUT /v1/repositories/raw/proxy/{repositoryName}`
 
+*Update raw proxy repository*
+
 > Body parameter
 
 ```json
@@ -11781,14 +13938,14 @@ fetch('/service/rest/v1/repositories/raw/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-raw-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_7-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RawProxyRepositoryApiRequest](#schemarawproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-raw-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_7-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11801,11 +13958,17 @@ fetch('/service/rest/v1/repositories/raw/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Enable repository health check. Proxy repositories only.
+## enableRepositoryHealthCheck
 
 <a id="opIdenableRepositoryHealthCheck"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/{repositoryName}/health-check
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/{repositoryName}/health-check");
@@ -11850,13 +14013,15 @@ fetch('/service/rest/v1/repositories/{repositoryName}/health-check',
 
 `POST /v1/repositories/{repositoryName}/health-check`
 
-<h3 id="enable-repository-health-check.-proxy-repositories-only.-parameters">Parameters</h3>
+*Enable repository health check. Proxy repositories only.*
+
+<h3 id="enablerepositoryhealthcheck-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to enable Repository Health Check for|
 
-<h3 id="enable-repository-health-check.-proxy-repositories-only.-responses">Responses</h3>
+<h3 id="enablerepositoryhealthcheck-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11870,11 +14035,17 @@ fetch('/service/rest/v1/repositories/{repositoryName}/health-check',
 This operation does not require authentication
 </aside>
 
-## Disable repository health check. Proxy repositories only.
+## disableRepositoryHealthCheck
 
 <a id="opIddisableRepositoryHealthCheck"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/repositories/{repositoryName}/health-check
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/{repositoryName}/health-check");
@@ -11919,13 +14090,15 @@ fetch('/service/rest/v1/repositories/{repositoryName}/health-check',
 
 `DELETE /v1/repositories/{repositoryName}/health-check`
 
-<h3 id="disable-repository-health-check.-proxy-repositories-only.-parameters">Parameters</h3>
+*Disable repository health check. Proxy repositories only.*
+
+<h3 id="disablerepositoryhealthcheck-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to disable Repository Health Check for|
 
-<h3 id="disable-repository-health-check.-proxy-repositories-only.-responses">Responses</h3>
+<h3 id="disablerepositoryhealthcheck-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -11938,11 +14111,121 @@ fetch('/service/rest/v1/repositories/{repositoryName}/health-check',
 This operation does not require authentication
 </aside>
 
-## Update npm group repository
+## getRepository_9
+
+<a id="opIdgetRepository_9"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/npm/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/npm/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/npm/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/npm/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/npm/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_9-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ],
+    "writableMember": "string"
+  }
+}
+```
+
+<h3 id="getrepository_9-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupDeployRepository](#schemasimpleapigroupdeployrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_8
 
 <a id="opIdupdateRepository_8"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/npm/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/npm/group/{repositoryName}");
@@ -12008,6 +14291,8 @@ fetch('/service/rest/v1/repositories/npm/group/{repositoryName}',
 
 `PUT /v1/repositories/npm/group/{repositoryName}`
 
+*Update npm group repository*
+
 > Body parameter
 
 ```json
@@ -12027,14 +14312,14 @@ fetch('/service/rest/v1/repositories/npm/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-npm-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_8-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[NpmGroupRepositoryApiRequest](#schemanpmgrouprepositoryapirequest)|false|none|
 
-<h3 id="update-npm-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_8-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12047,11 +14332,18 @@ fetch('/service/rest/v1/repositories/npm/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create npm group repository
+## createRepository_8
 
 <a id="opIdcreateRepository_8"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/npm/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/npm/group");
@@ -12117,6 +14409,8 @@ fetch('/service/rest/v1/repositories/npm/group',
 
 `POST /v1/repositories/npm/group`
 
+*Create npm group repository*
+
 > Body parameter
 
 ```json
@@ -12136,13 +14430,13 @@ fetch('/service/rest/v1/repositories/npm/group',
 }
 ```
 
-<h3 id="create-npm-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_8-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[NpmGroupRepositoryApiRequest](#schemanpmgrouprepositoryapirequest)|false|none|
 
-<h3 id="create-npm-group-repository-responses">Responses</h3>
+<h3 id="createrepository_8-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12154,11 +14448,18 @@ fetch('/service/rest/v1/repositories/npm/group',
 This operation does not require authentication
 </aside>
 
-## Create npm hosted repository
+## createRepository_9
 
 <a id="opIdcreateRepository_9"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/npm/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/npm/hosted");
@@ -12227,6 +14528,8 @@ fetch('/service/rest/v1/repositories/npm/hosted',
 
 `POST /v1/repositories/npm/hosted`
 
+*Create npm hosted repository*
+
 > Body parameter
 
 ```json
@@ -12249,13 +14552,13 @@ fetch('/service/rest/v1/repositories/npm/hosted',
 }
 ```
 
-<h3 id="create-npm-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_9-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[NpmHostedRepositoryApiRequest](#schemanpmhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-npm-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_9-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12267,11 +14570,124 @@ fetch('/service/rest/v1/repositories/npm/hosted',
 This operation does not require authentication
 </aside>
 
-## Update npm hosted repository
+## getRepository_10
+
+<a id="opIdgetRepository_10"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/npm/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/npm/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/npm/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/npm/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/npm/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_10-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_10-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_9
 
 <a id="opIdupdateRepository_9"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/npm/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/npm/hosted/{repositoryName}");
@@ -12340,6 +14756,8 @@ fetch('/service/rest/v1/repositories/npm/hosted/{repositoryName}',
 
 `PUT /v1/repositories/npm/hosted/{repositoryName}`
 
+*Update npm hosted repository*
+
 > Body parameter
 
 ```json
@@ -12362,14 +14780,14 @@ fetch('/service/rest/v1/repositories/npm/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-npm-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_9-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[NpmHostedRepositoryApiRequest](#schemanpmhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-npm-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_9-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12382,11 +14800,156 @@ fetch('/service/rest/v1/repositories/npm/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Update npm proxy repository
+## getRepository_11
+
+<a id="opIdgetRepository_11"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/npm/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/npm/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/npm/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/npm/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/npm/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_11-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  },
+  "npm": {
+    "removeQuarantined": true
+  }
+}
+```
+
+<h3 id="getrepository_11-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[NpmProxyApiRepository](#schemanpmproxyapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_10
 
 <a id="opIdupdateRepository_10"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/npm/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/npm/proxy/{repositoryName}");
@@ -12487,6 +15050,8 @@ fetch('/service/rest/v1/repositories/npm/proxy/{repositoryName}',
 
 `PUT /v1/repositories/npm/proxy/{repositoryName}`
 
+*Update npm proxy repository*
+
 > Body parameter
 
 ```json
@@ -12541,14 +15106,14 @@ fetch('/service/rest/v1/repositories/npm/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-npm-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_10-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[NpmProxyRepositoryApiRequest](#schemanpmproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-npm-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_10-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12561,11 +15126,18 @@ fetch('/service/rest/v1/repositories/npm/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create npm proxy repository
+## createRepository_10
 
 <a id="opIdcreateRepository_10"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/npm/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/npm/proxy");
@@ -12666,6 +15238,8 @@ fetch('/service/rest/v1/repositories/npm/proxy',
 
 `POST /v1/repositories/npm/proxy`
 
+*Create npm proxy repository*
+
 > Body parameter
 
 ```json
@@ -12720,13 +15294,13 @@ fetch('/service/rest/v1/repositories/npm/proxy',
 }
 ```
 
-<h3 id="create-npm-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_10-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[NpmProxyRepositoryApiRequest](#schemanpmproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-npm-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_10-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12738,11 +15312,18 @@ fetch('/service/rest/v1/repositories/npm/proxy',
 This operation does not require authentication
 </aside>
 
-## Create NuGet group repository
+## createRepository_11
 
 <a id="opIdcreateRepository_11"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/nuget/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/nuget/group");
@@ -12807,6 +15388,8 @@ fetch('/service/rest/v1/repositories/nuget/group',
 
 `POST /v1/repositories/nuget/group`
 
+*Create NuGet group repository*
+
 > Body parameter
 
 ```json
@@ -12825,13 +15408,13 @@ fetch('/service/rest/v1/repositories/nuget/group',
 }
 ```
 
-<h3 id="create-nuget-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_11-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[NugetGroupRepositoryApiRequest](#schemanugetgrouprepositoryapirequest)|false|none|
 
-<h3 id="create-nuget-group-repository-responses">Responses</h3>
+<h3 id="createrepository_11-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12843,11 +15426,120 @@ fetch('/service/rest/v1/repositories/nuget/group',
 This operation does not require authentication
 </aside>
 
-## Update NuGet group repository
+## getRepository_12
+
+<a id="opIdgetRepository_12"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/nuget/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/nuget/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/nuget/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/nuget/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/nuget/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_12-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_12-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_11
 
 <a id="opIdupdateRepository_11"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/nuget/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/nuget/group/{repositoryName}");
@@ -12912,6 +15604,8 @@ fetch('/service/rest/v1/repositories/nuget/group/{repositoryName}',
 
 `PUT /v1/repositories/nuget/group/{repositoryName}`
 
+*Update NuGet group repository*
+
 > Body parameter
 
 ```json
@@ -12930,14 +15624,14 @@ fetch('/service/rest/v1/repositories/nuget/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-nuget-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_11-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[NugetGroupRepositoryApiRequest](#schemanugetgrouprepositoryapirequest)|false|none|
 
-<h3 id="update-nuget-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_11-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -12950,11 +15644,18 @@ fetch('/service/rest/v1/repositories/nuget/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create NuGet hosted repository
+## createRepository_12
 
 <a id="opIdcreateRepository_12"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/nuget/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/nuget/hosted");
@@ -13023,6 +15724,8 @@ fetch('/service/rest/v1/repositories/nuget/hosted',
 
 `POST /v1/repositories/nuget/hosted`
 
+*Create NuGet hosted repository*
+
 > Body parameter
 
 ```json
@@ -13045,13 +15748,13 @@ fetch('/service/rest/v1/repositories/nuget/hosted',
 }
 ```
 
-<h3 id="create-nuget-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_12-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[NugetHostedRepositoryApiRequest](#schemanugethostedrepositoryapirequest)|false|none|
 
-<h3 id="create-nuget-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_12-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13063,11 +15766,124 @@ fetch('/service/rest/v1/repositories/nuget/hosted',
 This operation does not require authentication
 </aside>
 
-## Update NuGet hosted repository
+## getRepository_13
+
+<a id="opIdgetRepository_13"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/nuget/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/nuget/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/nuget/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/nuget/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/nuget/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_13-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_13-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_12
 
 <a id="opIdupdateRepository_12"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/nuget/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/nuget/hosted/{repositoryName}");
@@ -13136,6 +15952,8 @@ fetch('/service/rest/v1/repositories/nuget/hosted/{repositoryName}',
 
 `PUT /v1/repositories/nuget/hosted/{repositoryName}`
 
+*Update NuGet hosted repository*
+
 > Body parameter
 
 ```json
@@ -13158,14 +15976,14 @@ fetch('/service/rest/v1/repositories/nuget/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-nuget-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_12-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[NugetHostedRepositoryApiRequest](#schemanugethostedrepositoryapirequest)|false|none|
 
-<h3 id="update-nuget-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_12-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13178,11 +15996,157 @@ fetch('/service/rest/v1/repositories/nuget/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Update NuGet proxy repository
+## getRepository_14
+
+<a id="opIdgetRepository_14"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/nuget/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/nuget/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/nuget/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/nuget/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/nuget/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_14-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  },
+  "nugetProxy": {
+    "queryCacheItemMaxAge": 3600,
+    "nugetVersion": "V3"
+  }
+}
+```
+
+<h3 id="getrepository_14-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[NugetProxyApiRepository](#schemanugetproxyapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_13
 
 <a id="opIdupdateRepository_13"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/nuget/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/nuget/proxy/{repositoryName}");
@@ -13284,6 +16248,8 @@ fetch('/service/rest/v1/repositories/nuget/proxy/{repositoryName}',
 
 `PUT /v1/repositories/nuget/proxy/{repositoryName}`
 
+*Update NuGet proxy repository*
+
 > Body parameter
 
 ```json
@@ -13339,14 +16305,14 @@ fetch('/service/rest/v1/repositories/nuget/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-nuget-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_13-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[NugetProxyRepositoryApiRequest](#schemanugetproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-nuget-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_13-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13359,11 +16325,18 @@ fetch('/service/rest/v1/repositories/nuget/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create NuGet proxy repository
+## createRepository_13
 
 <a id="opIdcreateRepository_13"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/nuget/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/nuget/proxy");
@@ -13465,6 +16438,8 @@ fetch('/service/rest/v1/repositories/nuget/proxy',
 
 `POST /v1/repositories/nuget/proxy`
 
+*Create NuGet proxy repository*
+
 > Body parameter
 
 ```json
@@ -13520,13 +16495,13 @@ fetch('/service/rest/v1/repositories/nuget/proxy',
 }
 ```
 
-<h3 id="create-nuget-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_13-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[NugetProxyRepositoryApiRequest](#schemanugetproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-nuget-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_13-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13538,11 +16513,18 @@ fetch('/service/rest/v1/repositories/nuget/proxy',
 This operation does not require authentication
 </aside>
 
-## Create RubyGems group repository
+## createRepository_14
 
 <a id="opIdcreateRepository_14"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/rubygems/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/rubygems/group");
@@ -13607,6 +16589,8 @@ fetch('/service/rest/v1/repositories/rubygems/group',
 
 `POST /v1/repositories/rubygems/group`
 
+*Create RubyGems group repository*
+
 > Body parameter
 
 ```json
@@ -13625,13 +16609,13 @@ fetch('/service/rest/v1/repositories/rubygems/group',
 }
 ```
 
-<h3 id="create-rubygems-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_14-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RubyGemsGroupRepositoryApiRequest](#schemarubygemsgrouprepositoryapirequest)|false|none|
 
-<h3 id="create-rubygems-group-repository-responses">Responses</h3>
+<h3 id="createrepository_14-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13643,11 +16627,120 @@ fetch('/service/rest/v1/repositories/rubygems/group',
 This operation does not require authentication
 </aside>
 
-## Update RubyGems group repository
+## getRepository_15
+
+<a id="opIdgetRepository_15"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/rubygems/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/rubygems/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/rubygems/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/rubygems/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/rubygems/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_15-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_15-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_14
 
 <a id="opIdupdateRepository_14"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/rubygems/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/rubygems/group/{repositoryName}");
@@ -13712,6 +16805,8 @@ fetch('/service/rest/v1/repositories/rubygems/group/{repositoryName}',
 
 `PUT /v1/repositories/rubygems/group/{repositoryName}`
 
+*Update RubyGems group repository*
+
 > Body parameter
 
 ```json
@@ -13730,14 +16825,14 @@ fetch('/service/rest/v1/repositories/rubygems/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-rubygems-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_14-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RubyGemsGroupRepositoryApiRequest](#schemarubygemsgrouprepositoryapirequest)|false|none|
 
-<h3 id="update-rubygems-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_14-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13750,11 +16845,18 @@ fetch('/service/rest/v1/repositories/rubygems/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create RubyGems hosted repository
+## createRepository_15
 
 <a id="opIdcreateRepository_15"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/rubygems/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/rubygems/hosted");
@@ -13823,6 +16925,8 @@ fetch('/service/rest/v1/repositories/rubygems/hosted',
 
 `POST /v1/repositories/rubygems/hosted`
 
+*Create RubyGems hosted repository*
+
 > Body parameter
 
 ```json
@@ -13845,13 +16949,13 @@ fetch('/service/rest/v1/repositories/rubygems/hosted',
 }
 ```
 
-<h3 id="create-rubygems-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_15-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RubyGemsHostedRepositoryApiRequest](#schemarubygemshostedrepositoryapirequest)|false|none|
 
-<h3 id="create-rubygems-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_15-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13863,11 +16967,124 @@ fetch('/service/rest/v1/repositories/rubygems/hosted',
 This operation does not require authentication
 </aside>
 
-## Update RubyGems hosted repository
+## getRepository_16
+
+<a id="opIdgetRepository_16"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/rubygems/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/rubygems/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/rubygems/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/rubygems/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/rubygems/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_16-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_16-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_15
 
 <a id="opIdupdateRepository_15"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/rubygems/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/rubygems/hosted/{repositoryName}");
@@ -13936,6 +17153,8 @@ fetch('/service/rest/v1/repositories/rubygems/hosted/{repositoryName}',
 
 `PUT /v1/repositories/rubygems/hosted/{repositoryName}`
 
+*Update RubyGems hosted repository*
+
 > Body parameter
 
 ```json
@@ -13958,14 +17177,14 @@ fetch('/service/rest/v1/repositories/rubygems/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-rubygems-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_15-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RubyGemsHostedRepositoryApiRequest](#schemarubygemshostedrepositoryapirequest)|false|none|
 
-<h3 id="update-rubygems-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_15-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -13978,11 +17197,18 @@ fetch('/service/rest/v1/repositories/rubygems/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create RubyGems proxy repository
+## createRepository_16
 
 <a id="opIdcreateRepository_16"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/rubygems/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/rubygems/proxy");
@@ -14080,6 +17306,8 @@ fetch('/service/rest/v1/repositories/rubygems/proxy',
 
 `POST /v1/repositories/rubygems/proxy`
 
+*Create RubyGems proxy repository*
+
 > Body parameter
 
 ```json
@@ -14131,13 +17359,13 @@ fetch('/service/rest/v1/repositories/rubygems/proxy',
 }
 ```
 
-<h3 id="create-rubygems-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_16-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RubyGemsProxyRepositoryApiRequest](#schemarubygemsproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-rubygems-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_16-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -14149,11 +17377,153 @@ fetch('/service/rest/v1/repositories/rubygems/proxy',
 This operation does not require authentication
 </aside>
 
-## Update RubyGems proxy repository
+## getRepository_17
+
+<a id="opIdgetRepository_17"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/rubygems/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/rubygems/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/rubygems/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/rubygems/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/rubygems/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_17-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_17-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_16
 
 <a id="opIdupdateRepository_16"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/rubygems/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/rubygems/proxy/{repositoryName}");
@@ -14251,6 +17621,8 @@ fetch('/service/rest/v1/repositories/rubygems/proxy/{repositoryName}',
 
 `PUT /v1/repositories/rubygems/proxy/{repositoryName}`
 
+*Update RubyGems proxy repository*
+
 > Body parameter
 
 ```json
@@ -14302,14 +17674,14 @@ fetch('/service/rest/v1/repositories/rubygems/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-rubygems-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_16-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RubyGemsProxyRepositoryApiRequest](#schemarubygemsproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-rubygems-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_16-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -14322,11 +17694,18 @@ fetch('/service/rest/v1/repositories/rubygems/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Yum group repository
+## createRepository_17
 
 <a id="opIdcreateRepository_17"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/yum/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/yum/group");
@@ -14395,6 +17774,8 @@ fetch('/service/rest/v1/repositories/yum/group',
 
 `POST /v1/repositories/yum/group`
 
+*Create Yum group repository*
+
 > Body parameter
 
 ```json
@@ -14417,13 +17798,13 @@ fetch('/service/rest/v1/repositories/yum/group',
 }
 ```
 
-<h3 id="create-yum-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_17-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[YumGroupRepositoryApiRequest](#schemayumgrouprepositoryapirequest)|false|none|
 
-<h3 id="create-yum-group-repository-responses">Responses</h3>
+<h3 id="createrepository_17-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -14435,11 +17816,120 @@ fetch('/service/rest/v1/repositories/yum/group',
 This operation does not require authentication
 </aside>
 
-## Update Yum group repository
+## getRepository_18
+
+<a id="opIdgetRepository_18"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/yum/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/yum/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/yum/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/yum/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/yum/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_18-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_18-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_17
 
 <a id="opIdupdateRepository_17"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/yum/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/yum/group/{repositoryName}");
@@ -14508,6 +17998,8 @@ fetch('/service/rest/v1/repositories/yum/group/{repositoryName}',
 
 `PUT /v1/repositories/yum/group/{repositoryName}`
 
+*Update Yum group repository*
+
 > Body parameter
 
 ```json
@@ -14530,14 +18022,14 @@ fetch('/service/rest/v1/repositories/yum/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-yum-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_17-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[YumGroupRepositoryApiRequest](#schemayumgrouprepositoryapirequest)|false|none|
 
-<h3 id="update-yum-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_17-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -14550,11 +18042,128 @@ fetch('/service/rest/v1/repositories/yum/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Update Yum hosted repository
+## getRepository_19
+
+<a id="opIdgetRepository_19"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/yum/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/yum/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/yum/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/yum/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/yum/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_19-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  },
+  "yum": {
+    "repodataDepth": 5,
+    "deployPolicy": "STRICT"
+  }
+}
+```
+
+<h3 id="getrepository_19-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[YumHostedApiRepository](#schemayumhostedapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_18
 
 <a id="opIdupdateRepository_18"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/yum/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/yum/hosted/{repositoryName}");
@@ -14627,6 +18236,8 @@ fetch('/service/rest/v1/repositories/yum/hosted/{repositoryName}',
 
 `PUT /v1/repositories/yum/hosted/{repositoryName}`
 
+*Update Yum hosted repository*
+
 > Body parameter
 
 ```json
@@ -14653,14 +18264,14 @@ fetch('/service/rest/v1/repositories/yum/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-yum-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_18-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[YumHostedRepositoryApiRequest](#schemayumhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-yum-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_18-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -14673,11 +18284,18 @@ fetch('/service/rest/v1/repositories/yum/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Yum hosted repository
+## createRepository_18
 
 <a id="opIdcreateRepository_18"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/yum/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/yum/hosted");
@@ -14750,6 +18368,8 @@ fetch('/service/rest/v1/repositories/yum/hosted',
 
 `POST /v1/repositories/yum/hosted`
 
+*Create Yum hosted repository*
+
 > Body parameter
 
 ```json
@@ -14776,13 +18396,13 @@ fetch('/service/rest/v1/repositories/yum/hosted',
 }
 ```
 
-<h3 id="create-yum-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_18-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[YumHostedRepositoryApiRequest](#schemayumhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-yum-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_18-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -14794,11 +18414,18 @@ fetch('/service/rest/v1/repositories/yum/hosted',
 This operation does not require authentication
 </aside>
 
-## Create Yum proxy repository
+## createRepository_19
 
 <a id="opIdcreateRepository_19"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/yum/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/yum/proxy");
@@ -14900,6 +18527,8 @@ fetch('/service/rest/v1/repositories/yum/proxy',
 
 `POST /v1/repositories/yum/proxy`
 
+*Create Yum proxy repository*
+
 > Body parameter
 
 ```json
@@ -14955,13 +18584,13 @@ fetch('/service/rest/v1/repositories/yum/proxy',
 }
 ```
 
-<h3 id="create-yum-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_19-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[YumProxyRepositoryApiRequest](#schemayumproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-yum-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_19-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -14973,11 +18602,153 @@ fetch('/service/rest/v1/repositories/yum/proxy',
 This operation does not require authentication
 </aside>
 
-## Update Yum proxy repository
+## getRepository_20
+
+<a id="opIdgetRepository_20"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/yum/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/yum/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/yum/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/yum/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/yum/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_20-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_20-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_19
 
 <a id="opIdupdateRepository_19"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/yum/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/yum/proxy/{repositoryName}");
@@ -15079,6 +18850,8 @@ fetch('/service/rest/v1/repositories/yum/proxy/{repositoryName}',
 
 `PUT /v1/repositories/yum/proxy/{repositoryName}`
 
+*Update Yum proxy repository*
+
 > Body parameter
 
 ```json
@@ -15134,14 +18907,14 @@ fetch('/service/rest/v1/repositories/yum/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-yum-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_19-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[YumProxyRepositoryApiRequest](#schemayumproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-yum-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_19-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -15154,11 +18927,128 @@ fetch('/service/rest/v1/repositories/yum/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Update Docker group repository
+## getRepository_21
+
+<a id="opIdgetRepository_21"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/docker/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/docker/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/docker/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/docker/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/docker/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_21-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ],
+    "writableMember": "string"
+  },
+  "docker": {
+    "v1Enabled": false,
+    "forceBasicAuth": true,
+    "httpPort": 8082,
+    "httpsPort": 8083,
+    "subdomain": "docker-a"
+  }
+}
+```
+
+<h3 id="getrepository_21-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[DockerGroupApiRepository](#schemadockergroupapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_20
 
 <a id="opIdupdateRepository_20"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/docker/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/docker/group/{repositoryName}");
@@ -15231,6 +19121,8 @@ fetch('/service/rest/v1/repositories/docker/group/{repositoryName}',
 
 `PUT /v1/repositories/docker/group/{repositoryName}`
 
+*Update Docker group repository*
+
 > Body parameter
 
 ```json
@@ -15257,14 +19149,14 @@ fetch('/service/rest/v1/repositories/docker/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-docker-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_20-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[DockerGroupRepositoryApiRequest](#schemadockergrouprepositoryapirequest)|false|none|
 
-<h3 id="update-docker-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_20-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -15278,11 +19170,18 @@ fetch('/service/rest/v1/repositories/docker/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Docker group repository
+## createRepository_20
 
 <a id="opIdcreateRepository_20"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/docker/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/docker/group");
@@ -15355,6 +19254,8 @@ fetch('/service/rest/v1/repositories/docker/group',
 
 `POST /v1/repositories/docker/group`
 
+*Create Docker group repository*
+
 > Body parameter
 
 ```json
@@ -15381,13 +19282,13 @@ fetch('/service/rest/v1/repositories/docker/group',
 }
 ```
 
-<h3 id="create-docker-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_20-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[DockerGroupRepositoryApiRequest](#schemadockergrouprepositoryapirequest)|false|none|
 
-<h3 id="create-docker-group-repository-responses">Responses</h3>
+<h3 id="createrepository_20-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -15399,11 +19300,131 @@ fetch('/service/rest/v1/repositories/docker/group',
 This operation does not require authentication
 </aside>
 
-## Update Docker hosted repository
+## getRepository_22
+
+<a id="opIdgetRepository_22"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/docker/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/docker/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/docker/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/docker/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/docker/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_22-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  },
+  "docker": {
+    "v1Enabled": false,
+    "forceBasicAuth": true,
+    "httpPort": 8082,
+    "httpsPort": 8083,
+    "subdomain": "docker-a"
+  }
+}
+```
+
+<h3 id="getrepository_22-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[DockerHostedApiRepository](#schemadockerhostedapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_21
 
 <a id="opIdupdateRepository_21"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/docker/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/docker/hosted/{repositoryName}");
@@ -15480,6 +19501,8 @@ fetch('/service/rest/v1/repositories/docker/hosted/{repositoryName}',
 
 `PUT /v1/repositories/docker/hosted/{repositoryName}`
 
+*Update Docker hosted repository*
+
 > Body parameter
 
 ```json
@@ -15510,14 +19533,14 @@ fetch('/service/rest/v1/repositories/docker/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-docker-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_21-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[DockerHostedRepositoryApiRequest](#schemadockerhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-docker-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_21-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -15531,11 +19554,18 @@ fetch('/service/rest/v1/repositories/docker/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Docker hosted repository
+## createRepository_21
 
 <a id="opIdcreateRepository_21"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/docker/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/docker/hosted");
@@ -15612,6 +19642,8 @@ fetch('/service/rest/v1/repositories/docker/hosted',
 
 `POST /v1/repositories/docker/hosted`
 
+*Create Docker hosted repository*
+
 > Body parameter
 
 ```json
@@ -15642,13 +19674,13 @@ fetch('/service/rest/v1/repositories/docker/hosted',
 }
 ```
 
-<h3 id="create-docker-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_21-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[DockerHostedRepositoryApiRequest](#schemadockerhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-docker-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_21-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -15660,11 +19692,168 @@ fetch('/service/rest/v1/repositories/docker/hosted',
 This operation does not require authentication
 </aside>
 
-## Update Docker proxy repository
+## getRepository_23
+
+<a id="opIdgetRepository_23"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/docker/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/docker/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/docker/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/docker/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/docker/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_23-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  },
+  "docker": {
+    "v1Enabled": false,
+    "forceBasicAuth": true,
+    "httpPort": 8082,
+    "httpsPort": 8083,
+    "subdomain": "docker-a"
+  },
+  "dockerProxy": {
+    "indexType": "HUB",
+    "indexUrl": "string",
+    "cacheForeignLayers": true,
+    "foreignLayerUrlWhitelist": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_23-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[DockerProxyApiRepository](#schemadockerproxyapirepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_22
 
 <a id="opIdupdateRepository_22"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/docker/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/docker/proxy/{repositoryName}");
@@ -15777,6 +19966,8 @@ fetch('/service/rest/v1/repositories/docker/proxy/{repositoryName}',
 
 `PUT /v1/repositories/docker/proxy/{repositoryName}`
 
+*Update Docker proxy repository*
+
 > Body parameter
 
 ```json
@@ -15843,14 +20034,14 @@ fetch('/service/rest/v1/repositories/docker/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-docker-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_22-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[DockerProxyRepositoryApiRequest](#schemadockerproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-docker-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_22-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -15864,11 +20055,18 @@ fetch('/service/rest/v1/repositories/docker/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Docker proxy repository
+## createRepository_22
 
 <a id="opIdcreateRepository_22"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/docker/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/docker/proxy");
@@ -15981,6 +20179,8 @@ fetch('/service/rest/v1/repositories/docker/proxy',
 
 `POST /v1/repositories/docker/proxy`
 
+*Create Docker proxy repository*
+
 > Body parameter
 
 ```json
@@ -16047,13 +20247,13 @@ fetch('/service/rest/v1/repositories/docker/proxy',
 }
 ```
 
-<h3 id="create-docker-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_22-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[DockerProxyRepositoryApiRequest](#schemadockerproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-docker-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_22-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -16065,11 +20265,18 @@ fetch('/service/rest/v1/repositories/docker/proxy',
 This operation does not require authentication
 </aside>
 
-## Create PyPI group repository
+## createRepository_23
 
 <a id="opIdcreateRepository_23"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/pypi/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/pypi/group");
@@ -16134,6 +20341,8 @@ fetch('/service/rest/v1/repositories/pypi/group',
 
 `POST /v1/repositories/pypi/group`
 
+*Create PyPI group repository*
+
 > Body parameter
 
 ```json
@@ -16152,13 +20361,13 @@ fetch('/service/rest/v1/repositories/pypi/group',
 }
 ```
 
-<h3 id="create-pypi-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_23-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[PypiGroupRepositoryApiRequest](#schemapypigrouprepositoryapirequest)|false|none|
 
-<h3 id="create-pypi-group-repository-responses">Responses</h3>
+<h3 id="createrepository_23-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -16170,11 +20379,120 @@ fetch('/service/rest/v1/repositories/pypi/group',
 This operation does not require authentication
 </aside>
 
-## Update PyPI group repository
+## getRepository_24
+
+<a id="opIdgetRepository_24"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/pypi/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/pypi/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/pypi/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/pypi/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/pypi/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_24-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_24-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_23
 
 <a id="opIdupdateRepository_23"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/pypi/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/pypi/group/{repositoryName}");
@@ -16239,6 +20557,8 @@ fetch('/service/rest/v1/repositories/pypi/group/{repositoryName}',
 
 `PUT /v1/repositories/pypi/group/{repositoryName}`
 
+*Update PyPI group repository*
+
 > Body parameter
 
 ```json
@@ -16257,14 +20577,14 @@ fetch('/service/rest/v1/repositories/pypi/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-pypi-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_23-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[PypiGroupRepositoryApiRequest](#schemapypigrouprepositoryapirequest)|false|none|
 
-<h3 id="update-pypi-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_23-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -16277,11 +20597,18 @@ fetch('/service/rest/v1/repositories/pypi/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create PyPI hosted repository
+## createRepository_24
 
 <a id="opIdcreateRepository_24"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/pypi/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/pypi/hosted");
@@ -16350,6 +20677,8 @@ fetch('/service/rest/v1/repositories/pypi/hosted',
 
 `POST /v1/repositories/pypi/hosted`
 
+*Create PyPI hosted repository*
+
 > Body parameter
 
 ```json
@@ -16372,13 +20701,13 @@ fetch('/service/rest/v1/repositories/pypi/hosted',
 }
 ```
 
-<h3 id="create-pypi-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_24-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[PypiHostedRepositoryApiRequest](#schemapypihostedrepositoryapirequest)|false|none|
 
-<h3 id="create-pypi-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_24-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -16390,11 +20719,124 @@ fetch('/service/rest/v1/repositories/pypi/hosted',
 This operation does not require authentication
 </aside>
 
-## Update PyPI hosted repository
+## getRepository_25
+
+<a id="opIdgetRepository_25"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/pypi/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/pypi/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/pypi/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/pypi/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/pypi/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_25-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_25-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_24
 
 <a id="opIdupdateRepository_24"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/pypi/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/pypi/hosted/{repositoryName}");
@@ -16463,6 +20905,8 @@ fetch('/service/rest/v1/repositories/pypi/hosted/{repositoryName}',
 
 `PUT /v1/repositories/pypi/hosted/{repositoryName}`
 
+*Update PyPI hosted repository*
+
 > Body parameter
 
 ```json
@@ -16485,14 +20929,14 @@ fetch('/service/rest/v1/repositories/pypi/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-pypi-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_24-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[PypiHostedRepositoryApiRequest](#schemapypihostedrepositoryapirequest)|false|none|
 
-<h3 id="update-pypi-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_24-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -16505,11 +20949,18 @@ fetch('/service/rest/v1/repositories/pypi/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create PyPI proxy repository
+## createRepository_25
 
 <a id="opIdcreateRepository_25"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/pypi/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/pypi/proxy");
@@ -16610,6 +21061,8 @@ fetch('/service/rest/v1/repositories/pypi/proxy',
 
 `POST /v1/repositories/pypi/proxy`
 
+*Create PyPI proxy repository*
+
 > Body parameter
 
 ```json
@@ -16664,13 +21117,13 @@ fetch('/service/rest/v1/repositories/pypi/proxy',
 }
 ```
 
-<h3 id="create-pypi-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_25-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[PypiProxyRepositoryApiRequest](#schemapypiproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-pypi-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_25-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -16682,11 +21135,153 @@ fetch('/service/rest/v1/repositories/pypi/proxy',
 This operation does not require authentication
 </aside>
 
-## Update PyPI proxy repository
+## getRepository_26
+
+<a id="opIdgetRepository_26"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/pypi/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/pypi/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/pypi/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/pypi/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/pypi/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_26-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_26-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_25
 
 <a id="opIdupdateRepository_25"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/pypi/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/pypi/proxy/{repositoryName}");
@@ -16787,6 +21382,8 @@ fetch('/service/rest/v1/repositories/pypi/proxy/{repositoryName}',
 
 `PUT /v1/repositories/pypi/proxy/{repositoryName}`
 
+*Update PyPI proxy repository*
+
 > Body parameter
 
 ```json
@@ -16841,14 +21438,14 @@ fetch('/service/rest/v1/repositories/pypi/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-pypi-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_25-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[PypiProxyRepositoryApiRequest](#schemapypiproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-pypi-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_25-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -16861,11 +21458,18 @@ fetch('/service/rest/v1/repositories/pypi/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create conda proxy repository
+## createRepository_26
 
 <a id="opIdcreateRepository_26"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/conda/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/conda/proxy");
@@ -16963,6 +21567,8 @@ fetch('/service/rest/v1/repositories/conda/proxy',
 
 `POST /v1/repositories/conda/proxy`
 
+*Create conda proxy repository*
+
 > Body parameter
 
 ```json
@@ -17014,13 +21620,13 @@ fetch('/service/rest/v1/repositories/conda/proxy',
 }
 ```
 
-<h3 id="create-conda-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_26-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CondaProxyRepositoryApiRequest](#schemacondaproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-conda-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_26-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -17033,11 +21639,153 @@ fetch('/service/rest/v1/repositories/conda/proxy',
 This operation does not require authentication
 </aside>
 
-## Update conda proxy repository
+## getRepository_27
+
+<a id="opIdgetRepository_27"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/conda/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/conda/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/conda/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/conda/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/conda/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_27-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_27-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_26
 
 <a id="opIdupdateRepository_26"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/conda/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/conda/proxy/{repositoryName}");
@@ -17135,6 +21883,8 @@ fetch('/service/rest/v1/repositories/conda/proxy/{repositoryName}',
 
 `PUT /v1/repositories/conda/proxy/{repositoryName}`
 
+*Update conda proxy repository*
+
 > Body parameter
 
 ```json
@@ -17186,14 +21936,14 @@ fetch('/service/rest/v1/repositories/conda/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-conda-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_26-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[CondaProxyRepositoryApiRequest](#schemacondaproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-conda-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_26-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -17206,11 +21956,18 @@ fetch('/service/rest/v1/repositories/conda/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Conan hosted repository
+## createRepository_27
 
 <a id="opIdcreateRepository_27"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/conan/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/conan/hosted");
@@ -17279,6 +22036,8 @@ fetch('/service/rest/v1/repositories/conan/hosted',
 
 `POST /v1/repositories/conan/hosted`
 
+*Create Conan hosted repository*
+
 > Body parameter
 
 ```json
@@ -17301,13 +22060,13 @@ fetch('/service/rest/v1/repositories/conan/hosted',
 }
 ```
 
-<h3 id="create-conan-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_27-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ConanHostedRepositoryApiRequest](#schemaconanhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-conan-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_27-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -17319,11 +22078,124 @@ fetch('/service/rest/v1/repositories/conan/hosted',
 This operation does not require authentication
 </aside>
 
-## Update Conan hosted repository
+## getRepository_28
+
+<a id="opIdgetRepository_28"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/conan/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/conan/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/conan/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/conan/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/conan/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_28-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_28-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_27
 
 <a id="opIdupdateRepository_27"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/conan/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/conan/hosted/{repositoryName}");
@@ -17392,6 +22264,8 @@ fetch('/service/rest/v1/repositories/conan/hosted/{repositoryName}',
 
 `PUT /v1/repositories/conan/hosted/{repositoryName}`
 
+*Update Conan hosted repository*
+
 > Body parameter
 
 ```json
@@ -17414,14 +22288,14 @@ fetch('/service/rest/v1/repositories/conan/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-conan-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_27-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[ConanHostedRepositoryApiRequest](#schemaconanhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-conan-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_27-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -17435,11 +22309,18 @@ fetch('/service/rest/v1/repositories/conan/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Conan proxy repository
+## createRepository_28
 
 <a id="opIdcreateRepository_28"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/conan/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/conan/proxy");
@@ -17540,6 +22421,8 @@ fetch('/service/rest/v1/repositories/conan/proxy',
 
 `POST /v1/repositories/conan/proxy`
 
+*Create Conan proxy repository*
+
 > Body parameter
 
 ```json
@@ -17594,13 +22477,13 @@ fetch('/service/rest/v1/repositories/conan/proxy',
 }
 ```
 
-<h3 id="create-conan-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_28-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ConanProxyRepositoryApiRequest](#schemaconanproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-conan-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_28-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -17613,11 +22496,153 @@ fetch('/service/rest/v1/repositories/conan/proxy',
 This operation does not require authentication
 </aside>
 
-## Update Conan proxy repository
+## getRepository_29
+
+<a id="opIdgetRepository_29"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/conan/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/conan/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/conan/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/conan/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/conan/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_29-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_29-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_28
 
 <a id="opIdupdateRepository_28"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/conan/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/conan/proxy/{repositoryName}");
@@ -17718,6 +22743,8 @@ fetch('/service/rest/v1/repositories/conan/proxy/{repositoryName}',
 
 `PUT /v1/repositories/conan/proxy/{repositoryName}`
 
+*Update Conan proxy repository*
+
 > Body parameter
 
 ```json
@@ -17772,14 +22799,14 @@ fetch('/service/rest/v1/repositories/conan/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-conan-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_28-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[ConanProxyRepositoryApiRequest](#schemaconanproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-conan-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_28-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -17793,11 +22820,18 @@ fetch('/service/rest/v1/repositories/conan/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Git LFS hosted repository
+## createRepository_29
 
 <a id="opIdcreateRepository_29"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/gitlfs/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/gitlfs/hosted");
@@ -17866,6 +22900,8 @@ fetch('/service/rest/v1/repositories/gitlfs/hosted',
 
 `POST /v1/repositories/gitlfs/hosted`
 
+*Create Git LFS hosted repository*
+
 > Body parameter
 
 ```json
@@ -17888,13 +22924,13 @@ fetch('/service/rest/v1/repositories/gitlfs/hosted',
 }
 ```
 
-<h3 id="create-git-lfs-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_29-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[GitLfsHostedRepositoryApiRequest](#schemagitlfshostedrepositoryapirequest)|false|none|
 
-<h3 id="create-git-lfs-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_29-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -17906,11 +22942,124 @@ fetch('/service/rest/v1/repositories/gitlfs/hosted',
 This operation does not require authentication
 </aside>
 
-## Update Git LFS hosted repository
+## getRepository_30
+
+<a id="opIdgetRepository_30"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/gitlfs/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/gitlfs/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/gitlfs/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/gitlfs/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/gitlfs/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_30-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_30-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_29
 
 <a id="opIdupdateRepository_29"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/gitlfs/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/gitlfs/hosted/{repositoryName}");
@@ -17979,6 +23128,8 @@ fetch('/service/rest/v1/repositories/gitlfs/hosted/{repositoryName}',
 
 `PUT /v1/repositories/gitlfs/hosted/{repositoryName}`
 
+*Update Git LFS hosted repository*
+
 > Body parameter
 
 ```json
@@ -18001,14 +23152,14 @@ fetch('/service/rest/v1/repositories/gitlfs/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-git-lfs-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_29-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[GitLfsHostedRepositoryApiRequest](#schemagitlfshostedrepositoryapirequest)|false|none|
 
-<h3 id="update-git-lfs-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_29-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18021,11 +23172,18 @@ fetch('/service/rest/v1/repositories/gitlfs/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create R group repository
+## createRepository_30
 
 <a id="opIdcreateRepository_30"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/r/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/r/group");
@@ -18090,6 +23248,8 @@ fetch('/service/rest/v1/repositories/r/group',
 
 `POST /v1/repositories/r/group`
 
+*Create R group repository*
+
 > Body parameter
 
 ```json
@@ -18108,13 +23268,13 @@ fetch('/service/rest/v1/repositories/r/group',
 }
 ```
 
-<h3 id="create-r-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_30-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RGroupRepositoryApiRequest](#schemargrouprepositoryapirequest)|false|none|
 
-<h3 id="create-r-group-repository-responses">Responses</h3>
+<h3 id="createrepository_30-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18127,11 +23287,120 @@ fetch('/service/rest/v1/repositories/r/group',
 This operation does not require authentication
 </aside>
 
-## Update R group repository
+## getRepository_31
+
+<a id="opIdgetRepository_31"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/r/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/r/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/r/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/r/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/r/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_31-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_31-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_30
 
 <a id="opIdupdateRepository_30"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/r/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/r/group/{repositoryName}");
@@ -18196,6 +23465,8 @@ fetch('/service/rest/v1/repositories/r/group/{repositoryName}',
 
 `PUT /v1/repositories/r/group/{repositoryName}`
 
+*Update R group repository*
+
 > Body parameter
 
 ```json
@@ -18214,14 +23485,14 @@ fetch('/service/rest/v1/repositories/r/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-r-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_30-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RGroupRepositoryApiRequest](#schemargrouprepositoryapirequest)|false|none|
 
-<h3 id="update-r-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_30-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18234,11 +23505,18 @@ fetch('/service/rest/v1/repositories/r/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create R hosted repository
+## createRepository_31
 
 <a id="opIdcreateRepository_31"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/r/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/r/hosted");
@@ -18307,6 +23585,8 @@ fetch('/service/rest/v1/repositories/r/hosted',
 
 `POST /v1/repositories/r/hosted`
 
+*Create R hosted repository*
+
 > Body parameter
 
 ```json
@@ -18329,13 +23609,13 @@ fetch('/service/rest/v1/repositories/r/hosted',
 }
 ```
 
-<h3 id="create-r-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_31-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RHostedRepositoryApiRequest](#schemarhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-r-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_31-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18348,11 +23628,124 @@ fetch('/service/rest/v1/repositories/r/hosted',
 This operation does not require authentication
 </aside>
 
-## Update R hosted repository
+## getRepository_32
+
+<a id="opIdgetRepository_32"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/r/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/r/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/r/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/r/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/r/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_32-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_32-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_31
 
 <a id="opIdupdateRepository_31"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/r/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/r/hosted/{repositoryName}");
@@ -18421,6 +23814,8 @@ fetch('/service/rest/v1/repositories/r/hosted/{repositoryName}',
 
 `PUT /v1/repositories/r/hosted/{repositoryName}`
 
+*Update R hosted repository*
+
 > Body parameter
 
 ```json
@@ -18443,14 +23838,14 @@ fetch('/service/rest/v1/repositories/r/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-r-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_31-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RHostedRepositoryApiRequest](#schemarhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-r-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_31-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18463,11 +23858,18 @@ fetch('/service/rest/v1/repositories/r/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create R proxy repository
+## createRepository_32
 
 <a id="opIdcreateRepository_32"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/r/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/r/proxy");
@@ -18565,6 +23967,8 @@ fetch('/service/rest/v1/repositories/r/proxy',
 
 `POST /v1/repositories/r/proxy`
 
+*Create R proxy repository*
+
 > Body parameter
 
 ```json
@@ -18616,13 +24020,13 @@ fetch('/service/rest/v1/repositories/r/proxy',
 }
 ```
 
-<h3 id="create-r-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_32-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RProxyRepositoryApiRequest](#schemarproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-r-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_32-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18635,11 +24039,153 @@ fetch('/service/rest/v1/repositories/r/proxy',
 This operation does not require authentication
 </aside>
 
-## Update R proxy repository
+## getRepository_33
+
+<a id="opIdgetRepository_33"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/r/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/r/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/r/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/r/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/r/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_33-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_33-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_32
 
 <a id="opIdupdateRepository_32"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/r/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/r/proxy/{repositoryName}");
@@ -18737,6 +24283,8 @@ fetch('/service/rest/v1/repositories/r/proxy/{repositoryName}',
 
 `PUT /v1/repositories/r/proxy/{repositoryName}`
 
+*Update R proxy repository*
+
 > Body parameter
 
 ```json
@@ -18788,14 +24336,14 @@ fetch('/service/rest/v1/repositories/r/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-r-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_32-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[RProxyRepositoryApiRequest](#schemarproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-r-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_32-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18809,11 +24357,18 @@ fetch('/service/rest/v1/repositories/r/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Cocoapods proxy repository
+## createRepository_33
 
 <a id="opIdcreateRepository_33"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/cocoapods/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cocoapods/proxy");
@@ -18911,6 +24466,8 @@ fetch('/service/rest/v1/repositories/cocoapods/proxy',
 
 `POST /v1/repositories/cocoapods/proxy`
 
+*Create Cocoapods proxy repository*
+
 > Body parameter
 
 ```json
@@ -18962,13 +24519,13 @@ fetch('/service/rest/v1/repositories/cocoapods/proxy',
 }
 ```
 
-<h3 id="create-cocoapods-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_33-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CocoapodsProxyRepositoryApiRequest](#schemacocoapodsproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-cocoapods-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_33-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -18981,11 +24538,153 @@ fetch('/service/rest/v1/repositories/cocoapods/proxy',
 This operation does not require authentication
 </aside>
 
-## Update Cocoapods proxy repository
+## getRepository_34
+
+<a id="opIdgetRepository_34"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/cocoapods/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/cocoapods/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/cocoapods/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/cocoapods/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/cocoapods/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_34-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_34-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_33
 
 <a id="opIdupdateRepository_33"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/cocoapods/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cocoapods/proxy/{repositoryName}");
@@ -19083,6 +24782,8 @@ fetch('/service/rest/v1/repositories/cocoapods/proxy/{repositoryName}',
 
 `PUT /v1/repositories/cocoapods/proxy/{repositoryName}`
 
+*Update Cocoapods proxy repository*
+
 > Body parameter
 
 ```json
@@ -19134,14 +24835,14 @@ fetch('/service/rest/v1/repositories/cocoapods/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-cocoapods-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_33-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[CocoapodsProxyRepositoryApiRequest](#schemacocoapodsproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-cocoapods-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_33-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -19154,11 +24855,18 @@ fetch('/service/rest/v1/repositories/cocoapods/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create a Go group repository
+## createRepository_34
 
 <a id="opIdcreateRepository_34"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/go/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/go/group");
@@ -19223,6 +24931,8 @@ fetch('/service/rest/v1/repositories/go/group',
 
 `POST /v1/repositories/go/group`
 
+*Create a Go group repository*
+
 > Body parameter
 
 ```json
@@ -19241,13 +24951,13 @@ fetch('/service/rest/v1/repositories/go/group',
 }
 ```
 
-<h3 id="create-a-go-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_34-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[GolangGroupRepositoryApiRequest](#schemagolanggrouprepositoryapirequest)|false|none|
 
-<h3 id="create-a-go-group-repository-responses">Responses</h3>
+<h3 id="createrepository_34-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -19260,11 +24970,120 @@ fetch('/service/rest/v1/repositories/go/group',
 This operation does not require authentication
 </aside>
 
-## Update a Go group repository
+## getRepository_35
+
+<a id="opIdgetRepository_35"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/go/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/go/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/go/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/go/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/go/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_35-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_35-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_34
 
 <a id="opIdupdateRepository_34"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/go/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/go/group/{repositoryName}");
@@ -19329,6 +25148,8 @@ fetch('/service/rest/v1/repositories/go/group/{repositoryName}',
 
 `PUT /v1/repositories/go/group/{repositoryName}`
 
+*Update a Go group repository*
+
 > Body parameter
 
 ```json
@@ -19347,14 +25168,14 @@ fetch('/service/rest/v1/repositories/go/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-a-go-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_34-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[GolangGroupRepositoryApiRequest](#schemagolanggrouprepositoryapirequest)|false|none|
 
-<h3 id="update-a-go-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_34-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -19368,11 +25189,18 @@ fetch('/service/rest/v1/repositories/go/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create a Go proxy repository
+## createRepository_35
 
 <a id="opIdcreateRepository_35"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/go/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/go/proxy");
@@ -19470,6 +25298,8 @@ fetch('/service/rest/v1/repositories/go/proxy',
 
 `POST /v1/repositories/go/proxy`
 
+*Create a Go proxy repository*
+
 > Body parameter
 
 ```json
@@ -19521,13 +25351,13 @@ fetch('/service/rest/v1/repositories/go/proxy',
 }
 ```
 
-<h3 id="create-a-go-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_35-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[GolangProxyRepositoryApiRequest](#schemagolangproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-a-go-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_35-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -19540,11 +25370,153 @@ fetch('/service/rest/v1/repositories/go/proxy',
 This operation does not require authentication
 </aside>
 
-## Update a Go proxy repository
+## getRepository_36
+
+<a id="opIdgetRepository_36"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/go/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/go/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/go/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/go/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/go/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_36-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_36-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_35
 
 <a id="opIdupdateRepository_35"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/go/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/go/proxy/{repositoryName}");
@@ -19642,6 +25614,8 @@ fetch('/service/rest/v1/repositories/go/proxy/{repositoryName}',
 
 `PUT /v1/repositories/go/proxy/{repositoryName}`
 
+*Update a Go proxy repository*
+
 > Body parameter
 
 ```json
@@ -19693,14 +25667,14 @@ fetch('/service/rest/v1/repositories/go/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-a-go-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_35-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[GolangProxyRepositoryApiRequest](#schemagolangproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-a-go-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_35-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -19714,11 +25688,18 @@ fetch('/service/rest/v1/repositories/go/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create p2 proxy repository
+## createRepository_36
 
 <a id="opIdcreateRepository_36"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/p2/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/p2/proxy");
@@ -19816,6 +25797,8 @@ fetch('/service/rest/v1/repositories/p2/proxy',
 
 `POST /v1/repositories/p2/proxy`
 
+*Create p2 proxy repository*
+
 > Body parameter
 
 ```json
@@ -19867,13 +25850,13 @@ fetch('/service/rest/v1/repositories/p2/proxy',
 }
 ```
 
-<h3 id="create-p2-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_36-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[P2ProxyRepositoryApiRequest](#schemap2proxyrepositoryapirequest)|false|none|
 
-<h3 id="create-p2-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_36-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -19886,11 +25869,153 @@ fetch('/service/rest/v1/repositories/p2/proxy',
 This operation does not require authentication
 </aside>
 
-## Update p2 proxy repository
+## getRepository_37
+
+<a id="opIdgetRepository_37"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/p2/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/p2/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/p2/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/p2/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/p2/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_37-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_37-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_36
 
 <a id="opIdupdateRepository_36"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/p2/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/p2/proxy/{repositoryName}");
@@ -19988,6 +26113,8 @@ fetch('/service/rest/v1/repositories/p2/proxy/{repositoryName}',
 
 `PUT /v1/repositories/p2/proxy/{repositoryName}`
 
+*Update p2 proxy repository*
+
 > Body parameter
 
 ```json
@@ -20039,14 +26166,14 @@ fetch('/service/rest/v1/repositories/p2/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-p2-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_36-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[P2ProxyRepositoryApiRequest](#schemap2proxyrepositoryapirequest)|false|none|
 
-<h3 id="update-p2-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_36-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20059,11 +26186,18 @@ fetch('/service/rest/v1/repositories/p2/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Helm hosted repository
+## createRepository_37
 
 <a id="opIdcreateRepository_37"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/helm/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/helm/hosted");
@@ -20132,6 +26266,8 @@ fetch('/service/rest/v1/repositories/helm/hosted',
 
 `POST /v1/repositories/helm/hosted`
 
+*Create Helm hosted repository*
+
 > Body parameter
 
 ```json
@@ -20154,13 +26290,13 @@ fetch('/service/rest/v1/repositories/helm/hosted',
 }
 ```
 
-<h3 id="create-helm-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_37-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[HelmHostedRepositoryApiRequest](#schemahelmhostedrepositoryapirequest)|false|none|
 
-<h3 id="create-helm-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_37-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20173,11 +26309,124 @@ fetch('/service/rest/v1/repositories/helm/hosted',
 This operation does not require authentication
 </aside>
 
-## Update Helm hosted repository
+## getRepository_38
+
+<a id="opIdgetRepository_38"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/helm/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/helm/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/helm/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/helm/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/helm/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_38-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_38-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_37
 
 <a id="opIdupdateRepository_37"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/helm/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/helm/hosted/{repositoryName}");
@@ -20246,6 +26495,8 @@ fetch('/service/rest/v1/repositories/helm/hosted/{repositoryName}',
 
 `PUT /v1/repositories/helm/hosted/{repositoryName}`
 
+*Update Helm hosted repository*
+
 > Body parameter
 
 ```json
@@ -20268,14 +26519,14 @@ fetch('/service/rest/v1/repositories/helm/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-helm-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_37-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[HelmHostedRepositoryApiRequest](#schemahelmhostedrepositoryapirequest)|false|none|
 
-<h3 id="update-helm-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_37-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20288,11 +26539,18 @@ fetch('/service/rest/v1/repositories/helm/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create Helm proxy repository
+## createRepository_38
 
 <a id="opIdcreateRepository_38"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/helm/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/helm/proxy");
@@ -20390,6 +26648,8 @@ fetch('/service/rest/v1/repositories/helm/proxy',
 
 `POST /v1/repositories/helm/proxy`
 
+*Create Helm proxy repository*
+
 > Body parameter
 
 ```json
@@ -20441,13 +26701,13 @@ fetch('/service/rest/v1/repositories/helm/proxy',
 }
 ```
 
-<h3 id="create-helm-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_38-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[HelmProxyRepositoryApiRequest](#schemahelmproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-helm-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_38-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20460,11 +26720,153 @@ fetch('/service/rest/v1/repositories/helm/proxy',
 This operation does not require authentication
 </aside>
 
-## Update Helm proxy repository
+## getRepository_39
+
+<a id="opIdgetRepository_39"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/helm/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/helm/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/helm/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/helm/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/helm/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_39-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_39-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_38
 
 <a id="opIdupdateRepository_38"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/helm/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/helm/proxy/{repositoryName}");
@@ -20562,6 +26964,8 @@ fetch('/service/rest/v1/repositories/helm/proxy/{repositoryName}',
 
 `PUT /v1/repositories/helm/proxy/{repositoryName}`
 
+*Update Helm proxy repository*
+
 > Body parameter
 
 ```json
@@ -20613,14 +27017,14 @@ fetch('/service/rest/v1/repositories/helm/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-helm-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_38-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[HelmProxyRepositoryApiRequest](#schemahelmproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-helm-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_38-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20633,11 +27037,18 @@ fetch('/service/rest/v1/repositories/helm/proxy/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create cargo group repository
+## createRepository_39
 
 <a id="opIdcreateRepository_39"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/cargo/group \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cargo/group");
@@ -20702,6 +27113,8 @@ fetch('/service/rest/v1/repositories/cargo/group',
 
 `POST /v1/repositories/cargo/group`
 
+*Create cargo group repository*
+
 > Body parameter
 
 ```json
@@ -20720,13 +27133,13 @@ fetch('/service/rest/v1/repositories/cargo/group',
 }
 ```
 
-<h3 id="create-cargo-group-repository-parameters">Parameters</h3>
+<h3 id="createrepository_39-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CargoGroupRepositoryApiRequest](#schemacargogrouprepositoryapirequest)|false|none|
 
-<h3 id="create-cargo-group-repository-responses">Responses</h3>
+<h3 id="createrepository_39-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20738,11 +27151,120 @@ fetch('/service/rest/v1/repositories/cargo/group',
 This operation does not require authentication
 </aside>
 
-## Update cargo group repository
+## getRepository_40
+
+<a id="opIdgetRepository_40"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/cargo/group/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/cargo/group/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/cargo/group/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/cargo/group/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/cargo/group/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_40-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "group": {
+    "memberNames": [
+      "string"
+    ]
+  }
+}
+```
+
+<h3 id="getrepository_40-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiGroupRepository](#schemasimpleapigrouprepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_39
 
 <a id="opIdupdateRepository_39"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/cargo/group/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cargo/group/{repositoryName}");
@@ -20807,6 +27329,8 @@ fetch('/service/rest/v1/repositories/cargo/group/{repositoryName}',
 
 `PUT /v1/repositories/cargo/group/{repositoryName}`
 
+*Update cargo group repository*
+
 > Body parameter
 
 ```json
@@ -20825,14 +27349,14 @@ fetch('/service/rest/v1/repositories/cargo/group/{repositoryName}',
 }
 ```
 
-<h3 id="update-cargo-group-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_39-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[CargoGroupRepositoryApiRequest](#schemacargogrouprepositoryapirequest)|false|none|
 
-<h3 id="update-cargo-group-repository-responses">Responses</h3>
+<h3 id="updaterepository_39-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20845,11 +27369,18 @@ fetch('/service/rest/v1/repositories/cargo/group/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create cargo hosted repository
+## createRepository_40
 
 <a id="opIdcreateRepository_40"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/cargo/hosted \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cargo/hosted");
@@ -20918,6 +27449,8 @@ fetch('/service/rest/v1/repositories/cargo/hosted',
 
 `POST /v1/repositories/cargo/hosted`
 
+*Create cargo hosted repository*
+
 > Body parameter
 
 ```json
@@ -20940,13 +27473,13 @@ fetch('/service/rest/v1/repositories/cargo/hosted',
 }
 ```
 
-<h3 id="create-cargo-hosted-repository-parameters">Parameters</h3>
+<h3 id="createrepository_40-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CargoHostedRepositoryApiRequest](#schemacargohostedrepositoryapirequest)|false|none|
 
-<h3 id="create-cargo-hosted-repository-responses">Responses</h3>
+<h3 id="createrepository_40-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -20958,11 +27491,124 @@ fetch('/service/rest/v1/repositories/cargo/hosted',
 This operation does not require authentication
 </aside>
 
-## Update cargo hosted repository
+## getRepository_41
+
+<a id="opIdgetRepository_41"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/cargo/hosted/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/cargo/hosted/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/cargo/hosted/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/cargo/hosted/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/cargo/hosted/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_41-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true,
+    "writePolicy": "allow_once"
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "component": {
+    "proprietaryComponents": true
+  }
+}
+```
+
+<h3 id="getrepository_41-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiHostedRepository](#schemasimpleapihostedrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_40
 
 <a id="opIdupdateRepository_40"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/cargo/hosted/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cargo/hosted/{repositoryName}");
@@ -21031,6 +27677,8 @@ fetch('/service/rest/v1/repositories/cargo/hosted/{repositoryName}',
 
 `PUT /v1/repositories/cargo/hosted/{repositoryName}`
 
+*Update cargo hosted repository*
+
 > Body parameter
 
 ```json
@@ -21053,14 +27701,14 @@ fetch('/service/rest/v1/repositories/cargo/hosted/{repositoryName}',
 }
 ```
 
-<h3 id="update-cargo-hosted-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_40-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[CargoHostedRepositoryApiRequest](#schemacargohostedrepositoryapirequest)|false|none|
 
-<h3 id="update-cargo-hosted-repository-responses">Responses</h3>
+<h3 id="updaterepository_40-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21073,11 +27721,18 @@ fetch('/service/rest/v1/repositories/cargo/hosted/{repositoryName}',
 This operation does not require authentication
 </aside>
 
-## Create cargo proxy repository
+## createRepository_41
 
 <a id="opIdcreateRepository_41"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/repositories/cargo/proxy \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cargo/proxy");
@@ -21175,6 +27830,8 @@ fetch('/service/rest/v1/repositories/cargo/proxy',
 
 `POST /v1/repositories/cargo/proxy`
 
+*Create cargo proxy repository*
+
 > Body parameter
 
 ```json
@@ -21226,13 +27883,13 @@ fetch('/service/rest/v1/repositories/cargo/proxy',
 }
 ```
 
-<h3 id="create-cargo-proxy-repository-parameters">Parameters</h3>
+<h3 id="createrepository_41-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CargoProxyRepositoryApiRequest](#schemacargoproxyrepositoryapirequest)|false|none|
 
-<h3 id="create-cargo-proxy-repository-responses">Responses</h3>
+<h3 id="createrepository_41-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21244,11 +27901,153 @@ fetch('/service/rest/v1/repositories/cargo/proxy',
 This operation does not require authentication
 </aside>
 
-## Update cargo proxy repository
+## getRepository_42
+
+<a id="opIdgetRepository_42"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/repositories/cargo/proxy/{repositoryName} \
+  -H 'Accept: application/json'
+
+```
+
+```java
+URL obj = new URL("/service/rest/v1/repositories/cargo/proxy/{repositoryName}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/service/rest/v1/repositories/cargo/proxy/{repositoryName}', headers = headers)
+
+print(r.json())
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/service/rest/v1/repositories/cargo/proxy/{repositoryName}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+`GET /v1/repositories/cargo/proxy/{repositoryName}`
+
+*Get repository*
+
+<h3 id="getrepository_42-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|repositoryName|path|string|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "internal",
+  "online": true,
+  "storage": {
+    "blobStoreName": "default",
+    "strictContentTypeValidation": true
+  },
+  "cleanup": {
+    "policyNames": [
+      "string"
+    ]
+  },
+  "proxy": {
+    "remoteUrl": "https://remote.repository.com",
+    "contentMaxAge": 1440,
+    "metadataMaxAge": 1440
+  },
+  "negativeCache": {
+    "enabled": true,
+    "timeToLive": 1440
+  },
+  "httpClient": {
+    "blocked": false,
+    "autoBlock": true,
+    "connection": {
+      "retries": 0,
+      "userAgentSuffix": "string",
+      "timeout": 60,
+      "enableCircularRedirects": false,
+      "enableCookies": false,
+      "useTrustStore": false
+    },
+    "authentication": {
+      "type": "username",
+      "username": "string",
+      "password": "string",
+      "ntlmHost": "string",
+      "ntlmDomain": "string"
+    }
+  },
+  "routingRuleName": "string",
+  "replication": {
+    "preemptivePullEnabled": false,
+    "assetPathRegex": "string"
+  }
+}
+```
+
+<h3 id="getrepository_42-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|[SimpleApiProxyRepository](#schemasimpleapiproxyrepository)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## updateRepository_41
 
 <a id="opIdupdateRepository_41"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/repositories/cargo/proxy/{repositoryName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/repositories/cargo/proxy/{repositoryName}");
@@ -21346,6 +28145,8 @@ fetch('/service/rest/v1/repositories/cargo/proxy/{repositoryName}',
 
 `PUT /v1/repositories/cargo/proxy/{repositoryName}`
 
+*Update cargo proxy repository*
+
 > Body parameter
 
 ```json
@@ -21397,14 +28198,14 @@ fetch('/service/rest/v1/repositories/cargo/proxy/{repositoryName}',
 }
 ```
 
-<h3 id="update-cargo-proxy-repository-parameters">Parameters</h3>
+<h3 id="updaterepository_41-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|Name of the repository to update|
 |body|body|[CargoProxyRepositoryApiRequest](#schemacargoproxyrepositoryapirequest)|false|none|
 
-<h3 id="update-cargo-proxy-repository-responses">Responses</h3>
+<h3 id="updaterepository_41-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21419,11 +28220,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-content-selectors">Content selectors</h1>
 
-## Get a content selector by name
+## getContentSelector
 
 <a id="opIdgetContentSelector"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/content-selectors/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/content-selectors/{name}");
@@ -21476,7 +28284,9 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 
 `GET /v1/security/content-selectors/{name}`
 
-<h3 id="get-a-content-selector-by-name-parameters">Parameters</h3>
+*Get a content selector by name*
+
+<h3 id="getcontentselector-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -21495,7 +28305,7 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 }
 ```
 
-<h3 id="get-a-content-selector-by-name-responses">Responses</h3>
+<h3 id="getcontentselector-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21506,11 +28316,18 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 This operation does not require authentication
 </aside>
 
-## Update a content selector
+## updateContentSelector
 
 <a id="opIdupdateContentSelector"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/content-selectors/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/content-selectors/{name}");
@@ -21566,6 +28383,8 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 
 `PUT /v1/security/content-selectors/{name}`
 
+*Update a content selector*
+
 > Body parameter
 
 ```json
@@ -21575,14 +28394,14 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 }
 ```
 
-<h3 id="update-a-content-selector-parameters">Parameters</h3>
+<h3 id="updatecontentselector-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|The content selector name|
 |body|body|[ContentSelectorApiUpdateRequest](#schemacontentselectorapiupdaterequest)|false|none|
 
-<h3 id="update-a-content-selector-responses">Responses</h3>
+<h3 id="updatecontentselector-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21594,11 +28413,17 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 This operation does not require authentication
 </aside>
 
-## Delete a content selector
+## deleteContentSelector
 
 <a id="opIddeleteContentSelector"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/content-selectors/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/content-selectors/{name}");
@@ -21643,13 +28468,15 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 
 `DELETE /v1/security/content-selectors/{name}`
 
-<h3 id="delete-a-content-selector-parameters">Parameters</h3>
+*Delete a content selector*
+
+<h3 id="deletecontentselector-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|none|
 
-<h3 id="delete-a-content-selector-responses">Responses</h3>
+<h3 id="deletecontentselector-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21661,11 +28488,18 @@ fetch('/service/rest/v1/security/content-selectors/{name}',
 This operation does not require authentication
 </aside>
 
-## List content selectors
+## getContentSelectors
 
 <a id="opIdgetContentSelectors"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/content-selectors \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/content-selectors");
@@ -21718,6 +28552,8 @@ fetch('/service/rest/v1/security/content-selectors',
 
 `GET /v1/security/content-selectors`
 
+*List content selectors*
+
 > Example responses
 
 > 200 Response
@@ -21733,14 +28569,14 @@ fetch('/service/rest/v1/security/content-selectors',
 ]
 ```
 
-<h3 id="list-content-selectors-responses">Responses</h3>
+<h3 id="getcontentselectors-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Insufficient permissions to read content selectors|None|
 
-<h3 id="list-content-selectors-responseschema">Response Schema</h3>
+<h3 id="getcontentselectors-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -21763,11 +28599,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a new content selector
+## createContentSelector
 
 <a id="opIdcreateContentSelector"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/content-selectors \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/content-selectors");
@@ -21824,6 +28667,8 @@ fetch('/service/rest/v1/security/content-selectors',
 
 `POST /v1/security/content-selectors`
 
+*Create a new content selector*
+
 > Body parameter
 
 ```json
@@ -21834,13 +28679,13 @@ fetch('/service/rest/v1/security/content-selectors',
 }
 ```
 
-<h3 id="create-a-new-content-selector-parameters">Parameters</h3>
+<h3 id="createcontentselector-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ContentSelectorApiCreateRequest](#schemacontentselectorapicreaterequest)|false|none|
 
-<h3 id="create-a-new-content-selector-responses">Responses</h3>
+<h3 id="createcontentselector-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21854,11 +28699,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-routing-rules">Routing rules</h1>
 
-## Get a single routing rule
+## getRoutingRule
 
 <a id="opIdgetRoutingRule"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/routing-rules/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/routing-rules/{name}");
@@ -21911,7 +28763,9 @@ fetch('/service/rest/v1/routing-rules/{name}',
 
 `GET /v1/routing-rules/{name}`
 
-<h3 id="get-a-single-routing-rule-parameters">Parameters</h3>
+*Get a single routing rule*
+
+<h3 id="getroutingrule-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -21932,7 +28786,7 @@ fetch('/service/rest/v1/routing-rules/{name}',
 }
 ```
 
-<h3 id="get-a-single-routing-rule-responses">Responses</h3>
+<h3 id="getroutingrule-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -21944,11 +28798,18 @@ fetch('/service/rest/v1/routing-rules/{name}',
 This operation does not require authentication
 </aside>
 
-## Update a single routing rule
+## updateRoutingRule
 
 <a id="opIdupdateRoutingRule"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/routing-rules/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/routing-rules/{name}");
@@ -22008,6 +28869,8 @@ fetch('/service/rest/v1/routing-rules/{name}',
 
 `PUT /v1/routing-rules/{name}`
 
+*Update a single routing rule*
+
 > Body parameter
 
 ```json
@@ -22021,14 +28884,14 @@ fetch('/service/rest/v1/routing-rules/{name}',
 }
 ```
 
-<h3 id="update-a-single-routing-rule-parameters">Parameters</h3>
+<h3 id="updateroutingrule-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|The name of the routing rule to update|
 |body|body|[RoutingRuleXO](#schemaroutingrulexo)|true|A routing rule configuration|
 
-<h3 id="update-a-single-routing-rule-responses">Responses</h3>
+<h3 id="updateroutingrule-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -22041,11 +28904,17 @@ fetch('/service/rest/v1/routing-rules/{name}',
 This operation does not require authentication
 </aside>
 
-## Delete a single routing rule
+## deleteRoutingRule
 
 <a id="opIddeleteRoutingRule"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/routing-rules/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/routing-rules/{name}");
@@ -22090,13 +28959,15 @@ fetch('/service/rest/v1/routing-rules/{name}',
 
 `DELETE /v1/routing-rules/{name}`
 
-<h3 id="delete-a-single-routing-rule-parameters">Parameters</h3>
+*Delete a single routing rule*
+
+<h3 id="deleteroutingrule-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|The name of the routing rule to delete|
 
-<h3 id="delete-a-single-routing-rule-responses">Responses</h3>
+<h3 id="deleteroutingrule-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -22108,11 +28979,18 @@ fetch('/service/rest/v1/routing-rules/{name}',
 This operation does not require authentication
 </aside>
 
-## List routing rules
+## getRoutingRules
 
 <a id="opIdgetRoutingRules"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/routing-rules \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/routing-rules");
@@ -22165,6 +29043,8 @@ fetch('/service/rest/v1/routing-rules',
 
 `GET /v1/routing-rules`
 
+*List routing rules*
+
 > Example responses
 
 > 200 Response
@@ -22182,14 +29062,14 @@ fetch('/service/rest/v1/routing-rules',
 ]
 ```
 
-<h3 id="list-routing-rules-responses">Responses</h3>
+<h3 id="getroutingrules-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|Insufficient permissions to read routing rules|None|
 
-<h3 id="list-routing-rules-responseschema">Response Schema</h3>
+<h3 id="getroutingrules-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -22212,11 +29092,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a single routing rule
+## createRoutingRule
 
 <a id="opIdcreateRoutingRule"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/routing-rules \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/routing-rules");
@@ -22276,6 +29163,8 @@ fetch('/service/rest/v1/routing-rules',
 
 `POST /v1/routing-rules`
 
+*Create a single routing rule*
+
 > Body parameter
 
 ```json
@@ -22289,13 +29178,13 @@ fetch('/service/rest/v1/routing-rules',
 }
 ```
 
-<h3 id="create-a-single-routing-rule-parameters">Parameters</h3>
+<h3 id="createroutingrule-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[RoutingRuleXO](#schemaroutingrulexo)|true|A routing rule configuration|
 
-<h3 id="create-a-single-routing-rule-responses">Responses</h3>
+<h3 id="createroutingrule-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -22309,11 +29198,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-formats">Formats</h1>
 
-## Get upload field requirements for the desired format
+## get_1
 
 <a id="opIdget_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/formats/{format}/upload-specs \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/formats/{format}/upload-specs");
@@ -22366,7 +29262,9 @@ fetch('/service/rest/v1/formats/{format}/upload-specs',
 
 `GET /v1/formats/{format}/upload-specs`
 
-<h3 id="get-upload-field-requirements-for-the-desired-format-parameters">Parameters</h3>
+*Get upload field requirements for the desired format*
+
+<h3 id="get_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22401,7 +29299,7 @@ fetch('/service/rest/v1/formats/{format}/upload-specs',
 }
 ```
 
-<h3 id="get-upload-field-requirements-for-the-desired-format-responses">Responses</h3>
+<h3 id="get_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -22411,11 +29309,18 @@ fetch('/service/rest/v1/formats/{format}/upload-specs',
 This operation does not require authentication
 </aside>
 
-## Get upload field requirements for each supported format
+## get_2
 
 <a id="opIdget_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/formats/upload-specs \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/formats/upload-specs");
@@ -22468,6 +29373,8 @@ fetch('/service/rest/v1/formats/upload-specs',
 
 `GET /v1/formats/upload-specs`
 
+*Get upload field requirements for each supported format*
+
 > Example responses
 
 > 200 Response
@@ -22499,13 +29406,13 @@ fetch('/service/rest/v1/formats/upload-specs',
 ]
 ```
 
-<h3 id="get-upload-field-requirements-for-each-supported-format-responses">Responses</h3>
+<h3 id="get_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 
-<h3 id="get-upload-field-requirements-for-each-supported-format-responseschema">Response Schema</h3>
+<h3 id="get_2-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -22528,11 +29435,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-search">Search</h1>
 
-## Search assets
+## searchAssets
 
 <a id="opIdsearchAssets"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/search/assets \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/search/assets");
@@ -22585,9 +29499,11 @@ fetch('/service/rest/v1/search/assets',
 
 `GET /v1/search/assets`
 
+*Search assets*
+
 All searches require at least one criterion of at least three characters before a trailing wildcard (\*) and cannot start with a wildcard (\*). Enclose your criteria in quotation marks to search an exact phrase; otherwise, search criteria will be split by any commas, spaces, dashes, or forward slashes.
 
-<h3 id="search-assets-parameters">Parameters</h3>
+<h3 id="searchassets-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22695,7 +29611,7 @@ All searches require at least one criterion of at least three characters before 
 }
 ```
 
-<h3 id="search-assets-responses">Responses</h3>
+<h3 id="searchassets-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -22705,11 +29621,18 @@ All searches require at least one criterion of at least three characters before 
 This operation does not require authentication
 </aside>
 
-## Search components
+## search
 
 <a id="opIdsearch"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/search \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/search");
@@ -22762,9 +29685,11 @@ fetch('/service/rest/v1/search',
 
 `GET /v1/search`
 
+*Search components*
+
 All searches require at least one criterion of at least three characters before a trailing wildcard (\*) and cannot start with a wildcard (\*). Enclose your criteria in quotation marks to search an exact phrase; otherwise, search criteria will be split by any commas, spaces, dashes, or forward slashes.
 
-<h3 id="search-components-parameters">Parameters</h3>
+<h3 id="search-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22882,7 +29807,7 @@ All searches require at least one criterion of at least three characters before 
 }
 ```
 
-<h3 id="search-components-responses">Responses</h3>
+<h3 id="search-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -22892,11 +29817,17 @@ All searches require at least one criterion of at least three characters before 
 This operation does not require authentication
 </aside>
 
-## Search and download asset
+## searchAndDownloadAssets
 
 <a id="opIdsearchAndDownloadAssets"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/search/assets/download
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/search/assets/download");
@@ -22941,9 +29872,11 @@ fetch('/service/rest/v1/search/assets/download',
 
 `GET /v1/search/assets/download`
 
+*Search and download asset*
+
 Returns a 302 Found with location header field set to download URL. Unless a sort parameter is supplied, the search must return a single asset to receive download URL.
 
-<h3 id="search-and-download-asset-parameters">Parameters</h3>
+<h3 id="searchanddownloadassets-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -23019,7 +29952,7 @@ Returns a 302 Found with location header field set to download URL. Unless a sor
 |direction|asc|
 |direction|desc|
 
-<h3 id="search-and-download-asset-responses">Responses</h3>
+<h3 id="searchanddownloadassets-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23032,11 +29965,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-script">Script</h1>
 
-## Read stored script by name
+## read_1
 
 <a id="opIdread_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/script/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/script/{name}");
@@ -23089,7 +30029,9 @@ fetch('/service/rest/v1/script/{name}',
 
 `GET /v1/script/{name}`
 
-<h3 id="read-stored-script-by-name-parameters">Parameters</h3>
+*Read stored script by name*
+
+<h3 id="read_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -23107,7 +30049,7 @@ fetch('/service/rest/v1/script/{name}',
 }
 ```
 
-<h3 id="read-stored-script-by-name-responses">Responses</h3>
+<h3 id="read_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23118,11 +30060,18 @@ fetch('/service/rest/v1/script/{name}',
 This operation does not require authentication
 </aside>
 
-## Update stored script by name
+## edit
 
 <a id="opIdedit"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/script/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/script/{name}");
@@ -23179,6 +30128,8 @@ fetch('/service/rest/v1/script/{name}',
 
 `PUT /v1/script/{name}`
 
+*Update stored script by name*
+
 > Body parameter
 
 ```json
@@ -23189,14 +30140,14 @@ fetch('/service/rest/v1/script/{name}',
 }
 ```
 
-<h3 id="update-stored-script-by-name-parameters">Parameters</h3>
+<h3 id="edit-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|none|
 |body|body|[ScriptXO](#schemascriptxo)|false|none|
 
-<h3 id="update-stored-script-by-name-responses">Responses</h3>
+<h3 id="edit-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23208,11 +30159,17 @@ fetch('/service/rest/v1/script/{name}',
 This operation does not require authentication
 </aside>
 
-## Delete stored script by name
+## delete_1
 
 <a id="opIddelete_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/script/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/script/{name}");
@@ -23257,13 +30214,15 @@ fetch('/service/rest/v1/script/{name}',
 
 `DELETE /v1/script/{name}`
 
-<h3 id="delete-stored-script-by-name-parameters">Parameters</h3>
+*Delete stored script by name*
+
+<h3 id="delete_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|none|
 
-<h3 id="delete-stored-script-by-name-responses">Responses</h3>
+<h3 id="delete_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23274,11 +30233,18 @@ fetch('/service/rest/v1/script/{name}',
 This operation does not require authentication
 </aside>
 
-## List all stored scripts
+## browse
 
 <a id="opIdbrowse"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/script \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/script");
@@ -23331,6 +30297,8 @@ fetch('/service/rest/v1/script',
 
 `GET /v1/script`
 
+*List all stored scripts*
+
 > Example responses
 
 > 200 Response
@@ -23345,13 +30313,13 @@ fetch('/service/rest/v1/script',
 ]
 ```
 
-<h3 id="list-all-stored-scripts-responses">Responses</h3>
+<h3 id="browse-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|successful operation|Inline|
 
-<h3 id="list-all-stored-scripts-responseschema">Response Schema</h3>
+<h3 id="browse-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -23366,11 +30334,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Add a new script
+## add
 
 <a id="opIdadd"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/script \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/script");
@@ -23427,6 +30402,8 @@ fetch('/service/rest/v1/script',
 
 `POST /v1/script`
 
+*Add a new script*
+
 > Body parameter
 
 ```json
@@ -23437,13 +30414,13 @@ fetch('/service/rest/v1/script',
 }
 ```
 
-<h3 id="add-a-new-script-parameters">Parameters</h3>
+<h3 id="add-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[ScriptXO](#schemascriptxo)|false|none|
 
-<h3 id="add-a-new-script-responses">Responses</h3>
+<h3 id="add-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23454,11 +30431,19 @@ fetch('/service/rest/v1/script',
 This operation does not require authentication
 </aside>
 
-## Run stored script by name
+## run_1
 
 <a id="opIdrun_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/script/{name}/run \
+  -H 'Content-Type: text/plain' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/script/{name}/run");
@@ -23513,6 +30498,8 @@ fetch('/service/rest/v1/script/{name}/run',
 
 `POST /v1/script/{name}/run`
 
+*Run stored script by name*
+
 > Body parameter
 
 ```json
@@ -23524,7 +30511,7 @@ string
 
 ```
 
-<h3 id="run-stored-script-by-name-parameters">Parameters</h3>
+<h3 id="run_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -23542,7 +30529,7 @@ string
 }
 ```
 
-<h3 id="run-stored-script-by-name-responses">Responses</h3>
+<h3 id="run_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23556,11 +30543,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-ldap">Security management: LDAP</h1>
 
-## List LDAP servers
+## getLdapServers
 
 <a id="opIdgetLdapServers"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/ldap
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ldap");
@@ -23605,7 +30598,9 @@ fetch('/service/rest/v1/security/ldap',
 
 `GET /v1/security/ldap`
 
-<h3 id="list-ldap-servers-responses">Responses</h3>
+*List LDAP servers*
+
+<h3 id="getldapservers-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23617,11 +30612,18 @@ fetch('/service/rest/v1/security/ldap',
 This operation does not require authentication
 </aside>
 
-## Create LDAP server
+## createLdapServer
 
 <a id="opIdcreateLdapServer"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/ldap \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ldap");
@@ -23705,6 +30707,8 @@ fetch('/service/rest/v1/security/ldap',
 
 `POST /v1/security/ldap`
 
+*Create LDAP server*
+
 > Body parameter
 
 ```json
@@ -23742,13 +30746,13 @@ fetch('/service/rest/v1/security/ldap',
 }
 ```
 
-<h3 id="create-ldap-server-parameters">Parameters</h3>
+<h3 id="createldapserver-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CreateLdapServerXo](#schemacreateldapserverxo)|false|none|
 
-<h3 id="create-ldap-server-responses">Responses</h3>
+<h3 id="createldapserver-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23760,11 +30764,17 @@ fetch('/service/rest/v1/security/ldap',
 This operation does not require authentication
 </aside>
 
-## Get LDAP server
+## getLdapServer
 
 <a id="opIdgetLdapServer"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/ldap/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ldap/{name}");
@@ -23809,13 +30819,15 @@ fetch('/service/rest/v1/security/ldap/{name}',
 
 `GET /v1/security/ldap/{name}`
 
-<h3 id="get-ldap-server-parameters">Parameters</h3>
+*Get LDAP server*
+
+<h3 id="getldapserver-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|Name of the LDAP server to retrieve|
 
-<h3 id="get-ldap-server-responses">Responses</h3>
+<h3 id="getldapserver-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23828,11 +30840,18 @@ fetch('/service/rest/v1/security/ldap/{name}',
 This operation does not require authentication
 </aside>
 
-## Update LDAP server
+## updateLdapServer
 
 <a id="opIdupdateLdapServer"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/ldap/{name} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ldap/{name}");
@@ -23917,6 +30936,8 @@ fetch('/service/rest/v1/security/ldap/{name}',
 
 `PUT /v1/security/ldap/{name}`
 
+*Update LDAP server*
+
 > Body parameter
 
 ```json
@@ -23955,14 +30976,14 @@ fetch('/service/rest/v1/security/ldap/{name}',
 }
 ```
 
-<h3 id="update-ldap-server-parameters">Parameters</h3>
+<h3 id="updateldapserver-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|Name of the LDAP server to update|
 |body|body|[UpdateLdapServerXo](#schemaupdateldapserverxo)|false|Updated values of LDAP server|
 
-<h3 id="update-ldap-server-responses">Responses</h3>
+<h3 id="updateldapserver-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -23975,11 +30996,17 @@ fetch('/service/rest/v1/security/ldap/{name}',
 This operation does not require authentication
 </aside>
 
-## Delete LDAP server
+## deleteLdapServer
 
 <a id="opIddeleteLdapServer"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/ldap/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ldap/{name}");
@@ -24024,13 +31051,15 @@ fetch('/service/rest/v1/security/ldap/{name}',
 
 `DELETE /v1/security/ldap/{name}`
 
-<h3 id="delete-ldap-server-parameters">Parameters</h3>
+*Delete LDAP server*
+
+<h3 id="deleteldapserver-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|Name of the LDAP server to delete|
 
-<h3 id="delete-ldap-server-responses">Responses</h3>
+<h3 id="deleteldapserver-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24043,11 +31072,18 @@ fetch('/service/rest/v1/security/ldap/{name}',
 This operation does not require authentication
 </aside>
 
-## Change LDAP server order
+## changeOrder
 
 <a id="opIdchangeOrder"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/ldap/change-order \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/ldap/change-order");
@@ -24102,6 +31138,8 @@ fetch('/service/rest/v1/security/ldap/change-order',
 
 `POST /v1/security/ldap/change-order`
 
+*Change LDAP server order*
+
 > Body parameter
 
 ```json
@@ -24110,13 +31148,13 @@ fetch('/service/rest/v1/security/ldap/change-order',
 ]
 ```
 
-<h3 id="change-ldap-server-order-parameters">Parameters</h3>
+<h3 id="changeorder-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|array[string]|false|Ordered list of LDAP server names|
 
-<h3 id="change-ldap-server-order-responses">Responses</h3>
+<h3 id="changeorder-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24130,11 +31168,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-tags">Tags</h1>
 
-## Associate components with a tag
+## associate
 
 <a id="opIdassociate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/tags/associate/{tagName}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tags/associate/{tagName}");
@@ -24179,7 +31223,9 @@ fetch('/service/rest/v1/tags/associate/{tagName}',
 
 `POST /v1/tags/associate/{tagName}`
 
-<h3 id="associate-components-with-a-tag-parameters">Parameters</h3>
+*Associate components with a tag*
+
+<h3 id="associate-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -24243,7 +31289,7 @@ fetch('/service/rest/v1/tags/associate/{tagName}',
 |yum.architecture|query|string|false|Yum architecture|
 |yum.name|query|string|false|Yum package name|
 
-<h3 id="associate-components-with-a-tag-responses">Responses</h3>
+<h3 id="associate-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24254,11 +31300,17 @@ fetch('/service/rest/v1/tags/associate/{tagName}',
 This operation does not require authentication
 </aside>
 
-## Disassociate components from a tag
+## disassociate
 
 <a id="opIddisassociate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/tags/associate/{tagName}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tags/associate/{tagName}");
@@ -24303,7 +31355,9 @@ fetch('/service/rest/v1/tags/associate/{tagName}',
 
 `DELETE /v1/tags/associate/{tagName}`
 
-<h3 id="disassociate-components-from-a-tag-parameters">Parameters</h3>
+*Disassociate components from a tag*
+
+<h3 id="disassociate-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -24366,7 +31420,7 @@ fetch('/service/rest/v1/tags/associate/{tagName}',
 |yum.architecture|query|string|false|Yum architecture|
 |yum.name|query|string|false|Yum package name|
 
-<h3 id="disassociate-components-from-a-tag-responses">Responses</h3>
+<h3 id="disassociate-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24377,11 +31431,18 @@ fetch('/service/rest/v1/tags/associate/{tagName}',
 This operation does not require authentication
 </aside>
 
-## List tags
+## getTags
 
 <a id="opIdgetTags"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/tags \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tags");
@@ -24434,7 +31495,9 @@ fetch('/service/rest/v1/tags',
 
 `GET /v1/tags`
 
-<h3 id="list-tags-parameters">Parameters</h3>
+*List tags*
+
+<h3 id="gettags-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -24461,7 +31524,7 @@ fetch('/service/rest/v1/tags',
 }
 ```
 
-<h3 id="list-tags-responses">Responses</h3>
+<h3 id="gettags-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24471,11 +31534,18 @@ fetch('/service/rest/v1/tags',
 This operation does not require authentication
 </aside>
 
-## Create a tag
+## create_1
 
 <a id="opIdcreate_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/tags \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tags");
@@ -24536,6 +31606,8 @@ fetch('/service/rest/v1/tags',
 
 `POST /v1/tags`
 
+*Create a tag*
+
 > Body parameter
 
 ```json
@@ -24550,13 +31622,13 @@ fetch('/service/rest/v1/tags',
 }
 ```
 
-<h3 id="create-a-tag-parameters">Parameters</h3>
+<h3 id="create_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[TagXO](#schematagxo)|false|none|
 
-<h3 id="create-a-tag-responses">Responses</h3>
+<h3 id="create_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24567,11 +31639,18 @@ fetch('/service/rest/v1/tags',
 This operation does not require authentication
 </aside>
 
-## Get a tag
+## get_3
 
 <a id="opIdget_3"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/tags/{name} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tags/{name}");
@@ -24624,7 +31703,9 @@ fetch('/service/rest/v1/tags/{name}',
 
 `GET /v1/tags/{name}`
 
-<h3 id="get-a-tag-parameters">Parameters</h3>
+*Get a tag*
+
+<h3 id="get_3-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -24646,7 +31727,7 @@ fetch('/service/rest/v1/tags/{name}',
 }
 ```
 
-<h3 id="get-a-tag-responses">Responses</h3>
+<h3 id="get_3-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24657,11 +31738,19 @@ fetch('/service/rest/v1/tags/{name}',
 This operation does not require authentication
 </aside>
 
-## Update a tags attributes
+## replace
 
 <a id="opIdreplace"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/tags/{name} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tags/{name}");
@@ -24721,6 +31810,8 @@ fetch('/service/rest/v1/tags/{name}',
 
 `PUT /v1/tags/{name}`
 
+*Update a tags attributes*
+
 > Body parameter
 
 ```json
@@ -24732,7 +31823,7 @@ fetch('/service/rest/v1/tags/{name}',
 }
 ```
 
-<h3 id="update-a-tags-attributes-parameters">Parameters</h3>
+<h3 id="replace-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -24755,7 +31846,7 @@ fetch('/service/rest/v1/tags/{name}',
 }
 ```
 
-<h3 id="update-a-tags-attributes-responses">Responses</h3>
+<h3 id="replace-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24767,11 +31858,17 @@ fetch('/service/rest/v1/tags/{name}',
 This operation does not require authentication
 </aside>
 
-## Delete a tag
+## delete_2
 
 <a id="opIddelete_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/tags/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/tags/{name}");
@@ -24816,13 +31913,15 @@ fetch('/service/rest/v1/tags/{name}',
 
 `DELETE /v1/tags/{name}`
 
-<h3 id="delete-a-tag-parameters">Parameters</h3>
+*Delete a tag*
+
+<h3 id="delete_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|Name of the tag to delete|
 
-<h3 id="delete-a-tag-responses">Responses</h3>
+<h3 id="delete_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24835,11 +31934,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-manage-sonatype-repository-firewall-configuration">Manage Sonatype Repository Firewall configuration</h1>
 
-## Get Sonatype Repository Firewall configuration
+## getConfiguration
 
 <a id="opIdgetConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/iq
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq");
@@ -24884,7 +31989,9 @@ fetch('/service/rest/v1/iq',
 
 `GET /v1/iq`
 
-<h3 id="get-sonatype-repository-firewall-configuration-responses">Responses</h3>
+*Get Sonatype Repository Firewall configuration*
+
+<h3 id="getconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24894,11 +32001,18 @@ fetch('/service/rest/v1/iq',
 This operation does not require authentication
 </aside>
 
-## Update Sonatype Repository Firewall configuration
+## updateConfiguration
 
 <a id="opIdupdateConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/iq \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq");
@@ -24962,6 +32076,8 @@ fetch('/service/rest/v1/iq',
 
 `PUT /v1/iq`
 
+*Update Sonatype Repository Firewall configuration*
+
 > Body parameter
 
 ```json
@@ -24979,13 +32095,13 @@ fetch('/service/rest/v1/iq',
 }
 ```
 
-<h3 id="update-sonatype-repository-firewall-configuration-parameters">Parameters</h3>
+<h3 id="updateconfiguration-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[IqConnectionXo](#schemaiqconnectionxo)|false|none|
 
-<h3 id="update-sonatype-repository-firewall-configuration-responses">Responses</h3>
+<h3 id="updateconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -24995,11 +32111,17 @@ fetch('/service/rest/v1/iq',
 This operation does not require authentication
 </aside>
 
-## Enable Sonatype Repository Firewall
+## enableIq
 
 <a id="opIdenableIq"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/iq/enable
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq/enable");
@@ -25044,7 +32166,9 @@ fetch('/service/rest/v1/iq/enable',
 
 `POST /v1/iq/enable`
 
-<h3 id="enable-sonatype-repository-firewall-responses">Responses</h3>
+*Enable Sonatype Repository Firewall*
+
+<h3 id="enableiq-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25055,11 +32179,17 @@ fetch('/service/rest/v1/iq/enable',
 This operation does not require authentication
 </aside>
 
-## Disable Sonatype Repository Firewall
+## disableIq
 
 <a id="opIddisableIq"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/iq/disable
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq/disable");
@@ -25104,7 +32234,9 @@ fetch('/service/rest/v1/iq/disable',
 
 `POST /v1/iq/disable`
 
-<h3 id="disable-sonatype-repository-firewall-responses">Responses</h3>
+*Disable Sonatype Repository Firewall*
+
+<h3 id="disableiq-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25115,11 +32247,17 @@ fetch('/service/rest/v1/iq/disable',
 This operation does not require authentication
 </aside>
 
-## Verify Sonatype Repository Firewall connection
+## verifyConnection
 
 <a id="opIdverifyConnection"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/iq/verify-connection
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq/verify-connection");
@@ -25164,7 +32302,9 @@ fetch('/service/rest/v1/iq/verify-connection',
 
 `POST /v1/iq/verify-connection`
 
-<h3 id="verify-sonatype-repository-firewall-connection-responses">Responses</h3>
+*Verify Sonatype Repository Firewall connection*
+
+<h3 id="verifyconnection-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25174,11 +32314,18 @@ fetch('/service/rest/v1/iq/verify-connection',
 This operation does not require authentication
 </aside>
 
-## List repositories audit statuses.
+## getAllAuditStatus
 
 <a id="opIdgetAllAuditStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/iq/audit \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq/audit");
@@ -25231,6 +32378,8 @@ fetch('/service/rest/v1/iq/audit',
 
 `GET /v1/iq/audit`
 
+*List repositories audit statuses.*
+
 > Example responses
 
 > 200 Response
@@ -25245,13 +32394,13 @@ fetch('/service/rest/v1/iq/audit',
 ]
 ```
 
-<h3 id="list-repositories-audit-statuses.-responses">Responses</h3>
+<h3 id="getallauditstatus-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successful Operation|Inline|
 
-<h3 id="list-repositories-audit-statuses.-responseschema">Response Schema</h3>
+<h3 id="getallauditstatus-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -25266,11 +32415,18 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Manage audit
+## manageAudit
 
 <a id="opIdmanageAudit"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/iq/audit \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq/audit");
@@ -25327,6 +32483,8 @@ fetch('/service/rest/v1/iq/audit',
 
 `PUT /v1/iq/audit`
 
+*Manage audit*
+
 > Body parameter
 
 ```json
@@ -25337,13 +32495,13 @@ fetch('/service/rest/v1/iq/audit',
 }
 ```
 
-<h3 id="manage-audit-parameters">Parameters</h3>
+<h3 id="manageaudit-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[IqAuditXo](#schemaiqauditxo)|false|none|
 
-<h3 id="manage-audit-responses">Responses</h3>
+<h3 id="manageaudit-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25355,11 +32513,17 @@ fetch('/service/rest/v1/iq/audit',
 This operation does not require authentication
 </aside>
 
-## Get audit status for the repository
+## getAuditStatus
 
 <a id="opIdgetAuditStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/iq/audit/{repositoryName}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/iq/audit/{repositoryName}");
@@ -25404,13 +32568,15 @@ fetch('/service/rest/v1/iq/audit/{repositoryName}',
 
 `GET /v1/iq/audit/{repositoryName}`
 
-<h3 id="get-audit-status-for-the-repository-parameters">Parameters</h3>
+*Get audit status for the repository*
+
+<h3 id="getauditstatus-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |repositoryName|path|string|true|none|
 
-<h3 id="get-audit-status-for-the-repository-responses">Responses</h3>
+<h3 id="getauditstatus-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25423,11 +32589,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-malicious-risk-on-disk">Malicious Risk On Disk</h1>
 
-## Get RHC Enabled registries for malicious risk scanning.
+## getEnabledRegistries
 
 <a id="opIdgetEnabledRegistries"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/malicious-risk/enabledRegistries
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/malicious-risk/enabledRegistries");
@@ -25472,7 +32644,9 @@ fetch('/service/rest/v1/malicious-risk/enabledRegistries',
 
 `GET /v1/malicious-risk/enabledRegistries`
 
-<h3 id="get-rhc-enabled-registries-for-malicious-risk-scanning.-responses">Responses</h3>
+*Get RHC Enabled registries for malicious risk scanning.*
+
+<h3 id="getenabledregistries-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25484,11 +32658,17 @@ fetch('/service/rest/v1/malicious-risk/enabledRegistries',
 This operation does not require authentication
 </aside>
 
-## Get Malicious Risk On Disk Count
+## getMaliciousRiskOnDiskCount
 
 <a id="opIdgetMaliciousRiskOnDiskCount"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/malicious-risk/risk-on-disk
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/malicious-risk/risk-on-disk");
@@ -25533,7 +32713,9 @@ fetch('/service/rest/v1/malicious-risk/risk-on-disk',
 
 `GET /v1/malicious-risk/risk-on-disk`
 
-<h3 id="get-malicious-risk-on-disk-count-responses">Responses</h3>
+*Get Malicious Risk On Disk Count*
+
+<h3 id="getmaliciousriskondiskcount-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25547,11 +32729,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-user-tokens">Security management: user tokens</h1>
 
-## Show if the user token capability is enabled or not
+## serviceStatus
 
 <a id="opIdserviceStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/user-tokens \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/user-tokens");
@@ -25604,6 +32793,8 @@ fetch('/service/rest/v1/security/user-tokens',
 
 `GET /v1/security/user-tokens`
 
+*Show if the user token capability is enabled or not*
+
 > Example responses
 
 > 200 Response
@@ -25617,7 +32808,7 @@ fetch('/service/rest/v1/security/user-tokens',
 }
 ```
 
-<h3 id="show-if-the-user-token-capability-is-enabled-or-not-responses">Responses</h3>
+<h3 id="servicestatus-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25627,11 +32818,19 @@ fetch('/service/rest/v1/security/user-tokens',
 This operation does not require authentication
 </aside>
 
-## Enable/Disable the user token capability
+## setServiceStatus
 
 <a id="opIdsetServiceStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/user-tokens \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/user-tokens");
@@ -25691,6 +32890,8 @@ fetch('/service/rest/v1/security/user-tokens',
 
 `PUT /v1/security/user-tokens`
 
+*Enable/Disable the user token capability*
+
 > Body parameter
 
 ```json
@@ -25702,7 +32903,7 @@ fetch('/service/rest/v1/security/user-tokens',
 }
 ```
 
-<h3 id="enable/disable-the-user-token-capability-parameters">Parameters</h3>
+<h3 id="setservicestatus-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -25721,7 +32922,7 @@ fetch('/service/rest/v1/security/user-tokens',
 }
 ```
 
-<h3 id="enable/disable-the-user-token-capability-responses">Responses</h3>
+<h3 id="setservicestatus-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25731,11 +32932,17 @@ fetch('/service/rest/v1/security/user-tokens',
 This operation does not require authentication
 </aside>
 
-## Invalidate all existing user tokens.
+## resetAllUserTokens
 
 <a id="opIdresetAllUserTokens"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/user-tokens
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/user-tokens");
@@ -25780,7 +32987,9 @@ fetch('/service/rest/v1/security/user-tokens',
 
 `DELETE /v1/security/user-tokens`
 
-<h3 id="invalidate-all-existing-user-tokens.-responses">Responses</h3>
+*Invalidate all existing user tokens.*
+
+<h3 id="resetallusertokens-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25792,11 +33001,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-product-licensing">Product licensing</h1>
 
-## Get the current license status.
+## getLicenseStatus
 
 <a id="opIdgetLicenseStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/system/license \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/system/license");
@@ -25849,6 +33065,8 @@ fetch('/service/rest/v1/system/license',
 
 `GET /v1/system/license`
 
+*Get the current license status.*
+
 > Example responses
 
 > 200 Response
@@ -25867,7 +33085,7 @@ fetch('/service/rest/v1/system/license',
 }
 ```
 
-<h3 id="get-the-current-license-status.-responses">Responses</h3>
+<h3 id="getlicensestatus-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25877,11 +33095,19 @@ fetch('/service/rest/v1/system/license',
 This operation does not require authentication
 </aside>
 
-## Upload a new license file.
+## setLicense
 
 <a id="opIdsetLicense"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/system/license \
+  -H 'Content-Type: application/octet-stream' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/system/license");
@@ -25936,6 +33162,8 @@ fetch('/service/rest/v1/system/license',
 
 `POST /v1/system/license`
 
+*Upload a new license file.*
+
 Server must be restarted to take effect
 
 > Body parameter
@@ -25945,7 +33173,7 @@ Server must be restarted to take effect
 
 ```
 
-<h3 id="upload-a-new-license-file.-parameters">Parameters</h3>
+<h3 id="setlicense-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -25969,7 +33197,7 @@ Server must be restarted to take effect
 }
 ```
 
-<h3 id="upload-a-new-license-file.-responses">Responses</h3>
+<h3 id="setlicense-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -25979,11 +33207,17 @@ Server must be restarted to take effect
 This operation does not require authentication
 </aside>
 
-## Uninstall license if present.
+## removeLicense
 
 <a id="opIdremoveLicense"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/system/license
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/system/license");
@@ -26028,7 +33262,9 @@ fetch('/service/rest/v1/system/license',
 
 `DELETE /v1/system/license`
 
-<h3 id="uninstall-license-if-present.-responses">Responses</h3>
+*Uninstall license if present.*
+
+<h3 id="removelicense-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26040,11 +33276,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-atlassian-crowd">Security: Atlassian Crowd</h1>
 
-## Retrieve Atlassian Crowd settings configured in Nexus Repository Manager
+## readSettings
 
 <a id="opIdreadSettings"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/atlassian-crowd
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/atlassian-crowd");
@@ -26089,7 +33331,9 @@ fetch('/service/rest/v1/security/atlassian-crowd',
 
 `GET /v1/security/atlassian-crowd`
 
-<h3 id="retrieve-atlassian-crowd-settings-configured-in-nexus-repository-manager-responses">Responses</h3>
+*Retrieve Atlassian Crowd settings configured in Nexus Repository Manager*
+
+<h3 id="readsettings-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26101,11 +33345,18 @@ fetch('/service/rest/v1/security/atlassian-crowd',
 This operation does not require authentication
 </aside>
 
-## Update Atlassian Crowd settings configured in Nexus Repository Manager
+## updateSettings
 
 <a id="opIdupdateSettings"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/atlassian-crowd \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/atlassian-crowd");
@@ -26166,6 +33417,8 @@ fetch('/service/rest/v1/security/atlassian-crowd',
 
 `PUT /v1/security/atlassian-crowd`
 
+*Update Atlassian Crowd settings configured in Nexus Repository Manager*
+
 > Body parameter
 
 ```json
@@ -26180,13 +33433,13 @@ fetch('/service/rest/v1/security/atlassian-crowd',
 }
 ```
 
-<h3 id="update-atlassian-crowd-settings-configured-in-nexus-repository-manager-parameters">Parameters</h3>
+<h3 id="updatesettings-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CrowdApiXO](#schemacrowdapixo)|false|none|
 
-<h3 id="update-atlassian-crowd-settings-configured-in-nexus-repository-manager-responses">Responses</h3>
+<h3 id="updatesettings-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26198,11 +33451,18 @@ fetch('/service/rest/v1/security/atlassian-crowd',
 This operation does not require authentication
 </aside>
 
-## Verify connection using supplied Atlassian Crowd settings
+## verifyConnection_1
 
 <a id="opIdverifyConnection_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/atlassian-crowd/verify-connection \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/atlassian-crowd/verify-connection");
@@ -26263,6 +33523,8 @@ fetch('/service/rest/v1/security/atlassian-crowd/verify-connection',
 
 `POST /v1/security/atlassian-crowd/verify-connection`
 
+*Verify connection using supplied Atlassian Crowd settings*
+
 > Body parameter
 
 ```json
@@ -26277,13 +33539,13 @@ fetch('/service/rest/v1/security/atlassian-crowd/verify-connection',
 }
 ```
 
-<h3 id="verify-connection-using-supplied-atlassian-crowd-settings-parameters">Parameters</h3>
+<h3 id="verifyconnection_1-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CrowdApiXO](#schemacrowdapixo)|false|none|
 
-<h3 id="verify-connection-using-supplied-atlassian-crowd-settings-responses">Responses</h3>
+<h3 id="verifyconnection_1-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26296,11 +33558,17 @@ fetch('/service/rest/v1/security/atlassian-crowd/verify-connection',
 This operation does not require authentication
 </aside>
 
-## Clear Atlassian Crowd cache
+## clearCache
 
 <a id="opIdclearCache"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/security/atlassian-crowd/clear-cache
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/atlassian-crowd/clear-cache");
@@ -26345,7 +33613,9 @@ fetch('/service/rest/v1/security/atlassian-crowd/clear-cache',
 
 `POST /v1/security/atlassian-crowd/clear-cache`
 
-<h3 id="clear-atlassian-crowd-cache-responses">Responses</h3>
+*Clear Atlassian Crowd cache*
+
+<h3 id="clearcache-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26359,11 +33629,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-staging">Staging</h1>
 
-## Move components
+## move
 
 <a id="opIdmove"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/staging/move/{destination}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/staging/move/{destination}");
@@ -26408,7 +33684,9 @@ fetch('/service/rest/v1/staging/move/{destination}',
 
 `POST /v1/staging/move/{destination}`
 
-<h3 id="move-components-parameters">Parameters</h3>
+*Move components*
+
+<h3 id="move-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -26471,7 +33749,7 @@ fetch('/service/rest/v1/staging/move/{destination}',
 |yum.architecture|query|string|false|Yum architecture|
 |yum.name|query|string|false|Yum package name|
 
-<h3 id="move-components-responses">Responses</h3>
+<h3 id="move-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26485,11 +33763,17 @@ fetch('/service/rest/v1/staging/move/{destination}',
 This operation does not require authentication
 </aside>
 
-## Delete components
+## delete_3
 
 <a id="opIddelete_3"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/staging/delete
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/staging/delete");
@@ -26534,7 +33818,9 @@ fetch('/service/rest/v1/staging/delete',
 
 `POST /v1/staging/delete`
 
-<h3 id="delete-components-parameters">Parameters</h3>
+*Delete components*
+
+<h3 id="delete_3-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -26596,7 +33882,7 @@ fetch('/service/rest/v1/staging/delete',
 |yum.architecture|query|string|false|Yum architecture|
 |yum.name|query|string|false|Yum package name|
 
-<h3 id="delete-components-responses">Responses</h3>
+<h3 id="delete_3-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26612,11 +33898,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-azure-blob-store">Azure blob store</h1>
 
-## Verify connection using supplied Azure Blob Store settings
+## verifyConnection_2
 
 <a id="opIdverifyConnection_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/azureblobstore/test-connection \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/azureblobstore/test-connection");
@@ -26674,6 +33967,8 @@ fetch('/service/rest/v1/azureblobstore/test-connection',
 
 `POST /v1/azureblobstore/test-connection`
 
+*Verify connection using supplied Azure Blob Store settings*
+
 > Body parameter
 
 ```json
@@ -26685,13 +33980,13 @@ fetch('/service/rest/v1/azureblobstore/test-connection',
 }
 ```
 
-<h3 id="verify-connection-using-supplied-azure-blob-store-settings-parameters">Parameters</h3>
+<h3 id="verifyconnection_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[AzureConnectionXO](#schemaazureconnectionxo)|false|none|
 
-<h3 id="verify-connection-using-supplied-azure-blob-store-settings-responses">Responses</h3>
+<h3 id="verifyconnection_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26706,11 +34001,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-security-management-saml">Security management: SAML</h1>
 
-## Get service provider metadata XML document
+## getMetadata
 
 <a id="opIdgetMetadata"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/saml/metadata
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/saml/metadata");
@@ -26755,7 +34056,9 @@ fetch('/service/rest/v1/security/saml/metadata',
 
 `GET /v1/security/saml/metadata`
 
-<h3 id="get-service-provider-metadata-xml-document-responses">Responses</h3>
+*Get service provider metadata XML document*
+
+<h3 id="getmetadata-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26768,11 +34071,17 @@ fetch('/service/rest/v1/security/saml/metadata',
 This operation does not require authentication
 </aside>
 
-## Get SAML configuration
+## getSamlConfiguration
 
 <a id="opIdgetSamlConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/saml
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/saml");
@@ -26817,7 +34126,9 @@ fetch('/service/rest/v1/security/saml',
 
 `GET /v1/security/saml`
 
-<h3 id="get-saml-configuration-responses">Responses</h3>
+*Get SAML configuration*
+
+<h3 id="getsamlconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26830,11 +34141,18 @@ fetch('/service/rest/v1/security/saml',
 This operation does not require authentication
 </aside>
 
-## Create or update SAML configuration
+## putSamlConfiguration
 
 <a id="opIdputSamlConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/security/saml \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/saml");
@@ -26897,6 +34215,8 @@ fetch('/service/rest/v1/security/saml',
 
 `PUT /v1/security/saml`
 
+*Create or update SAML configuration*
+
 > Body parameter
 
 ```json
@@ -26913,13 +34233,13 @@ fetch('/service/rest/v1/security/saml',
 }
 ```
 
-<h3 id="create-or-update-saml-configuration-parameters">Parameters</h3>
+<h3 id="putsamlconfiguration-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[SamlConfigurationXO](#schemasamlconfigurationxo)|false|none|
 
-<h3 id="create-or-update-saml-configuration-responses">Responses</h3>
+<h3 id="putsamlconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26933,11 +34253,17 @@ fetch('/service/rest/v1/security/saml',
 This operation does not require authentication
 </aside>
 
-## Delete SAML configuration
+## deleteSamlConfiguration
 
 <a id="opIddeleteSamlConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/security/saml
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/saml");
@@ -26982,7 +34308,9 @@ fetch('/service/rest/v1/security/saml',
 
 `DELETE /v1/security/saml`
 
-<h3 id="delete-saml-configuration-responses">Responses</h3>
+*Delete SAML configuration*
+
+<h3 id="deletesamlconfiguration-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -26994,11 +34322,17 @@ fetch('/service/rest/v1/security/saml',
 This operation does not require authentication
 </aside>
 
-## Get service provider signing certificate in PEM format
+## getPublicCertificateInPemFormat
 
 <a id="opIdgetPublicCertificateInPemFormat"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/security/saml/pem
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/security/saml/pem");
@@ -27043,7 +34377,9 @@ fetch('/service/rest/v1/security/saml/pem',
 
 `GET /v1/security/saml/pem`
 
-<h3 id="get-service-provider-signing-certificate-in-pem-format-responses">Responses</h3>
+*Get service provider signing certificate in PEM format*
+
+<h3 id="getpubliccertificateinpemformat-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27058,11 +34394,17 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-cleanup-policies">Cleanup policies</h1>
 
-## Get a policy by name
+## getCleanupPolicyByName
 
 <a id="opIdgetCleanupPolicyByName"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/cleanup-policies/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/cleanup-policies/{name}");
@@ -27107,13 +34449,15 @@ fetch('/service/rest/v1/cleanup-policies/{name}',
 
 `GET /v1/cleanup-policies/{name}`
 
-<h3 id="get-a-policy-by-name-parameters">Parameters</h3>
+*Get a policy by name*
+
+<h3 id="getcleanuppolicybyname-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|none|
 
-<h3 id="get-a-policy-by-name-responses">Responses</h3>
+<h3 id="getcleanuppolicybyname-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27123,11 +34467,17 @@ fetch('/service/rest/v1/cleanup-policies/{name}',
 This operation does not require authentication
 </aside>
 
-## Delete cleanup policy
+## deletePolicyByName
 
 <a id="opIddeletePolicyByName"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/cleanup-policies/{name}
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/cleanup-policies/{name}");
@@ -27172,13 +34522,15 @@ fetch('/service/rest/v1/cleanup-policies/{name}',
 
 `DELETE /v1/cleanup-policies/{name}`
 
-<h3 id="delete-cleanup-policy-parameters">Parameters</h3>
+*Delete cleanup policy*
+
+<h3 id="deletepolicybyname-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |name|path|string|true|none|
 
-<h3 id="delete-cleanup-policy-responses">Responses</h3>
+<h3 id="deletepolicybyname-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27189,11 +34541,17 @@ fetch('/service/rest/v1/cleanup-policies/{name}',
 This operation does not require authentication
 </aside>
 
-## Get a list of existing policies
+## getAll
 
 <a id="opIdgetAll"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/cleanup-policies
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/cleanup-policies");
@@ -27238,7 +34596,9 @@ fetch('/service/rest/v1/cleanup-policies',
 
 `GET /v1/cleanup-policies`
 
-<h3 id="get-a-list-of-existing-policies-responses">Responses</h3>
+*Get a list of existing policies*
+
+<h3 id="getall-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27248,11 +34608,18 @@ fetch('/service/rest/v1/cleanup-policies',
 This operation does not require authentication
 </aside>
 
-## Create a new policy
+## create_2
 
 <a id="opIdcreate_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /service/rest/v1/cleanup-policies \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/cleanup-policies");
@@ -27314,6 +34681,8 @@ fetch('/service/rest/v1/cleanup-policies',
 
 `POST /v1/cleanup-policies`
 
+*Create a new policy*
+
 > Body parameter
 
 ```json
@@ -27329,13 +34698,13 @@ fetch('/service/rest/v1/cleanup-policies',
 }
 ```
 
-<h3 id="create-a-new-policy-parameters">Parameters</h3>
+<h3 id="create_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CleanupPolicyResourceXO](#schemacleanuppolicyresourcexo)|false|none|
 
-<h3 id="create-a-new-policy-responses">Responses</h3>
+<h3 id="create_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27347,11 +34716,18 @@ fetch('/service/rest/v1/cleanup-policies',
 This operation does not require authentication
 </aside>
 
-## Update existing policy
+## update_2
 
 <a id="opIdupdate_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/cleanup-policies/{policyName} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/cleanup-policies/{policyName}");
@@ -27413,6 +34789,8 @@ fetch('/service/rest/v1/cleanup-policies/{policyName}',
 
 `PUT /v1/cleanup-policies/{policyName}`
 
+*Update existing policy*
+
 > Body parameter
 
 ```json
@@ -27428,14 +34806,14 @@ fetch('/service/rest/v1/cleanup-policies/{policyName}',
 }
 ```
 
-<h3 id="update-existing-policy-parameters">Parameters</h3>
+<h3 id="update_2-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |policyName|path|string|true|none|
 |body|body|[CleanupPolicyResourceXO](#schemacleanuppolicyresourcexo)|false|none|
 
-<h3 id="update-existing-policy-responses">Responses</h3>
+<h3 id="update_2-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27449,11 +34827,18 @@ This operation does not require authentication
 
 <h1 id="nexus-repository-manager-rest-api-manage-sonatype-http-system-settings">Manage Sonatype HTTP System Settings</h1>
 
-## Get HTTP system settings
+## getHttpSettings
 
 <a id="opIdgetHttpSettings"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /service/rest/v1/http \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/http");
@@ -27506,6 +34891,8 @@ fetch('/service/rest/v1/http',
 
 `GET /v1/http`
 
+*Get HTTP system settings*
+
 > Example responses
 
 > 200 Response
@@ -27545,7 +34932,7 @@ fetch('/service/rest/v1/http',
 }
 ```
 
-<h3 id="get-http-system-settings-responses">Responses</h3>
+<h3 id="gethttpsettings-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27555,11 +34942,18 @@ fetch('/service/rest/v1/http',
 This operation does not require authentication
 </aside>
 
-## Update HTTP system settings
+## updateHttpSettings
 
 <a id="opIdupdateHttpSettings"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /service/rest/v1/http \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/http");
@@ -27643,6 +35037,8 @@ fetch('/service/rest/v1/http',
 
 `PUT /v1/http`
 
+*Update HTTP system settings*
+
 > Body parameter
 
 ```json
@@ -27680,13 +35076,13 @@ fetch('/service/rest/v1/http',
 }
 ```
 
-<h3 id="update-http-system-settings-parameters">Parameters</h3>
+<h3 id="updatehttpsettings-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[HttpSettingsXo](#schemahttpsettingsxo)|false|none|
 
-<h3 id="update-http-system-settings-responses">Responses</h3>
+<h3 id="updatehttpsettings-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -27696,11 +35092,17 @@ fetch('/service/rest/v1/http',
 This operation does not require authentication
 </aside>
 
-## Reset HTTP System Settings
+## resetHttpSettings
 
 <a id="opIdresetHttpSettings"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /service/rest/v1/http
+
+```
 
 ```java
 URL obj = new URL("/service/rest/v1/http");
@@ -27745,7 +35147,9 @@ fetch('/service/rest/v1/http',
 
 `DELETE /v1/http`
 
-<h3 id="reset-http-system-settings-responses">Responses</h3>
+*Reset HTTP System Settings*
+
+<h3 id="resethttpsettings-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|

@@ -1,10 +1,12 @@
 ---
 title: Sonatype Lifecycle Public REST API v1.177.0-01
 language_tabs:
+  - shell: cURL
   - java: Java
   - python: Python
   - javascript: JavaScript
 language_clients:
+  - shell: ""
   - java: ""
   - python: ""
   - javascript: ""
@@ -33,6 +35,12 @@ Use the Advanced Search REST API to perform searches on Lifecycle application sc
 <a id="opIdcreateSearchIndexAsync"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/search/advanced/index
+
+```
 
 ```java
 URL obj = new URL("/api/v2/search/advanced/index");
@@ -96,6 +104,12 @@ This operation does not require authentication
 <a id="opIdgetExportResults"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/search/advanced/export/csv?query=string
+
+```
 
 ```java
 URL obj = new URL("/api/v2/search/advanced/export/csv?query=string");
@@ -174,6 +188,13 @@ This operation does not require authentication
 <a id="opIdsearchIndex"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/search/advanced \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/search/advanced");
@@ -337,6 +358,14 @@ Use this REST API to retrieve a component's security vulnerability data, license
 <a id="opIdgetComponentDetails"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/components/details \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/components/details");
@@ -586,6 +615,12 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/components/{componentHash}/labels/{labelName}/{ownerType}s/{internalOwnerId}
+
+```
+
 ```java
 URL obj = new URL("/api/v2/components/{componentHash}/labels/{labelName}/{ownerType}s/{internalOwnerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -667,6 +702,12 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/components/{componentHash}/labels/{labelName}/{ownerType}s/{internalOwnerId}
+
+```
+
 ```java
 URL obj = new URL("/api/v2/components/{componentHash}/labels/{labelName}/{ownerType}s/{internalOwnerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -747,6 +788,13 @@ This operation does not require authentication
 <a id="opIdgetSuggestedRemediationForComponent"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/components/remediation/{ownerType}/{ownerId} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/components/remediation/{ownerType}/{ownerId}");
@@ -873,6 +921,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/components/versions \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/components/versions");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -986,6 +1042,13 @@ Use the CycloneDX REST API to generate CycloneDX SBOMs in XML or JSON formats, c
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/cycloneDx/{cdxVersion}/{applicationId}/reports/{reportId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/cycloneDx/{cdxVersion}/{applicationId}/reports/{reportId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -1066,6 +1129,13 @@ This operation does not require authentication
 <a id="opIdgetLatest"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/cycloneDx/{cdxVersion}/{applicationId}/stages/{stageId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/cycloneDx/{cdxVersion}/{applicationId}/stages/{stageId}");
@@ -1151,6 +1221,13 @@ Set policies for automatic purging of obsolete application and Success Metrics r
 <a id="opIdgetDataRetentionPolicies"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/dataRetentionPolicies/organizations/{organizationId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/dataRetentionPolicies/organizations/{organizationId}");
@@ -1256,6 +1333,13 @@ This operation does not require authentication
 <a id="opIdsetDataRetentionPolicies"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/dataRetentionPolicies/organizations/{organizationId} \
+  -H 'Content-Type: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/dataRetentionPolicies/organizations/{organizationId}");
@@ -1390,6 +1474,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/dataRetentionPolicies/organizations/{organizationId}/parent \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/dataRetentionPolicies/organizations/{organizationId}/parent");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -1500,6 +1591,14 @@ Use this REST API to perform an application policy evaluation. Policy evaluation
 <a id="opIdevaluateComponents"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/evaluation/applications/{applicationId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/evaluation/applications/{applicationId}");
@@ -1636,6 +1735,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/evaluation/applications/{applicationId}/sourceControlEvaluation \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/evaluation/applications/{applicationId}/sourceControlEvaluation");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -1744,6 +1851,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/evaluation/applications/{applicationId}/status/{statusId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/evaluation/applications/{applicationId}/status/{statusId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -1836,6 +1950,13 @@ This operation does not require authentication
 <a id="opIdgetComponentEvaluation"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/evaluation/applications/{applicationId}/results/{resultId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/evaluation/applications/{applicationId}/results/{resultId}");
@@ -2043,6 +2164,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/evaluation/applications/{applicationId}/promoteScan \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/evaluation/applications/{applicationId}/promoteScan");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -2149,6 +2278,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/applicationCategories/organization/{organizationId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applicationCategories/organization/{organizationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -2250,6 +2386,14 @@ This operation does not require authentication
 <a id="opIdupdateTag"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/applicationCategories/organization/{organizationId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applicationCategories/organization/{organizationId}");
@@ -2359,6 +2503,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/applicationCategories/organization/{organizationId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applicationCategories/organization/{organizationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -2467,6 +2619,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/applicationCategories/organization/{organizationId}/{tagId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applicationCategories/organization/{organizationId}/{tagId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -2544,6 +2703,13 @@ This operation does not require authentication
 <a id="opIdgetApplicableTags"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applicationCategories/organization/{organizationId}/applicable \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applicationCategories/organization/{organizationId}/applicable");
@@ -2642,6 +2808,13 @@ This operation does not require authentication
 <a id="opIdgetApplicableTagsByApplicationPublicId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applicationCategories/application/{applicationPublicId}/applicable \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applicationCategories/application/{applicationPublicId}/applicable");
@@ -2745,6 +2918,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/applicationCategories/application/{applicationPublicId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applicationCategories/application/{applicationPublicId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -2842,6 +3022,13 @@ This operation does not require authentication
 <a id="opIdgetAppliedPolicyTags"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applicationCategories/organization/{organizationId}/policy \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applicationCategories/organization/{organizationId}/policy");
@@ -2941,6 +3128,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/applicationCategories/organization/{organizationId}/applied \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applicationCategories/organization/{organizationId}/applied");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -3036,6 +3230,13 @@ This operation does not require authentication
 <a id="opIdgetTagsUsedByApplications"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applicationCategories/application \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applicationCategories/application");
@@ -3135,6 +3336,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applications");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -3212,6 +3420,14 @@ This operation does not require authentication
 <a id="opIdaddApplication"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/applications \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applications");
@@ -3341,6 +3557,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/applications/{sourceApplicationId}/clone \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applications/{sourceApplicationId}/clone");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -3437,6 +3660,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications/{applicationId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applications/{applicationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -3530,6 +3760,14 @@ This operation does not require authentication
 <a id="opIdupdateApplication"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/applications/{applicationId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applications/{applicationId}");
@@ -3660,6 +3898,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/applications/{applicationId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applications/{applicationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -3736,6 +3981,13 @@ This operation does not require authentication
 <a id="opIdgetApplicationsByOrganizationId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications/organization/{organizationId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applications/organization/{organizationId}");
@@ -3835,6 +4087,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/applications/{applicationId}/move/organization/{organizationId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applications/{applicationId}/move/organization/{organizationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -3924,6 +4183,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications/{applicationPublicId}/reports/{scanId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applications/{applicationPublicId}/reports/{scanId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -4001,6 +4267,13 @@ This operation does not require authentication
 <a id="opIdgetDependencyTree"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications/{applicationPublicId}/reports/{scanId}/dependencyTree \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applications/{applicationPublicId}/reports/{scanId}/dependencyTree");
@@ -4098,6 +4371,13 @@ This operation does not require authentication
 <a id="opIdgetPolicyViolationDiff"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications/{applicationPublicId}/reports/policyViolations/diff \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applications/{applicationPublicId}/reports/policyViolations/diff");
@@ -4326,6 +4606,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications/{applicationPublicId}/reports/{scanId}/policy \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/applications/{applicationPublicId}/reports/{scanId}/policy");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -4482,6 +4769,13 @@ This operation does not require authentication
 <a id="opIdgetRawData"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/applications/{applicationPublicId}/reports/{scanId}/raw \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/applications/{applicationPublicId}/reports/{scanId}/raw");
@@ -4679,6 +4973,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/auditLogs \
+  -H 'Accept: text/plain'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/auditLogs");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -4758,6 +5059,13 @@ This operation does not require authentication
 <a id="opIdget"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/claim/components/{hash} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/claim/components/{hash}");
@@ -4852,6 +5160,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/claim/components/{hash} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/claim/components/{hash}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -4928,6 +5243,13 @@ This operation does not require authentication
 <a id="opIdgetAll"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/claim/components \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/claim/components");
@@ -5019,6 +5341,14 @@ This operation does not require authentication
 <a id="opIdset"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/claim/components \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/claim/components");
@@ -5146,6 +5476,13 @@ This operation does not require authentication
 <a id="opIdgetCompositeSourceControlByOwner"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/compositeSourceControl/{ownerType}/{internalOwnerId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/compositeSourceControl/{ownerType}/{internalOwnerId}");
@@ -5301,6 +5638,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/compositeSourceControlConfigValidator/application/{applicationId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/compositeSourceControlConfigValidator/application/{applicationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -5401,6 +5745,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/config/features/{feature} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/features/{feature}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -5478,6 +5829,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/features/{feature} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/features/{feature}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -5554,6 +5912,13 @@ This operation does not require authentication
 <a id="opIdgetConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/config \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config");
@@ -5647,6 +6012,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -5739,6 +6112,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -5817,6 +6197,13 @@ This operation does not require authentication
 <a id="opIdgetOwnerArtifactoryConnection"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}");
@@ -5936,6 +6323,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -6039,6 +6434,14 @@ This operation does not require authentication
 <a id="opIdaddArtifactoryConnection"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}");
@@ -6166,6 +6569,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -6267,6 +6677,14 @@ This operation does not require authentication
 <a id="opIdupdateArtifactoryConnection"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}");
@@ -6395,6 +6813,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -6484,6 +6909,14 @@ This operation does not require authentication
 <a id="opIdtestArtifactoryConnection"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/test \
+  -H 'Content-Type: */*' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/test");
@@ -6594,6 +7027,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}/test \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/artifactoryConnection/{ownerType}/{internalOwnerId}/{artifactoryConnectionId}/test");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -6693,6 +7133,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/crowd \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/crowd");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -6773,6 +7220,14 @@ This operation does not require authentication
 <a id="opIdinsertOrUpdateCrowdConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/crowd \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/crowd");
@@ -6871,6 +7326,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/crowd \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/crowd");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -6941,6 +7403,14 @@ This operation does not require authentication
 <a id="opIdtestCrowdConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/config/crowd/test \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/crowd/test");
@@ -7048,6 +7518,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/jira \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/jira");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -7132,6 +7609,14 @@ This operation does not require authentication
 <a id="opIdsetConfiguration_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/jira \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/jira");
@@ -7218,6 +7703,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/jira \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/jira");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -7290,6 +7782,13 @@ This operation does not require authentication
 <a id="opIdgetConfiguration_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/mail \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/mail");
@@ -7376,6 +7875,14 @@ This operation does not require authentication
 <a id="opIdsetConfiguration_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/mail \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/mail");
@@ -7484,6 +7991,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/mail \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/mail");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -7554,6 +8068,14 @@ This operation does not require authentication
 <a id="opIdtestConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/config/mail/test/{recipientEmail} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/mail/test/{recipientEmail}");
@@ -7665,6 +8187,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/httpProxyServer \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/httpProxyServer");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -7750,6 +8279,14 @@ This operation does not require authentication
 <a id="opIdsetConfiguration_3"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/httpProxyServer \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/httpProxyServer");
@@ -7858,6 +8395,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/httpProxyServer \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/httpProxyServer");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -7930,6 +8474,13 @@ This operation does not require authentication
 <a id="opIdgetConfiguration_4"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/reverseProxyAuthentication \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/reverseProxyAuthentication");
@@ -8010,6 +8561,14 @@ This operation does not require authentication
 <a id="opIdsetConfiguration_4"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/reverseProxyAuthentication \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/reverseProxyAuthentication");
@@ -8106,6 +8665,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/reverseProxyAuthentication \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/reverseProxyAuthentication");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -8178,6 +8744,13 @@ This operation does not require authentication
 <a id="opIdgetSamlConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/saml \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/saml");
@@ -8264,6 +8837,14 @@ This operation does not require authentication
 <a id="opIdinsertOrUpdateSamlConfiguration"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/saml \
+  -H 'Content-Type: multipart/form-data' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/saml");
@@ -8385,6 +8966,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/saml \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/saml");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -8455,6 +9043,13 @@ This operation does not require authentication
 <a id="opIdgetMetadata"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/saml/metadata \
+  -H 'Accept: application/xml'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/saml/metadata");
@@ -8528,6 +9123,13 @@ This operation does not require authentication
 <a id="opIdgetConfiguration_5"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/config/sourceControl \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/config/sourceControl");
@@ -8617,6 +9219,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X PUT /api/v2/config/sourceControl \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/sourceControl");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -8702,6 +9312,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/config/sourceControl \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/config/sourceControl");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -8774,6 +9391,13 @@ This operation does not require authentication
 <a id="opIdgetOpenAPI"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/endpoints/{apiType} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/endpoints/{apiType}");
@@ -8864,6 +9488,13 @@ This operation does not require authentication
 <a id="opIdgetFirewallMetrics"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/metrics/embedded \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/metrics/embedded");
@@ -8959,6 +9590,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/repositoryManagers \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/repositoryManagers");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -9043,6 +9681,14 @@ This operation does not require authentication
 <a id="opIdaddRepositoryManager"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/firewall/repositoryManagers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/repositoryManagers");
@@ -9151,6 +9797,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/repositories/configuration/{repositoryManagerId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/repositories/configuration/{repositoryManagerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -9245,6 +9898,14 @@ This operation does not require authentication
 <a id="opIdconfigureRepositories"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/firewall/repositories/configuration/{repositoryManagerId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/repositories/configuration/{repositoryManagerId}");
@@ -9358,6 +10019,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/repositoryManagers/{repositoryManagerId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/repositoryManagers/{repositoryManagerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -9445,6 +10113,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/firewall/repositoryManagers/{repositoryManagerId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/repositoryManagers/{repositoryManagerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -9521,6 +10196,14 @@ This operation does not require authentication
 <a id="opIdevaluateComponents_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/firewall/components/{repositoryManagerId}/{repositoryId}/evaluate \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/components/{repositoryManagerId}/{repositoryId}/evaluate");
@@ -9671,6 +10354,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/releaseQuarantine/configuration \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/releaseQuarantine/configuration");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -9762,6 +10452,14 @@ This operation does not require authentication
 <a id="opIdsetFirewallAutoUnquarantineConfig"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/firewall/releaseQuarantine/configuration \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/releaseQuarantine/configuration");
@@ -9881,6 +10579,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/releaseQuarantine/summary \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/releaseQuarantine/summary");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -9958,6 +10663,13 @@ This operation does not require authentication
 <a id="opIdgetQuarantineList"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/components/quarantined \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/components/quarantined");
@@ -10041,6 +10753,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/quarantine/summary \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/quarantine/summary");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -10122,6 +10841,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -10192,6 +10918,13 @@ This operation does not require authentication
 <a id="opIdgetRepositoryContainer"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/repositoryContainer \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/repositoryContainer");
@@ -10270,6 +11003,13 @@ This operation does not require authentication
 <a id="opIdgetUnquarantineList"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/firewall/components/autoReleasedFromQuarantine \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/firewall/components/autoReleasedFromQuarantine");
@@ -10353,6 +11093,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X PUT /api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess/{enabled} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/firewall/quarantinedComponentView/configuration/anonymousAccess/{enabled}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -10431,6 +11178,13 @@ This operation does not require authentication
 <a id="opIdgetLabels"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/labels/{ownerType}/{ownerId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/labels/{ownerType}/{ownerId}");
@@ -10548,6 +11302,14 @@ This operation does not require authentication
 <a id="opIdupdateLabel"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/labels/{ownerType}/{ownerId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/labels/{ownerType}/{ownerId}");
@@ -10672,6 +11434,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/labels/{ownerType}/{ownerId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/labels/{ownerType}/{ownerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -10795,6 +11565,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/labels/{ownerType}/{ownerId}/{labelId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/labels/{ownerType}/{ownerId}/{labelId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -10884,6 +11661,13 @@ This operation does not require authentication
 <a id="opIdgetApplicableContexts"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/labels/{ownerType}/{ownerId}/applicable/context/{labelId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/labels/{ownerType}/{ownerId}/applicable/context/{labelId}");
@@ -10990,6 +11774,13 @@ This operation does not require authentication
 <a id="opIdgetApplicableLabels"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/labels/{ownerType}/{ownerId}/applicable \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/labels/{ownerType}/{ownerId}/applicable");
@@ -11104,6 +11895,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/licenseLegalMetadata/report-template/{id} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/report-template/{id}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -11197,6 +11995,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/licenseLegalMetadata/report-template/{id} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/report-template/{id}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -11273,6 +12078,13 @@ This operation does not require authentication
 <a id="opIdgetAllAttributionReportTemplates"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/licenseLegalMetadata/report-template \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/report-template");
@@ -11381,6 +12193,14 @@ This operation does not require authentication
 <a id="opIdsaveAttributionReportTemplate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/licenseLegalMetadata/report-template \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/report-template");
@@ -11507,6 +12327,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report \
+  -H 'Accept: text/html'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -11588,6 +12415,14 @@ This operation does not require authentication
 <a id="opIdgetLicenseLegalCustomApplicationHTMLReport"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report \
+  -H 'Content-Type: */*' \
+  -H 'Accept: text/html'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report");
@@ -12324,6 +13159,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/licenseLegalMetadata/application/{applicationId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/application/{applicationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -12549,6 +13391,13 @@ This operation does not require authentication
 <a id="opIdgetLicenseLegalApplicationReport_1"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}");
@@ -12776,6 +13625,13 @@ This operation does not require authentication
 <a id="opIdgetLicenseLegalComponentReport"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/licenseLegalMetadata/{ownerType}/{ownerId}/component \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/{ownerType}/{ownerId}/component");
@@ -13018,6 +13874,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report/templateId/{templateId} \
+  -H 'Accept: text/html'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/application/{applicationId}/stage/{stageId}/report/templateId/{templateId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -13100,6 +13963,14 @@ This operation does not require authentication
 <a id="opIdgetLicenseLegalCustomMultiApplicationHTMLReport"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/licenseLegalMetadata/customMultiApplication/report \
+  -H 'Content-Type: multipart/form-data' \
+  -H 'Accept: text/html'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/customMultiApplication/report");
@@ -14285,6 +15156,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/licenseLegalMetadata/multiApplication/report/templateId/{templateId} \
+  -H 'Accept: text/html'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/multiApplication/report/templateId/{templateId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -14366,6 +15244,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/licenseLegalMetadata/multiApplication/report \
+  -H 'Accept: text/html'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/multiApplication/report");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -14440,6 +15325,13 @@ This operation does not require authentication
 <a id="opIdgetLicenseLegalMultiApplicationReportFromActiveUserFilter"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/licenseLegalMetadata/multiApplication/activeUserFilter/report/templateId/{templateId} \
+  -H 'Accept: text/html'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/licenseLegalMetadata/multiApplication/activeUserFilter/report/templateId/{templateId}");
@@ -14523,6 +15415,13 @@ This operation does not require authentication
 <a id="opIdgetOrganizations"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/organizations \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/organizations");
@@ -14620,6 +15519,14 @@ This operation does not require authentication
 <a id="opIdaddOrganization"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/organizations \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/organizations");
@@ -14746,6 +15653,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/organizations/{organizationId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/organizations/{organizationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -14839,6 +15753,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/organizations/{organizationId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/organizations/{organizationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -14915,6 +15836,13 @@ This operation does not require authentication
 <a id="opIdmoveOrganization"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/organizations/{organizationId}/move/destination/{destinationId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/organizations/{organizationId}/move/destination/{destinationId}");
@@ -14996,6 +15924,13 @@ This operation does not require authentication
 <a id="opIdgetPolicies"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/policies \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policies");
@@ -15084,6 +16019,13 @@ This operation does not require authentication
 <a id="opIdgetApplicableWaivers"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyViolations/{violationId}/applicableWaivers \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policyViolations/{violationId}/applicableWaivers");
@@ -15289,6 +16231,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyViolations/crossStage \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyViolations/crossStage");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -15431,6 +16380,13 @@ This operation does not require authentication
 <a id="opIdgetCrossStagePolicyViolationById"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyViolations/crossStage/{violationId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policyViolations/crossStage/{violationId}");
@@ -15575,6 +16531,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyViolations \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyViolations");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -15712,6 +16675,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyViolations/transitive/{ownerType}/{ownerId}/{scanId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyViolations/transitive/{ownerType}/{ownerId}/{scanId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -15840,6 +16810,13 @@ This operation does not require authentication
 <a id="opIdgetTransitivePolicyViolationsByOwnerStageComponent"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyViolations/transitive/{ownerType}/{ownerId}/stages/{stageId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policyViolations/transitive/{ownerType}/{ownerId}/stages/{stageId}");
@@ -15972,6 +16949,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/policyWaiver/{policyViolationId}/{ownerType} \
+  -H 'Content-Type: text/plain' \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyWaiver/{policyViolationId}/{ownerType}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -16072,6 +17057,14 @@ This operation does not require authentication
 <a id="opIdaddPolicyWaiverByPolicyViolationId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyViolationId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policyWaivers/{ownerType}/{ownerId}/{policyViolationId}");
@@ -16181,6 +17174,13 @@ This operation does not require authentication
 <a id="opIdgetTransitivePolicyWaiversByAppScanComponent"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/{scanId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/{scanId}");
@@ -16341,6 +17341,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/{scanId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/{scanId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -16453,6 +17461,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/stages/{stageId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyWaivers/transitive/{ownerType}/{ownerId}/stages/{stageId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -16564,6 +17580,13 @@ This operation does not require authentication
 <a id="opIdgetPolicyWaiver"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyWaiverId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policyWaivers/{ownerType}/{ownerId}/{policyWaiverId}");
@@ -16717,6 +17740,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/policyWaivers/{ownerType}/{ownerId}/{policyWaiverId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyWaivers/{ownerType}/{ownerId}/{policyWaiverId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -16806,6 +17836,13 @@ This operation does not require authentication
 <a id="opIdgetPolicyWaivers"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/policyWaivers/{ownerType}/{ownerId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/policyWaivers/{ownerType}/{ownerId}");
@@ -17021,6 +18058,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/policyWaivers/waiverRequests/{policyViolationId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/policyWaivers/waiverRequests/{policyViolationId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -17116,6 +18161,14 @@ This operation does not require authentication
 <a id="opIdinstallLicense"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/product/license \
+  -H 'Content-Type: multipart/form-data' \
+  -H 'Accept: text/plain'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/product/license");
@@ -17237,6 +18290,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/product/license \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/product/license");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -17309,6 +18369,13 @@ This operation does not require authentication
 <a id="opIdgetComponentsInQuarantine"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/reports/components/quarantined \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/reports/components/quarantined");
@@ -17498,6 +18565,13 @@ This operation does not require authentication
 <a id="opIdgetComponentsWithWaivers"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/reports/components/waivers \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/reports/components/waivers");
@@ -17728,6 +18802,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/reports/metrics \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/reports/metrics");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -17833,6 +18915,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/reports/applications \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/reports/applications");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -17934,6 +19023,13 @@ This operation does not require authentication
 <a id="opIdgetByApplicationId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/reports/applications/{applicationId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/reports/applications/{applicationId}");
@@ -18042,6 +19138,13 @@ This operation does not require authentication
 <a id="opIdgetReportHistoryForApplication"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/reports/applications/{applicationId}/history \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/reports/applications/{applicationId}/history");
@@ -18194,6 +19297,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/reports/waivers/stale \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/reports/waivers/stale");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -18336,6 +19446,14 @@ This operation does not require authentication
 <a id="opIdreleaseQuarantineWithoutReEval"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/repositories/quarantine/{quarantineId}/release \
+  -H 'Content-Type: text/plain' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/repositories/quarantine/{quarantineId}/release");
@@ -18553,6 +19671,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/repositories/{repositoryManagerInstanceId}/{repositoryPublicId}/components/quarantined/pathnames \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/repositories/{repositoryManagerInstanceId}/{repositoryPublicId}/components/quarantined/pathnames");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -18662,6 +19788,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/roleMemberships/{ownerType}/{internalOwnerId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/roleMemberships/{ownerType}/{internalOwnerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -18769,6 +19902,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/roleMemberships/{ownerType} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/roleMemberships/{ownerType}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -18875,6 +20015,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X PUT /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/{memberType}/{memberName} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/{memberType}/{memberName}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -18968,6 +20115,13 @@ This operation does not require authentication
 <a id="opIdrevokeRoleMembershipApplicationOrOrganization"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/{memberType}/{memberName} \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/roleMemberships/{ownerType}/{internalOwnerId}/role/{roleId}/{memberType}/{memberName}");
@@ -19063,6 +20217,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X PUT /api/v2/roleMemberships/{ownerType}/role/{roleId}/{memberType}/{memberName} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/roleMemberships/{ownerType}/role/{roleId}/{memberType}/{memberName}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -19155,6 +20316,13 @@ This operation does not require authentication
 <a id="opIdrevokeRoleMembershipGlobalOrRepositoryContainer"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/roleMemberships/{ownerType}/role/{roleId}/{memberType}/{memberName} \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/roleMemberships/{ownerType}/role/{roleId}/{memberType}/{memberName}");
@@ -19251,6 +20419,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/roles \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/roles");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -19336,6 +20511,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/scan/applications/ideUser/overview \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/scan/applications/ideUser/overview");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -19418,6 +20600,13 @@ This operation does not require authentication
 <a id="opIdgetScanStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/scan/applications/{applicationId}/status/{scanRequestId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/scan/applications/{applicationId}/status/{scanRequestId}");
@@ -19521,6 +20710,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/scan/applications/{applicationId}/sources/{source} \
+  -H 'Content-Type: application/xml' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/scan/applications/{applicationId}/sources/{source}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -19610,6 +20807,13 @@ This operation does not require authentication
 <a id="opIdsearchComponent"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/search/component \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/search/component");
@@ -19742,6 +20946,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/securityOverrides \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/securityOverrides");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -19860,6 +21071,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/sourceControl/{ownerType}/{internalOwnerId} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/sourceControl/{ownerType}/{internalOwnerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -19969,6 +21187,14 @@ This operation does not require authentication
 <a id="opIdupdateSourceControl"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/sourceControl/{ownerType}/{internalOwnerId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sourceControl/{ownerType}/{internalOwnerId}");
@@ -20123,6 +21349,14 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/sourceControl/{ownerType}/{internalOwnerId} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/sourceControl/{ownerType}/{internalOwnerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -20276,6 +21510,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/sourceControl/{ownerType}/{internalOwnerId} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/sourceControl/{ownerType}/{internalOwnerId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -20366,6 +21607,13 @@ This operation does not require authentication
 <a id="opIdgetSourceControl"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sourceControlMetrics/{ownerType}/{internalOwnerId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sourceControlMetrics/{ownerType}/{internalOwnerId}");
@@ -20473,6 +21721,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/spdx/{applicationId}/reports/{scanId} \
+  -H 'Accept: application/xml'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/spdx/{applicationId}/reports/{scanId}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -20553,6 +21808,13 @@ This operation does not require authentication
 <a id="opIdgetLatestForStage"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/spdx/{applicationId}/stages/{stageId} \
+  -H 'Accept: application/xml'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/spdx/{applicationId}/stages/{stageId}");
@@ -20636,6 +21898,15 @@ This operation does not require authentication
 <a id="opIdpostExternalTelemetry"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/telemetry \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*' \
+  -H 'user-agent: string'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/telemetry");
@@ -20734,6 +22005,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X POST /api/v2/userTokens/currentUser \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/userTokens/currentUser");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -20814,6 +22092,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/userTokens/currentUser \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/userTokens/currentUser");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -20884,6 +22169,13 @@ This operation does not require authentication
 <a id="opIddeleteUserTokenByUserCode"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/userTokens/userCode/{userCode} \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/userTokens/userCode/{userCode}");
@@ -20961,6 +22253,13 @@ This operation does not require authentication
 <a id="opIdgetUserTokenByUsernameAndRealmId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/userTokens/{username} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/userTokens/{username}");
@@ -21049,6 +22348,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/userTokens/currentUser/hasToken \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/userTokens/currentUser/hasToken");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -21125,6 +22431,13 @@ This operation does not require authentication
 <a id="opIdgetUserTokensByCreatedBetweenAndRealmId"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/userTokens \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/userTokens");
@@ -21228,6 +22541,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/userTokens/purge \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/userTokens/purge");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -21300,6 +22620,13 @@ This operation does not require authentication
 <a id="opIdgetAll_2"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/users \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/users");
@@ -21392,6 +22719,14 @@ This operation does not require authentication
 <a id="opIdadd"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/users \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: */*'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/users");
@@ -21492,6 +22827,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X GET /api/v2/users/{username} \
+  -H 'Accept: application/json'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/users/{username}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -21580,6 +22922,14 @@ This operation does not require authentication
 <a id="opIdupdate"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/users/{username} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/users/{username}");
@@ -21692,6 +23042,13 @@ This operation does not require authentication
 
 > Code samples
 
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/users/{username} \
+  -H 'Accept: */*'
+
+```
+
 ```java
 URL obj = new URL("/api/v2/users/{username}");
 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -21771,6 +23128,13 @@ This operation does not require authentication
 <a id="opIdgetSecurityVulnerabilityDetails"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/vulnerabilities/{refId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/vulnerabilities/{refId}");
@@ -21933,11 +23297,19 @@ This operation does not require authentication
 
 <h1 id="sonatype-lifecycle-public-rest-api-sbom">sbom</h1>
 
-## Gets a sbom version
+## getSbomVersion
 
 <a id="opIdgetSbomVersion"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/applications/{applicationId}/versions/{version} \
+  -H 'Accept: application/json|application/xml' \
+  -H 'Accept: string'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/applications/{applicationId}/versions/{version}");
@@ -21992,9 +23364,11 @@ fetch('/api/v2/sbom/applications/{applicationId}/versions/{version}',
 
 `GET /api/v2/sbom/applications/{applicationId}/versions/{version}`
 
+*Gets a sbom version*
+
 Downloads a specific sbom version in its original or current form
 
-<h3 id="gets-a-sbom-version-parameters">Parameters</h3>
+<h3 id="getsbomversion-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22006,24 +23380,30 @@ Downloads a specific sbom version in its original or current form
 
 > Example responses
 
-<h3 id="gets-a-sbom-version-responses">Responses</h3>
+<h3 id="getsbomversion-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Content of the sbom|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Supplied sbom version not found|None|
 
-<h3 id="gets-a-sbom-version-responseschema">Response Schema</h3>
+<h3 id="getsbomversion-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Delete sbom version
+## deleteSbomVersion
 
 <a id="opIddeleteSbomVersion"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /api/v2/sbom/applications/{applicationId}/versions/{version}
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/applications/{applicationId}/versions/{version}");
@@ -22068,16 +23448,18 @@ fetch('/api/v2/sbom/applications/{applicationId}/versions/{version}',
 
 `DELETE /api/v2/sbom/applications/{applicationId}/versions/{version}`
 
+*Delete sbom version*
+
 Deletes a specific sbom version including it's original contents and updates
 
-<h3 id="delete-sbom-version-parameters">Parameters</h3>
+<h3 id="deletesbomversion-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |applicationId|path|string|true|The internal id of the application|
 |version|path|string|true|URL Encoded version value of the sbom to be deleted|
 
-<h3 id="delete-sbom-version-responses">Responses</h3>
+<h3 id="deletesbomversion-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -22088,11 +23470,18 @@ Deletes a specific sbom version including it's original contents and updates
 This operation does not require authentication
 </aside>
 
-## Gets a list of active sbom versions by application id
+## getActiveSbomVersionListByApplication
 
 <a id="opIdgetActiveSbomVersionListByApplication"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/applications/{applicationId}/versions \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/applications/{applicationId}/versions");
@@ -22145,9 +23534,11 @@ fetch('/api/v2/sbom/applications/{applicationId}/versions',
 
 `GET /api/v2/sbom/applications/{applicationId}/versions`
 
+*Gets a list of active sbom versions by application id*
+
 Gets a list of active sbom versions by application id
 
-<h3 id="gets-a-list-of-active-sbom-versions-by-application-id-parameters">Parameters</h3>
+<h3 id="getactivesbomversionlistbyapplication-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22155,23 +23546,30 @@ Gets a list of active sbom versions by application id
 
 > Example responses
 
-<h3 id="gets-a-list-of-active-sbom-versions-by-application-id-responses">Responses</h3>
+<h3 id="getactivesbomversionlistbyapplication-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|list of the active sbom versions by application id|None|
 
-<h3 id="gets-a-list-of-active-sbom-versions-by-application-id-responseschema">Response Schema</h3>
+<h3 id="getactivesbomversionlistbyapplication-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Get sbom import status
+## getImportStatus
 
 <a id="opIdgetImportStatus"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/applications/{applicationId}/status/{importRequestId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/applications/{applicationId}/status/{importRequestId}");
@@ -22224,9 +23622,11 @@ fetch('/api/v2/sbom/applications/{applicationId}/status/{importRequestId}',
 
 `GET /api/v2/sbom/applications/{applicationId}/status/{importRequestId}`
 
+*Get sbom import status*
+
 Gets status of a sbom import.
 
-<h3 id="get-sbom-import-status-parameters">Parameters</h3>
+<h3 id="getimportstatus-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22235,24 +23635,31 @@ Gets status of a sbom import.
 
 > Example responses
 
-<h3 id="get-sbom-import-status-responses">Responses</h3>
+<h3 id="getimportstatus-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Sbom import completed successfully.|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Sbom import still in progress.|None|
 
-<h3 id="get-sbom-import-status-responseschema">Response Schema</h3>
+<h3 id="getimportstatus-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Gets the components found in a specific sbom version
+## getSbomComponents
 
 <a id="opIdgetSbomComponents"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/applications/{applicationId}/versions/{version}/components \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/applications/{applicationId}/versions/{version}/components");
@@ -22305,9 +23712,11 @@ fetch('/api/v2/sbom/applications/{applicationId}/versions/{version}/components',
 
 `GET /api/v2/sbom/applications/{applicationId}/versions/{version}/components`
 
+*Gets the components found in a specific sbom version*
+
 Lists the components in a specific sbom version with data about vulnerabilities and licenses
 
-<h3 id="gets-the-components-found-in-a-specific-sbom-version-parameters">Parameters</h3>
+<h3 id="getsbomcomponents-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22338,23 +23747,30 @@ Lists the components in a specific sbom version with data about vulnerabilities 
 
 > Example responses
 
-<h3 id="gets-the-components-found-in-a-specific-sbom-version-responses">Responses</h3>
+<h3 id="getsbomcomponents-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of components in the sbom|None|
 
-<h3 id="gets-the-components-found-in-a-specific-sbom-version-responseschema">Response Schema</h3>
+<h3 id="getsbomcomponents-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Gets a paginated list of SBOMs for an application
+## getSbomMetadataSummaryForApplication
 
 <a id="opIdgetSbomMetadataSummaryForApplication"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/applications/{applicationId} \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/applications/{applicationId}");
@@ -22407,9 +23823,11 @@ fetch('/api/v2/sbom/applications/{applicationId}',
 
 `GET /api/v2/sbom/applications/{applicationId}`
 
+*Gets a paginated list of SBOMs for an application*
+
 Gets a paginated list of SBOMs for an application
 
-<h3 id="gets-a-paginated-list-of-sboms-for-an-application-parameters">Parameters</h3>
+<h3 id="getsbommetadatasummaryforapplication-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22420,23 +23838,31 @@ Gets a paginated list of SBOMs for an application
 
 > Example responses
 
-<h3 id="gets-a-paginated-list-of-sboms-for-an-application-responses">Responses</h3>
+<h3 id="getsbommetadatasummaryforapplication-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|list of the sboms|None|
 
-<h3 id="gets-a-paginated-list-of-sboms-for-an-application-responseschema">Response Schema</h3>
+<h3 id="getsbommetadatasummaryforapplication-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Import a new sbom version
+## importSbom
 
 <a id="opIdimportSbom"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X POST /api/v2/sbom/import \
+  -H 'Content-Type: */*' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/import");
@@ -22494,11 +23920,13 @@ fetch('/api/v2/sbom/import',
 
 `POST /api/v2/sbom/import`
 
+*Import a new sbom version*
+
 Imports a new sbom version to an existing application
 
 > Body parameter
 
-<h3 id="import-a-new-sbom-version-parameters">Parameters</h3>
+<h3 id="importsbom-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22508,24 +23936,32 @@ Imports a new sbom version to an existing application
 
 > Example responses
 
-<h3 id="import-a-new-sbom-version-responses">Responses</h3>
+<h3 id="importsbom-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |202|[Accepted](https://tools.ietf.org/html/rfc7231#section-6.3.3)|Import successful. URL to check the status of the import returned|None|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Invalid/Unsupported data provided for sbom import|None|
 
-<h3 id="import-a-new-sbom-version-responseschema">Response Schema</h3>
+<h3 id="importsbom-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Updates a vulnerability analysis annotation for a specific SBOM vulnerability
+## saveVulnerabilityAnalysis
 
 <a id="opIdsaveVulnerabilityAnalysis"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X PUT /api/v2/sbom/applications/{applicationId}/versions/{version}/vulnerability/{refId}/analysis \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/applications/{applicationId}/versions/{version}/vulnerability/{refId}/analysis");
@@ -22591,6 +24027,8 @@ fetch('/api/v2/sbom/applications/{applicationId}/versions/{version}/vulnerabilit
 
 `PUT /api/v2/sbom/applications/{applicationId}/versions/{version}/vulnerability/{refId}/analysis`
 
+*Updates a vulnerability analysis annotation for a specific SBOM vulnerability*
+
 Updates a vulnerability analysis annotation for a specific SBOM vulnerability
 
 > Body parameter
@@ -22610,7 +24048,7 @@ Updates a vulnerability analysis annotation for a specific SBOM vulnerability
 }
 ```
 
-<h3 id="updates-a-vulnerability-analysis-annotation-for-a-specific-sbom-vulnerability-parameters">Parameters</h3>
+<h3 id="savevulnerabilityanalysis-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -22621,14 +24059,14 @@ Updates a vulnerability analysis annotation for a specific SBOM vulnerability
 
 > Example responses
 
-<h3 id="updates-a-vulnerability-analysis-annotation-for-a-specific-sbom-vulnerability-responses">Responses</h3>
+<h3 id="savevulnerabilityanalysis-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Vulnerability analysis annotation updated successfully|None|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Target vulnerability not found|None|
 
-<h3 id="updates-a-vulnerability-analysis-annotation-for-a-specific-sbom-vulnerability-responseschema">Response Schema</h3>
+<h3 id="savevulnerabilityanalysis-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
@@ -22636,11 +24074,18 @@ This operation does not require authentication
 
 <h1 id="sonatype-lifecycle-public-rest-api-sbom-dashboard">sbom dashboard</h1>
 
-## Gets application history metrics
+## getApplicationsHistoryMetric
 
 <a id="opIdgetApplicationsHistoryMetric"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/dashboard/sbomsHistoryMetrics \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/dashboard/sbomsHistoryMetrics");
@@ -22693,27 +24138,36 @@ fetch('/api/v2/sbom/dashboard/sbomsHistoryMetrics',
 
 `GET /api/v2/sbom/dashboard/sbomsHistoryMetrics`
 
+*Gets application history metrics*
+
 Queries how many SBOMs applications have been analyzed
 
 > Example responses
 
-<h3 id="gets-application-history-metrics-responses">Responses</h3>
+<h3 id="getapplicationshistorymetric-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Total of SBOMs applications analyzed|None|
 
-<h3 id="gets-application-history-metrics-responseschema">Response Schema</h3>
+<h3 id="getapplicationshistorymetric-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Gets total of SBOMs analyzed and the threshold in the product license
+## getSbomsAnalyzedMetrics
 
 <a id="opIdgetSbomsAnalyzedMetrics"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/dashboard/sbomsAnalyzed \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/dashboard/sbomsAnalyzed");
@@ -22766,27 +24220,36 @@ fetch('/api/v2/sbom/dashboard/sbomsAnalyzed',
 
 `GET /api/v2/sbom/dashboard/sbomsAnalyzed`
 
+*Gets total of SBOMs analyzed and the threshold in the product license*
+
 Queries how many SBOMs have been analyzed and the threshold in the product license
 
 > Example responses
 
-<h3 id="gets-total-of-sboms-analyzed-and-the-threshold-in-the-product-license-responses">Responses</h3>
+<h3 id="getsbomsanalyzedmetrics-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Total of SBOMs analyzed and the threshold in the product license|None|
 
-<h3 id="gets-total-of-sboms-analyzed-and-the-threshold-in-the-product-license-responseschema">Response Schema</h3>
+<h3 id="getsbomsanalyzedmetrics-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication
 </aside>
 
-## Gets counters of vulnerabilities and annotations by threat level
+## getVulnerabilitiesByThreatLevel
 
 <a id="opIdgetVulnerabilitiesByThreatLevel"></a>
 
 > Code samples
+
+```shell
+# You can also use wget
+curl -X GET /api/v2/sbom/dashboard/vulnerabilitiesByThreatLevel \
+  -H 'Accept: application/json'
+
+```
 
 ```java
 URL obj = new URL("/api/v2/sbom/dashboard/vulnerabilitiesByThreatLevel");
@@ -22839,17 +24302,19 @@ fetch('/api/v2/sbom/dashboard/vulnerabilitiesByThreatLevel',
 
 `GET /api/v2/sbom/dashboard/vulnerabilitiesByThreatLevel`
 
+*Gets counters of vulnerabilities and annotations by threat level*
+
 Queries how many vulnerabilities and annotations have been found by each threat level
 
 > Example responses
 
-<h3 id="gets-counters-of-vulnerabilities-and-annotations-by-threat-level-responses">Responses</h3>
+<h3 id="getvulnerabilitiesbythreatlevel-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Counters of vulnerabilities and annotations by threat level|None|
 
-<h3 id="gets-counters-of-vulnerabilities-and-annotations-by-threat-level-responseschema">Response Schema</h3>
+<h3 id="getvulnerabilitiesbythreatlevel-responseschema">Response Schema</h3>
 
 <aside class="success">
 This operation does not require authentication

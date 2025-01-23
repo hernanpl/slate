@@ -102,13 +102,7 @@ under the License.
       <% end %>
     </div>
   <% end %>
-  <% if current_page.data.search %>
-    <div class="search">
-      <input type="text" class="search" id="input-search" placeholder="Search">
-    </div>
-    <ul class="search-results"></ul>
-  <% end %>
-
+ <br>
   <div class="nx-dropdown">
     <button id="product-select" class="nx-dropdown__toggle">
       <span class="nx-dropdown__arrow"></span>
@@ -122,7 +116,6 @@ under the License.
       <% end %>
     </ul>
   </div>
-
   <div class="nx-dropdown">
     <button id="version-select" class="nx-dropdown__toggle">
       <span class="nx-dropdown__arrow"></span>
@@ -131,6 +124,13 @@ under the License.
   </div>
 
   <div class="divider"></div>
+
+  <% if current_page.data.search %>
+  <div class="search">
+    <input type="text" class="search" id="input-search" placeholder="Search">
+  </div>
+  <ul class="search-results"></ul>
+  <% end %>
 
   <ul id="toc" class="toc-list-h1">
     <% toc_data(page_content).each do |h1| %>
